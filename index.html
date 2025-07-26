@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hero Gallery</title>
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      flex: 1;
+    }
+
+    button {
+      padding: 8px 12px;
+      font-size: 16px;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 16px;
+    }
+
+    .hero {
+      text-align: center;
+    }
+
+    .hero img {
+      width: 100%;
+      border-radius: 8px;
+      height: auto;
+    }
+
+    .hero-name {
+      margin-top: 8px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Hero Gallery</h1>
+<div class="controls">
+  <input type="text" id="search" placeholder="Search heroes...">
+  <button id="sortBtn">Sort: A-Z</button>
+</div>
+
+<div id="grid" class="grid"></div>
+
+<script>
+  const heroes = [
+    "Airi", "Aleister", "Alice", "Allain", "Amily", "Annette", "Aoi", "Arduin", "Arthur", "Arum", "Astrid", "Ata", "Aya", "AzzenKa", "Baldum", "Bijan", "Billow", "Biron", "BoltBaron", "Bonnie", "Bright", "Butterfly", "Capheny", "Celica", "Charlotte", "Chaugnar", "Cresht", "Darcy", "Dextra", "Diaochan", "Dirak", "Dolia", "Elandorr", "Elsu", "Enzo", "Erin", "Errol", "Fennik", "Florentino", "Gildur", "Grakk", "Hayate", "Heino", "Helen", "Iggy", "Ignis", "Ilumia", "Ishar", "Jinna", "Kahlii", "Kaine", "Keera", "Kilgroth", "Kriknak", "Krixi", "Krizzix", "Lauriel", "Laville", "Liliana", "Lindis", "Lorion", "Lubu", "Lumburr", "Maloch", "Marja", "Max", "Mganga", "Mina", "Ming", "Moren", "Murad", "Nakroth", "Natalya", "Omega", "Omen", "Ormarr", "Paine", "Preyta", "Qi", "Quillen", "Raz", "Richter", "Rouie", "Rourke", "Roxie", "Ryoma", "Sephera", "Sinestrea", "Skud", "Slimz", "Stuart", "Superman", "Taara", "Tachi", "Teemee", "Telannas", "Terri", "Thane", "TheFlash", "Thorne", "Toro", "Tulen", "Valhein", "Veera", "Veres", "Violet", "Volkath", "Wiro", "Wisp", "WonderWoman", "Wukong", "Xeniel", "Yan", "Ybneth", "Yena", "Yorn", "Yue", "Zanis", "Zata", "Zephys", "Zill", "Zip", "Zuka"
+  ];
+
+  let currentSort = "asc"; // "asc" or "desc"
+  const grid = document.getElementById('grid');
+  const searchInput = document.getElementById('search');
+  const sortBtn = document.getElementById('sortBtn');
+
+  function createHeroCard(name) {
+    const div = document.createElement('div');
+    div.className = 'hero';
+
+    const img = document.createElement('img');
+    img.loading = 'lazy';
+    img.src = `./assets/hero/${name}/${name}.png`;
+    img.alt = name;
+
+    const label = document.createElement('div');
+    label.className = 'hero-name';
+    label.textContent = name;
+
+    div.appendChild(img);
+    div.appendChild(label);
+    return div;
+  }
+
+  function renderGrid(filteredHeroes) {
+    grid.innerHTML = '';
+    filteredHeroes.forEach(name => {
+      grid.appendChild(createHeroCard(name));
+    });
+  }
+
+  function filterAndSortHeroes() {
+    const query = searchInput.value.trim().toLowerCase();
+    let filtered = heroes.filter(name => name.toLowerCase().includes(query));
+
+    filtered.sort((a, b) => {
+      if (currentSort === "asc") return a.localeCompare(b);
+      else return b.localeCompare(a);
+    });
+
+    renderGrid(filtered);
+  }
+
+  searchInput.addEventListener('input', filterAndSortHeroes);
+
+  sortBtn.addEventListener('click', () => {
+    currentSort = currentSort === "asc" ? "desc" : "asc";
+    sortBtn.textContent = `Sort: ${currentSort === "asc" ? "A-Z" : "Z-A"}`;
+    filterAndSortHeroes();
+  });
+
+  // Initial render
+  filterAndSortHeroes();
+</script>
+
+</body>
+</html>
