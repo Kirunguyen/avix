@@ -1,0 +1,32 @@
+class,col-level,id,display-name,icon-url,desc
+A,11,AxeOfSacrifice,Tương Phản,./images/talents/A11_AxeOfSacrifice.png,Tăng 3% Sát Thương gây ra\nTăng 1% Sát Thương nhận vào (+1% với tướng Đánh Xa)
+A,12,ManaRefill,Sung Mãn,./images/talents/A12_ManaRefill.png,Hồi: 5s\nTung chiêu / Đánh thường trúng tướng địch sẽ hồi 8% Năng Lượng tối đa
+A,13,SacredBead,Thánh Châu,./images/talents/A13_SacredBead.png,Nhận thêm 10% Giảm Hồi Chiêu cho Chiêu Cuối (không vượt quá 40% GHC)
+A,21,Blessing,Bí Quyết,./images/talents/A21_Blessing.png,Nhận thêm 16% Tỉ Lệ Chí Mạng từ trang bị\nNhận thêm 8% Công Phép từ trang bị
+A,22,HolyVerdict,Xuyên Tâm,./images/talents/A22_HolyVerdict.png,Nhận (18 - 60) Xuyên Giáp và Xuyên Giáp Phép
+A,31,HolySummoner,Tinh Linh,./images/talents/A31_HolySummoner.png,Đánh Thường 03 lần liên tiếp trúng một Tướng Địch sẽ triệu hồi tiểu Thiên thần trợ công:\nPhạm vi: 9.5m\nTốc Đánh: Bằng tốc đánh chủ nhân\nCông: Gây ST Chuẩn = 2% Máu tối đa mục tiêu\nKéo dài: 5s
+A,32,HolyThunder,Thần Quang,./images/talents/A32_HolyThunder.png,Hồi: 12s\nTung chiêu / Đánh thường trúng tướng địch sẽ gây thêm ((80 + (Lv*8)(30% Công Phép)) ST Phép\nTung chiêu / Đánh thường trúng tướng địch sẽ giảm 1s hồi kỹ năng (giãn cách 0.5s)
+A,33,SacredProtection,Thánh Thuẫn,./images/talents/A33_SacredProtection.png,"Hồi: 30s\nChịu ST ≥ 30% Máu tối đa trong vòng 3s sẽ kích hoạt:\nNhận lá chắn a (400 + Lv*30) Sát Thương (kéo dài 6s)\nNhận 20% Hút Máu Phép (kéo dài 6s, Phụ / Hạ để kéo dài thêm 3s)"
+B,11,Devourer,Hấp Huyết,./images/talents/B11_Devourer.png,Phụ / Hạ sẽ hồi phục 9% Máu đã mất and 15% Năng Lượng đã mất
+B,12,ShadowBlade,Dư Ảnh,./images/talents/B12_ShadowBlade.png,"Sử dụng kỹ năng Lướt sẽ nhận 1 cộng dồn Dư Ảnh (lên đến x3, kéo dài 4s)\nĐòn Đánh Thường kế tiếp lên tướng địch sẽ tiêu hao toàn bộ Dư Ảnh, gây thêm (30 + Lv\*5 + 10% CVLThêm) ST Vật Lý mỗi cộng dồ"
+B,13,RagingInferno,Ma Hỏa,./images/talents/B13_RagingInferno.png,Hồi: 8s\nTung chiêu / Đánh thường trúng tướng địch gây thêm (50 + Lv\*5 + 15% Công Phép) ST Phép
+B,21,DeadlyClaw,Cường Công,./images/talents/B21_DeadlyClaw.png,Nhận (10 - 38) Công Vật Lý\nNhận (15 - 57) Công Phép
+B,22,BoneCutter,Cố Thủ,./images/talents/B22_BoneCutter.png,Nhận 12.5% Kháng Hiệu Ứng
+B,31,DesperateDuel,Đấu Khí,./images/talents/B31_DesperateDuel.png,"Tung chiêu / Đánh thường trúng tướng địch sẽ nhận 1 cộng dồn Đấu Khí (lên đến x10, kéo dài 3s)\nMỗi cộng dồn tăng 2 Tốc Chạy\nĐạt 10 Cộng dồn sẽ hồi phục 10% Máu đã mất, nhận 15% Xuyên Giáp và Xuyên Giáp Phép"
+B,32,CurseOfDeath,Ma Chú,./images/talents/B32_CurseOfDeath.png,"Tung chiêu / Đánh thường trúng tướng địch sẽ đánh dấu mục tiêu trong 1.5s. Đủ 3 lần đánh dấu sẽ kích hoạt:\nBùng nổ (40 + Lv*4 + 25%CVLThêm + 15%CPThêm) ST Phép phạm vi 2.5m quanh mục tiêu\n1s sau, bùng nổ (6% Máu đã mất mục tiêu (+1% mỗi 100 CVL / 200 CP)) ST Phép trong phạm vi tương tự"
+B,33,DevilsAwakening,Ma Tính,./images/talents/B33_DevilsAwakening.png,Hồi: 30s\nThi triển Chiêu Cuối sẽ kích hoạt:\nLập tức giảm 30% thời gian hồi các chiêu khác\nNhận 20% Giảm Hồi Chiêu (thông số) trong vòng 6s (Hạ / Phụ kéo dài thêm 3s)
+C,11,RiverTreader,Nhạy Bén,./images/talents/C11_RiverTreader.png,Khi đứng trên đường sông được\n+ 10 Tốc Chạy\n+ 20 Hồi Máu / 5s\n+ 10 Hồi Năng Lượng / 5s
+C,12,Backstabbing,Ám Kích,./images/talents/C12_Backstabbing.png,Ở trong bụi cỏ tung Đòn Đánh Thường kế tiếp sẽ gây thêm ST Chuẩn = 4% Máu Hiện Tại mục tiêu\nHiệu ứng vẫn duy trì trong 4s sau khi rời bụi cỏ
+C,12,TowerBlessing,Canh Gác,./images/talents/C12_TowerBlessing.png,Khi đứng trong phạm vi 6m quanh trụ được\n+ 15% Kháng Hiệu Ứng\n+ 10% Miễn Thương
+C,21,Regrowth,Bơm Máu,./images/talents/C21_Regrowth.png,Tăng 10% Hiệu quả Hồi Máu và Lá Chắn của bản thân (+10% với mục tiêu ≤ 50% Máu)\nHiệu ứng bao gồm Trang Bị / Kỹ năng phụ trợ
+C,22,NaturesGift,Sinh Tồn,./images/talents/C22_NaturesGift.png,Lính / Quái rừng lân cận bị hạ gục giúp tăng Máu Tối Đa vĩnh viễn (max 800)\nLính: +8 Máu Tối Đa / 1 con\nQuái rừng nhỏ: + 16 Máu Tối Đa / 1 con\nQuái rừng lớn: + 24 Máu Tối Đa` / 1 con
+C,31,NaturesRage,Trói Buộc,./images/talents/C31_NaturesRage.png,"Hồi: 20s\nKhống chế tướng địch (Trừ Làm Chậm, Trói Chân, Câm Lặng) sẽ kích hoạt:\nThiêu đốt ST Phép = 2% Máu Tối Đa lên kẻ địch lân cận mỗi 0.5s *(kéo dài 3s)\nKẻ địch bị thiêu đốt sẽ giảm (30 + Lv\*3) Giáp Phép"
+C,32,ExplosiveShield,Mộc Giáp,./images/talents/C32_ExplosiveShield.png,"Hồi: 10s\nChịu ST từ tướng địch sẽ cộng dồn 1 tầng nội tại (kéo dài 3s, giãn cách 1s)\nĐủ 4 tầng nội tại sẽ kích hoạt:\nTạo làn sóng xung kích phạm vi 4m quanh bản thân, gây ST Phép 2% Máu Tối Đa\nHồi phục 5% Máu Tối Đa (+ 2% / mỗi tướng địch trúng chiêu)"
+C,33,ForestWanderer,Du Hiệp,./images/talents/C33_ForestWanderer.png,"Sau khi rời khỏi trạng thái Chiến đấu, cường hóa Đòn Đánh Thường kế tiếp:\nGiảm 30% Tốc Chạy của tướng địch, đồng thời gắn 1 dấu ấn\nSau 3s, dấu ấn phát nổ gây ST Phép = 8% Máu Tối Đa bản thân"
+D,11,MarkOfFrost,Băng Sương,./images/talents/D11_MarkOfFrost.png,"[Sử dụng một lần]\nNhận hiệu ứng [Phong Ấn] vào phút thứ 04 của trận đấu\nChủ động:\nTrở nên Không thể bị chọn làm mục tiêu (kéo dài 1.5s)\nTrong lúc bị Phong ấn, Tướng không thể Di chuyển / Tung chiêu / Đánh thường / Sử dụng bổ trợ\nKết thúc nhận lá chắn ((500+ Cấp tướng*40) + (50% CP)) Sát Thương (kéo dài 1s)"
+D,12,EnhancedRestore,Siêu Hồi Máu,./images/talents/D12_EnhancedRestore.png,(Thay thế Hồi Máu -> Siêu Hồi Máu)\n[Siêu Hồi Máu]\nHồi: 60s\nChủ động: Lập tức hồi phục khoảng 660 Máu và 210 Năng Lượng
+D,13,ArcaneWhisper,Mật Ngữ,./images/talents/D13_ArcaneWhisper.png,Giảm 15% thời gian hồi cho Phép Bổ Trợ
+D,21,MinionKill,Uy Áp,./images/talents/D21_MinionKill.png,Hồi: 25s\nTung chiêu / Đánh thường trúng lính sẽ lập tức hạ gục mục tiêu (Trừ Lính Siêu Cấp / Caesar Tiên Phong)\nTích lũy hạ 10 lính bằng Uy Áp sẽ nhận 200 Vàng và đặt lại bộ đếm
+D,22,Gunslinger,Thợ Săn,./images/talents/D22_Gunslinger.png,Vào trận nhận 1 cộng dồn Thợ Săn.\nPhụ / Hạ tướng địch khác nhau để nhận thêm cộng dồn (lên đến x6 tổng cộng)\nMỗi cộng dồn Thợ Săn tăng 8 Công Vật Lý và 12 Công Phép
+D,31,Alchemy,Luyện Kim,./images/talents/D31_Alchemy.png,"Hồi: 100s (+ Lv*15)\nNhận [Hồi Sinh] để ngay lập tức hồi sinh tại Tế Đàn (tối đa dùng 02 lần)\nSau phút thứ 12 sẽ cấm sử dụng, chuyển đổi mỗi lần [Hồi Sinh] chưa sử dụng thành 300 Vàng"
+D,32,EndlessCycle,Chuyển Sinh,./images/talents/D32_EndlessCycle.png,"Mỗi 20s, nhận 1 cộng dồn Luyện Kim (lên đến x3)\nTung chiêu / Đánh thường lên Trụ / Tướng địch để tiêu hao 1 cộng dồn, nhận 16 vàng (tối đa nhận 800 Vàng)"

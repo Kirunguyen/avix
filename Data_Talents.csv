@@ -1,0 +1,10 @@
+id,display-name,desc,icon-url,thumb-url
+heal,Cấp Cứu,Hồi 15% Máu và tăng 15% Tốc chạy cho bản thân và đồng minh lân cận (kéo dài 2s). Hồi 120s,./images/talents/heal.png,./images/talents/heal_thumb.png
+sprint,Tốc Hành,Hóa giải trạng thái làm chậm và nhận (70% - 30%) Tốc chạy giảm dần liên tục trong 10s. Hồi 100s,./images/talents/sprint.png,./images/talents/sprint_thumb.png
+punish,Trừng Trị,"Gây (800 - 1640) Sát thương chuẩn lên lính / quái và làm choáng 1s. Hồi 30s\n\nTê tái: Tăng 30% Sát thương, nhận khả năng Sát thương kẻ địch, làm chậm 50% trong 2s",./images/talents/punish.png,./images/talents/punish_thumb.png
+execute,Bộc Phá,Gây (16% Máu tổn thất địch) Sát thương chuẩn lên tướng địch trong phạm vi. Hồi 90s,./images/talents/execute.png,./images/talents/execute_thumb.png
+flicker,Tốc Biến,Lập tức biến theo hướng chỉ định một khoảng ngắn. Hồi 120s,./images/talents/flicker.png,./images/talents/flicker_thumb.png
+roar,Gầm Thét,"Tăng 25% Kháng hiệu ứng, 10% Sát thương, mỗi 1s hồi 2% Máu (kéo dài 6s). Hồi 60s",./images/talents/roar.png,./images/talents/roar_thumb.png
+daze,Ngất Ngư,"Choáng tất cả kẻ địch lân cận trong 0.75s, làm chậm chúng 20% đồng thời giảm (28 + Cấp tướng * 2) Giáp, (14 + Cấp tướng) Giáp phép trong 2.5s. Hồi 90s ",./images/talents/daze.png,./images/talents/daze_thumb.png
+purify,Thanh Tẩy,"Hóa giải tất cả hiệu ứng bất lợi và khống chế, miễn dịch với khống chế trong 1.5s. Hồi 120s",./images/talents/purify.png,./images/talents/purify_thumb.png
+enfeeble,Suy Nhược,"Giảm 20% Sát thương của kẻ địch lân cận, tăng 20% Miễn thương bản thân trong 4s. Hồi 90s",./images/talents/enfeeble.png,./images/talents/enfeeble_thumb.png
