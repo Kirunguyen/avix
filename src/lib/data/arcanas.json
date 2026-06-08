@@ -1,0 +1,182 @@
+[
+	{
+		"id": "purple_assassin",
+		"name": "purple_Assassin",
+		"image": "purple_Assassin.png",
+		"color": "purple"
+	},
+	{
+		"id": "purple_cleric",
+		"name": "purple_Cleric",
+		"image": "purple_Cleric.png",
+		"color": "purple"
+	},
+	{
+		"id": "purple_colossus",
+		"name": "purple_Colossus",
+		"image": "purple_Colossus.png",
+		"color": "purple"
+	},
+	{
+		"id": "purple_crusader",
+		"name": "purple_Crusader",
+		"image": "purple_Crusader.png",
+		"color": "purple"
+	},
+	{
+		"id": "purple_fairy",
+		"name": "purple_Fairy",
+		"image": "purple_Fairy.png",
+		"color": "purple"
+	},
+	{
+		"id": "purple_reaper",
+		"name": "purple_Reaper",
+		"image": "purple_Reaper.png",
+		"color": "purple"
+	},
+	{
+		"id": "purple_reliever",
+		"name": "purple_Reliever",
+		"image": "purple_Reliever.png",
+		"color": "purple"
+	},
+	{
+		"id": "purple_tyrabt",
+		"name": "purple_Tyrabt",
+		"image": "purple_Tyrabt.png",
+		"color": "purple"
+	},
+	{
+		"id": "purple_undying",
+		"name": "purple_Undying",
+		"image": "purple_Undying.png",
+		"color": "purple"
+	},
+	{
+		"id": "purple_vampire",
+		"name": "purple_Vampire",
+		"image": "purple_Vampire.png",
+		"color": "purple"
+	},
+	{
+		"id": "red_berserker",
+		"name": "red_Berserker",
+		"image": "red_Berserker.png",
+		"color": "red"
+	},
+	{
+		"id": "red_blitz",
+		"name": "red_Blitz",
+		"image": "red_Blitz.png",
+		"color": "red"
+	},
+	{
+		"id": "red_bloodlust",
+		"name": "red_Bloodlust",
+		"image": "red_Bloodlust.png",
+		"color": "red"
+	},
+	{
+		"id": "red_guardian",
+		"name": "red_Guardian",
+		"image": "red_Guardian.png",
+		"color": "red"
+	},
+	{
+		"id": "red_nomad",
+		"name": "red_Nomad",
+		"image": "red_Nomad.png",
+		"color": "red"
+	},
+	{
+		"id": "red_rampage",
+		"name": "red_Rampage",
+		"image": "red_Rampage.png",
+		"color": "red"
+	},
+	{
+		"id": "red_samurai",
+		"name": "red_Samurai",
+		"image": "red_Samurai.png",
+		"color": "red"
+	},
+	{
+		"id": "red_savage",
+		"name": "red_Savage",
+		"image": "red_Savage.png",
+		"color": "red"
+	},
+	{
+		"id": "red_sovereign",
+		"name": "red_Sovereign",
+		"image": "red_Sovereign.png",
+		"color": "red"
+	},
+	{
+		"id": "red_wise",
+		"name": "red_Wise",
+		"image": "red_Wise.png",
+		"color": "red"
+	},
+	{
+		"id": "teal_bastion",
+		"name": "teal_Bastion",
+		"image": "teal_Bastion.png",
+		"color": "teal"
+	},
+	{
+		"id": "teal_crusader",
+		"name": "teal_Crusader",
+		"image": "teal_Crusader.png",
+		"color": "teal"
+	},
+	{
+		"id": "teal_darksider",
+		"name": "teal_Darksider",
+		"image": "teal_Darksider.png",
+		"color": "teal"
+	},
+	{
+		"id": "teal_degenerate",
+		"name": "teal_Degenerate",
+		"image": "teal_Degenerate.png",
+		"color": "teal"
+	},
+	{
+		"id": "teal_dragoon",
+		"name": "teal_Dragoon",
+		"image": "teal_Dragoon.png",
+		"color": "teal"
+	},
+	{
+		"id": "teal_hexer",
+		"name": "teal_Hexer",
+		"image": "teal_Hexer.png",
+		"color": "teal"
+	},
+	{
+		"id": "teal_monarch",
+		"name": "teal_Monarch",
+		"image": "teal_Monarch.png",
+		"color": "teal"
+	},
+	{
+		"id": "teal_mythril",
+		"name": "teal_Mythril",
+		"image": "teal_Mythril.png",
+		"color": "teal"
+	},
+	{
+		"id": "teal_paladin",
+		"name": "teal_Paladin",
+		"image": "teal_Paladin.png",
+		"color": "teal"
+	},
+	{
+		"id": "teal_templar",
+		"name": "teal_Templar",
+		"image": "teal_Templar.png",
+		"color": "teal"
+	}
+]

@@ -1,0 +1,47 @@
+[
+	{
+		"id": "talent01_heal",
+		"name": "Talent01_Heal",
+		"image": "Talent01_Heal.png"
+	},
+	{
+		"id": "talent02_sprint",
+		"name": "Talent02_Sprint",
+		"image": "Talent02_Sprint.png"
+	},
+	{
+		"id": "talent03_punish",
+		"name": "Talent03_Punish",
+		"image": "Talent03_Punish.png"
+	},
+	{
+		"id": "talent04_execute",
+		"name": "Talent04_Execute",
+		"image": "Talent04_Execute.png"
+	},
+	{
+		"id": "talent05_flicker",
+		"name": "Talent05_Flicker",
+		"image": "Talent05_Flicker.png"
+	},
+	{
+		"id": "talent06_roar",
+		"name": "Talent06_Roar",
+		"image": "Talent06_Roar.png"
+	},
+	{
+		"id": "talent07_daze",
+		"name": "Talent07_Daze",
+		"image": "Talent07_Daze.png"
+	},
+	{
+		"id": "talent08_purify",
+		"name": "Talent08_Purify",
+		"image": "Talent08_Purify.png"
+	},
+	{
+		"id": "talent09_enfeeble",
+		"name": "Talent09_Enfeeble",
+		"image": "Talent09_Enfeeble.png"
+	}
+]
