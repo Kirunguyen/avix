@@ -1,0 +1,157 @@
+[
+	{
+		"id": "a11_axeofsacrifice",
+		"name": "A11_AxeofSacrifice",
+		"image": "A11_AxeofSacrifice.png"
+	},
+	{
+		"id": "a12_manarefill",
+		"name": "A12_ManaRefill",
+		"image": "A12_ManaRefill.png"
+	},
+	{
+		"id": "a13_sacredbead",
+		"name": "A13_SacredBead",
+		"image": "A13_SacredBead.png"
+	},
+	{
+		"id": "a21_blessing",
+		"name": "A21_Blessing",
+		"image": "A21_Blessing.png"
+	},
+	{
+		"id": "a22_holyverdict",
+		"name": "A22_HolyVerdict",
+		"image": "A22_HolyVerdict.png"
+	},
+	{
+		"id": "a31_holysummoner",
+		"name": "A31_HolySummoner",
+		"image": "A31_HolySummoner.png"
+	},
+	{
+		"id": "a32_holythunder",
+		"name": "A32_HolyThunder",
+		"image": "A32_HolyThunder.png"
+	},
+	{
+		"id": "a33_sacredprotection",
+		"name": "A33_SacredProtection",
+		"image": "A33_SacredProtection.png"
+	},
+	{
+		"id": "b11_devourer",
+		"name": "B11_Devourer",
+		"image": "B11_Devourer.png"
+	},
+	{
+		"id": "b12_shadowblade",
+		"name": "B12_ShadowBlade",
+		"image": "B12_ShadowBlade.png"
+	},
+	{
+		"id": "b13_raginginferno",
+		"name": "B13_RagingInferno",
+		"image": "B13_RagingInferno.png"
+	},
+	{
+		"id": "b21_deadlyclaw",
+		"name": "B21_DeadlyClaw",
+		"image": "B21_DeadlyClaw.png"
+	},
+	{
+		"id": "b22_bonecutter",
+		"name": "B22_BoneCutter",
+		"image": "B22_BoneCutter.png"
+	},
+	{
+		"id": "b31_desperateduel",
+		"name": "B31_DesperateDuel",
+		"image": "B31_DesperateDuel.png"
+	},
+	{
+		"id": "b32_curseofdeath",
+		"name": "B32_CurseofDeath",
+		"image": "B32_CurseofDeath.png"
+	},
+	{
+		"id": "b33_devilsawakening",
+		"name": "B33_DevilsAwakening",
+		"image": "B33_DevilsAwakening.png"
+	},
+	{
+		"id": "c11_rivertreader",
+		"name": "C11_RiverTreader",
+		"image": "C11_RiverTreader.png"
+	},
+	{
+		"id": "c12_backstabbing",
+		"name": "C12_Backstabbing",
+		"image": "C12_Backstabbing.png"
+	},
+	{
+		"id": "c13_towerblessing",
+		"name": "C13_TowerBlessing",
+		"image": "C13_TowerBlessing.png"
+	},
+	{
+		"id": "c21_regrowth",
+		"name": "C21_Regrowth",
+		"image": "C21_Regrowth.png"
+	},
+	{
+		"id": "c22_naturesgift",
+		"name": "C22_NaturesGift",
+		"image": "C22_NaturesGift.png"
+	},
+	{
+		"id": "c31_naturesrage",
+		"name": "C31_NaturesRage",
+		"image": "C31_NaturesRage.png"
+	},
+	{
+		"id": "c32_explosiveshield",
+		"name": "C32_ExplosiveShield",
+		"image": "C32_ExplosiveShield.png"
+	},
+	{
+		"id": "c33_forestwanderer",
+		"name": "C33_ForestWanderer",
+		"image": "C33_ForestWanderer.png"
+	},
+	{
+		"id": "d11_markoffrost",
+		"name": "D11_MarkOfFrost",
+		"image": "D11_MarkOfFrost.png"
+	},
+	{
+		"id": "d12_enhancedrestore",
+		"name": "D12_EnhancedRestore",
+		"image": "D12_EnhancedRestore.png"
+	},
+	{
+		"id": "d13_arcanewhisper",
+		"name": "D13_ArcaneWhisper",
+		"image": "D13_ArcaneWhisper.png"
+	},
+	{
+		"id": "d21_minionkill",
+		"name": "D21_MinionKill",
+		"image": "D21_MinionKill.png"
+	},
+	{
+		"id": "d22_gunslinger",
+		"name": "D22_Gunslinger",
+		"image": "D22_Gunslinger.png"
+	},
+	{
+		"id": "d31_alchemy",
+		"name": "D31_Alchemy",
+		"image": "D31_Alchemy.png"
+	},
+	{
+		"id": "d32_endlesscycle",
+		"name": "D32_EndlessCycle",
+		"image": "D32_EndlessCycle.png"
+	}
+]

@@ -1,0 +1,602 @@
+[
+	{
+		"id": "a101_ss_short-sword",
+		"name": "A101_SS_Short-Sword",
+		"image": "A101_SS_Short-Sword.png"
+	},
+	{
+		"id": "a102_dg_dagger",
+		"name": "A102_DG_Dagger",
+		"image": "A102_DG_Dagger.png"
+	},
+	{
+		"id": "a103_gl_gloves",
+		"name": "A103_GL_Gloves",
+		"image": "A103_GL_Gloves.png"
+	},
+	{
+		"id": "a104_bc_bloodied-club",
+		"name": "A104_BC_Bloodied-Club",
+		"image": "A104_BC_Bloodied-Club.png"
+	},
+	{
+		"id": "a105_ch_chain-hammer",
+		"name": "A105_CH_Chain-Hammer",
+		"image": "A105_CH_Chain-Hammer.png"
+	},
+	{
+		"id": "a201_cc_cleaving-claymore",
+		"name": "A201_CC_Cleaving-Claymore",
+		"image": "A201_CC_Cleaving-Claymore.png"
+	},
+	{
+		"id": "a202_ah_arcane-hammer",
+		"name": "A202_AH_Arcane-Hammer",
+		"image": "A202_AH_Arcane-Hammer.png"
+	},
+	{
+		"id": "a203_tb_tempest-blades",
+		"name": "A203_TB_Tempest-Blades",
+		"image": "A203_TB_Tempest-Blades.png"
+	},
+	{
+		"id": "a204_as_astral-spear",
+		"name": "A204_AS_Astral-Spear",
+		"image": "A204_AS_Astral-Spear.png"
+	},
+	{
+		"id": "a205_srk_shuriken",
+		"name": "A205_SRK_Shuriken",
+		"image": "A205_SRK_Shuriken.png"
+	},
+	{
+		"id": "a206_bb_bloodthirstyblade",
+		"name": "A206_BB_BloodthirstyBlade",
+		"image": "A206_BB_BloodthirstyBlade.jpg"
+	},
+	{
+		"id": "a207_cb_chaos-bow",
+		"name": "A207_CB_Chaos-Bow",
+		"image": "A207_CB_Chaos-Bow.png"
+	},
+	{
+		"id": "a208_ub_uriels-brand",
+		"name": "A208_UB_Uriels-Brand",
+		"image": "A208_UB_Uriels-Brand.png"
+	},
+	{
+		"id": "a209_dc_death-curse",
+		"name": "A209_DC_Death-Curse",
+		"image": "A209_DC_Death-Curse.png"
+	},
+	{
+		"id": "a210_ds_death-sickle",
+		"name": "A210_DS_Death-Sickle",
+		"image": "A210_DS_Death-Sickle.png"
+	},
+	{
+		"id": "a211_bos_bow-of-slaughter",
+		"name": "A211_BoS_Bow-of-Slaughter",
+		"image": "A211_BoS_Bow-of-Slaughter.png"
+	},
+	{
+		"id": "a212_td_the-diminisher",
+		"name": "A212_TD_The-Diminisher",
+		"image": "A212_TD_The-Diminisher.png"
+	},
+	{
+		"id": "a213_eb_eclipsing-bow",
+		"name": "A213_EB_Eclipsing-Bow",
+		"image": "A213_EB_Eclipsing-Bow.png"
+	},
+	{
+		"id": "a301_ls_longinus-spear",
+		"name": "A301_LS_Longinus-Spear",
+		"image": "A301_LS_Longinus-Spear.png"
+	},
+	{
+		"id": "a302_ft_fafnirs-talon",
+		"name": "A302_FT_Fafnirs-Talon",
+		"image": "A302_FT_Fafnirs-Talon.png"
+	},
+	{
+		"id": "a303_cs_claves-sancti",
+		"name": "A303_CS_Claves-Sancti",
+		"image": "A303_CS_Claves-Sancti.png"
+	},
+	{
+		"id": "a304_mr_muramasa",
+		"name": "A304_MR_Muramasa",
+		"image": "A304_MR_Muramasa.png"
+	},
+	{
+		"id": "a305_tb_the-beast",
+		"name": "A305_TB_The-Beast",
+		"image": "A305_TB_The-Beast.png"
+	},
+	{
+		"id": "a306_oa_omni-arms",
+		"name": "A306_OA_Omni-Arms",
+		"image": "A306_OA_Omni-Arms.png"
+	},
+	{
+		"id": "a307_ss_slikks-sting",
+		"name": "A307_SS_Slikks-Sting",
+		"image": "A307_SS_Slikks-Sting.png"
+	},
+	{
+		"id": "a308_ft_fenrirs-tooth",
+		"name": "A308_FT_Fenrirs-Tooth",
+		"image": "A308_FT_Fenrirs-Tooth.png"
+	},
+	{
+		"id": "a309_bb_blitz-blade",
+		"name": "A309_BB_Blitz-Blade",
+		"image": "A309_BB_Blitz-Blade.png"
+	},
+	{
+		"id": "a310_dh_devils-handshake",
+		"name": "A310_DH_Devils-Handshake",
+		"image": "A310_DH_Devils-Handshake.png"
+	},
+	{
+		"id": "a311_rb_rankbreaker",
+		"name": "A311_RB_Rankbreaker",
+		"image": "A311_RB_Rankbreaker.png"
+	},
+	{
+		"id": "a312_fh_frosthammer",
+		"name": "A312_FH_FrostHammer",
+		"image": "A312_FH_FrostHammer.jpg"
+	},
+	{
+		"id": "a313_ds_dawning-star",
+		"name": "A313_DS_Dawning-Star",
+		"image": "A313_DS_Dawning-Star.png"
+	},
+	{
+		"id": "b101_st_spell-tome",
+		"name": "B101_ST_Spell-Tome",
+		"image": "B101_ST_Spell-Tome.png"
+	},
+	{
+		"id": "b102_lr_lapis-ring",
+		"name": "B102_LR_Lapis-Ring",
+		"image": "B102_LR_Lapis-Ring.png"
+	},
+	{
+		"id": "b103_pof_pendant-of-faith",
+		"name": "B103_PoF_Pendant-of-Faith",
+		"image": "B103_PoF_Pendant-of-Faith.png"
+	},
+	{
+		"id": "b104_as_ancient-scriptures",
+		"name": "B104_AS_Ancient-Scriptures",
+		"image": "B104_AS_Ancient-Scriptures.png"
+	},
+	{
+		"id": "b105_mr_magic-ring",
+		"name": "B105_MR_Magic-Ring",
+		"image": "B105_MR_Magic-Ring.png"
+	},
+	{
+		"id": "b201_es_enchanted-scroll",
+		"name": "B201_ES_Enchanted-Scroll",
+		"image": "B201_ES_Enchanted-Scroll.png"
+	},
+	{
+		"id": "b202_tb_trick-blade",
+		"name": "B202_TB_Trick-Blade",
+		"image": "B202_TB_Trick-Blade.png"
+	},
+	{
+		"id": "b203_sm_spooky-mask",
+		"name": "B203_SM_Spooky-Mask",
+		"image": "B203_SM_Spooky-Mask.png"
+	},
+	{
+		"id": "b204_pt_phoenix-tear",
+		"name": "B204_PT_Phoenix-Tear",
+		"image": "B204_PT_Phoenix-Tear.png"
+	},
+	{
+		"id": "b205_vb_virtues-bracelet",
+		"name": "B205_VB_Virtues-Bracelet",
+		"image": "B205_VB_Virtues-Bracelet.png"
+	},
+	{
+		"id": "b206_vi_vlads-impaler",
+		"name": "B206_VI_Vlads-Impaler",
+		"image": "B206_VI_Vlads-Impaler.png"
+	},
+	{
+		"id": "b207_son_staff-of-nuul",
+		"name": "B207_SoN_Staff-of-Nuul",
+		"image": "B207_SoN_Staff-of-Nuul.png"
+	},
+	{
+		"id": "b208_vn_virtues-necklace",
+		"name": "B208_VN_Virtues-Necklace",
+		"image": "B208_VN_Virtues-Necklace.png"
+	},
+	{
+		"id": "b209_at_astrolobe",
+		"name": "B209_AT_Astrolobe",
+		"image": "B209_AT_Astrolobe.png"
+	},
+	{
+		"id": "b210_es_evil-secrets",
+		"name": "B210_ES_Evil-Secrets",
+		"image": "B210_ES_Evil-Secrets.png"
+	},
+	{
+		"id": "b211_totr_tome-of-the-reaper",
+		"name": "B211_TotR_Tome-of-the-Reaper",
+		"image": "B211_TotR_Tome-of-the-Reaper.png"
+	},
+	{
+		"id": "b212_cv_caranosvow",
+		"name": "B212_CV_CaranosVow",
+		"image": "B212_CV_CaranosVow.jpg"
+	},
+	{
+		"id": "b301_bs_boomstick",
+		"name": "B301_BS_Boomstick",
+		"image": "B301_BS_Boomstick.png"
+	},
+	{
+		"id": "b302_hd_hecates-diadem",
+		"name": "B302_HD_Hecates-Diadem",
+		"image": "B302_HD_Hecates-Diadem.png"
+	},
+	{
+		"id": "b303_ootm_orb-of-the-magi",
+		"name": "B303_OotM_Orb-of-the-Magi",
+		"image": "B303_OotM_Orb-of-the-Magi.png"
+	},
+	{
+		"id": "b304_rb_rheas-blessing",
+		"name": "B304_RB_Rheas-Blessing",
+		"image": "B304_RB_Rheas-Blessing.png"
+	},
+	{
+		"id": "b305_zw_zweihander",
+		"name": "B305_Zw_Zweihander",
+		"image": "B305_Zw_Zweihander.png"
+	},
+	{
+		"id": "b306_fr_frostys-revenge",
+		"name": "B306_FR_Frostys-Revenge",
+		"image": "B306_FR_Frostys-Revenge.png"
+	},
+	{
+		"id": "b307_ba_beriths-agony",
+		"name": "B307_BA_Beriths-Agony",
+		"image": "B307_BA_Beriths-Agony.png"
+	},
+	{
+		"id": "b308_apo_apocalypse",
+		"name": "B308_Apo_Apocalypse",
+		"image": "B308_Apo_Apocalypse.png"
+	},
+	{
+		"id": "b309_sa_soaring-aura",
+		"name": "B309_SA_Soaring-Aura",
+		"image": "B309_SA_Soaring-Aura.png"
+	},
+	{
+		"id": "b310_hoh_holy-of-holies",
+		"name": "B310_HoH_Holy-of-Holies",
+		"image": "B310_HoH_Holy-of-Holies.png"
+	},
+	{
+		"id": "b311_ao_arctic-orb",
+		"name": "B311_AO_Arctic-Orb",
+		"image": "B311_AO_Arctic-Orb.png"
+	},
+	{
+		"id": "b312_fg_frost-guard",
+		"name": "B312_FG_Frost-Guard",
+		"image": "B312_FG_Frost-Guard.png"
+	},
+	{
+		"id": "b313_cr_caranorobe",
+		"name": "B313_CR_CaranoRobe",
+		"image": "B313_CR_CaranoRobe.jpg"
+	},
+	{
+		"id": "c101_rov_ring-of-vitality",
+		"name": "C101_RoV_Ring-of-Vitality",
+		"image": "C101_RoV_Ring-of-Vitality.png"
+	},
+	{
+		"id": "c102_la_light-armor",
+		"name": "C102_LA_Light-Armor",
+		"image": "C102_LA_Light-Armor.png"
+	},
+	{
+		"id": "c103_gg_gladiators-gauntlets",
+		"name": "C103_GG_Gladiators-Gauntlets",
+		"image": "C103_GG_Gladiators-Gauntlets.png"
+	},
+	{
+		"id": "c104_tos_talisman-of-strength",
+		"name": "C104_ToS_Talisman-of-Strength",
+		"image": "C104_ToS_Talisman-of-Strength.png"
+	},
+	{
+		"id": "c105_nov_necklace-of-vitality",
+		"name": "C105_NoV_Necklace-of-Vitality",
+		"image": "C105_NoV_Necklace-of-Vitality.png"
+	},
+	{
+		"id": "c201_gop_greaves-of-protection",
+		"name": "C201_GoP_Greaves-of-Protection",
+		"image": "C201_GoP_Greaves-of-Protection.png"
+	},
+	{
+		"id": "c202_hoi_heart-of-incubus",
+		"name": "C202_HoI_Heart-of-Incubus",
+		"image": "C202_HoI_Heart-of-Incubus.png"
+	},
+	{
+		"id": "c203_boc_belt-of-clarity",
+		"name": "C203_BoC_Belt-of-Clarity",
+		"image": "C203_BoC_Belt-of-Clarity.png"
+	},
+	{
+		"id": "c204_pg_platinum-gauntlets",
+		"name": "C204_PG_Platinum-Gauntlets",
+		"image": "C204_PG_Platinum-Gauntlets.png"
+	},
+	{
+		"id": "c205_kp_knights-plate",
+		"name": "C205_KP_Knights-Plate",
+		"image": "C205_KP_Knights-Plate.png"
+	},
+	{
+		"id": "c206_mop_mail-of-pain",
+		"name": "C206_MoP_Mail-of-Pain",
+		"image": "C206_MoP_Mail-of-Pain.png"
+	},
+	{
+		"id": "c207_hm_hecules-madness",
+		"name": "C207_HM_Hecules-Madness",
+		"image": "C207_HM_Hecules-Madness.png"
+	},
+	{
+		"id": "c208_ow_odins-will",
+		"name": "C208_OW_Odins-Will",
+		"image": "C208_OW_Odins-Will.png"
+	},
+	{
+		"id": "c301_mor_mantle-of-ra",
+		"name": "C301_MoR_Mantle-of-Ra",
+		"image": "C301_MoR_Mantle-of-Ra.png"
+	},
+	{
+		"id": "c302_sotl_shield-of-the-lost",
+		"name": "C302_SotL_Shield-of-the-Lost",
+		"image": "C302_SotL_Shield-of-the-Lost.png"
+	},
+	{
+		"id": "c303_ta_the-aegis",
+		"name": "C303_TA_The-Aegis",
+		"image": "C303_TA_The-Aegis.png"
+	},
+	{
+		"id": "c304_gs_gaias-standard",
+		"name": "C304_GS_Gaias-Standard",
+		"image": "C304_GS_Gaias-Standard.png"
+	},
+	{
+		"id": "c305_mot_medallion-of-troy",
+		"name": "C305_MoT_Medallion-of-Troy",
+		"image": "C305_MoT_Medallion-of-Troy.png"
+	},
+	{
+		"id": "c306_he_hyogas-edge",
+		"name": "C306_HE_Hyogas-Edge",
+		"image": "C306_HE_Hyogas-Edge.png"
+	},
+	{
+		"id": "c307_boe_blade-of-eternity",
+		"name": "C307_BoE_Blade-of-Eternity",
+		"image": "C307_BoE_Blade-of-Eternity.png"
+	},
+	{
+		"id": "c308_fc_frost-cape",
+		"name": "C308_FC_Frost-Cape",
+		"image": "C308_FC_Frost-Cape.png"
+	},
+	{
+		"id": "c309_aol_amulet-of-longetivity",
+		"name": "C309_AoL_Amulet-of-Longetivity",
+		"image": "C309_AoL_Amulet-of-Longetivity.png"
+	},
+	{
+		"id": "c310_rs_rock-shield",
+		"name": "C310_RS_Rock-Shield",
+		"image": "C310_RS_Rock-Shield.png"
+	},
+	{
+		"id": "d101_sb_speed-boots",
+		"name": "D101_SB_Speed-Boots",
+		"image": "D101_SB_Speed-Boots.png"
+	},
+	{
+		"id": "d201_sb_sonic-boots",
+		"name": "D201_SB_Sonic-Boots",
+		"image": "D201_SB_Sonic-Boots.png"
+	},
+	{
+		"id": "d202_gg_gilded-greaves",
+		"name": "D202_GG_Gilded-Greaves",
+		"image": "D202_GG_Gilded-Greaves.png"
+	},
+	{
+		"id": "d203_fb_flashy-boots",
+		"name": "D203_FB_Flashy-Boots",
+		"image": "D203_FB_Flashy-Boots.png"
+	},
+	{
+		"id": "d204_ek_enchanted-kicks",
+		"name": "D204_EK_Enchanted-Kicks",
+		"image": "D204_EK_Enchanted-Kicks.png"
+	},
+	{
+		"id": "d205_wb_war-boots",
+		"name": "D205_WB_War-Boots",
+		"image": "D205_WB_War-Boots.png"
+	},
+	{
+		"id": "d206_hs_hermes-select",
+		"name": "D206_HS_Hermes-Select",
+		"image": "D206_HS_Hermes-Select.png"
+	},
+	{
+		"id": "e101_kr_kukri",
+		"name": "E101_KR_Kukri",
+		"image": "E101_KR_Kukri.png"
+	},
+	{
+		"id": "e201_mb_monsters-bane",
+		"name": "E201_MB_Monsters-Bane",
+		"image": "E201_MB_Monsters-Bane.png"
+	},
+	{
+		"id": "e202_gc_gnoll-cleaver",
+		"name": "E202_GC_Gnoll-Cleaver",
+		"image": "E202_GC_Gnoll-Cleaver.png"
+	},
+	{
+		"id": "e203_ms_mr.-stabby",
+		"name": "E203_MS_Mr.-Stabby",
+		"image": "E203_MS_Mr.-Stabby.png"
+	},
+	{
+		"id": "e204_ww_whispering-wind",
+		"name": "E204_WW_Whispering-Wind",
+		"image": "E204_WW_Whispering-Wind.png"
+	},
+	{
+		"id": "e231_monstersbane_lokiscurse",
+		"name": "E231_MonstersBane_LokisCurse",
+		"image": "E231_MonstersBane_LokisCurse.jpg"
+	},
+	{
+		"id": "e232_mrstabby_soulreaver",
+		"name": "E232_MrStabby_Soulreaver",
+		"image": "E232_MrStabby_Soulreaver.jpg"
+	},
+	{
+		"id": "e233_gnollcleaver_leviathan",
+		"name": "E233_GnollCleaver_Leviathan",
+		"image": "E233_GnollCleaver_Leviathan.jpg"
+	},
+	{
+		"id": "e234_whisperingwind_scorchingwind",
+		"name": "E234_WhisperingWind_ScorchingWind",
+		"image": "E234_WhisperingWind_ScorchingWind.jpg"
+	},
+	{
+		"id": "e301_lc_lokis-curse",
+		"name": "E301_LC_Lokis-Curse",
+		"image": "E301_LC_Lokis-Curse.png"
+	},
+	{
+		"id": "e302_lvt_leviathan",
+		"name": "E302_LVT_Leviathan",
+		"image": "E302_LVT_Leviathan.png"
+	},
+	{
+		"id": "e303_sr_soulreaver",
+		"name": "E303_SR_Soulreaver",
+		"image": "E303_SR_Soulreaver.png"
+	},
+	{
+		"id": "e304_sw_scorching-wind",
+		"name": "E304_SW_Scorching-Wind",
+		"image": "E304_SW_Scorching-Wind.png"
+	},
+	{
+		"id": "g101_eg_elementalgem",
+		"name": "G101_EG_ElementalGem",
+		"image": "G101_EG_ElementalGem.png"
+	},
+	{
+		"id": "g201_eg_earthgem",
+		"name": "G201_EG_EarthGem",
+		"image": "G201_EG_EarthGem.jpg"
+	},
+	{
+		"id": "g202_fg_firegem",
+		"name": "G202_FG_FireGem",
+		"image": "G202_FG_FireGem.jpg"
+	},
+	{
+		"id": "oldg201_eg_earthgem",
+		"name": "OLDG201_EG_EarthGem",
+		"image": "OLDG201_EG_EarthGem.png"
+	},
+	{
+		"id": "oldg202_wg_watergem",
+		"name": "OLDG202_WG_WaterGem",
+		"image": "OLDG202_WG_WaterGem.png"
+	},
+	{
+		"id": "oldg203_fg_firegem",
+		"name": "OLDG203_FG_FireGem",
+		"image": "OLDG203_FG_FireGem.png"
+	},
+	{
+		"id": "remove-bg.ai_1718860118215",
+		"name": "Remove-bg.ai_1718860118215",
+		"image": "Remove-bg.ai_1718860118215.png"
+	},
+	{
+		"id": "remove-bg.ai_1718860124322",
+		"name": "Remove-bg.ai_1718860124322",
+		"image": "Remove-bg.ai_1718860124322.png"
+	},
+	{
+		"id": "remove-bg.ai_1718860131310",
+		"name": "Remove-bg.ai_1718860131310",
+		"image": "Remove-bg.ai_1718860131310.png"
+	},
+	{
+		"id": "remove-bg.ai_1718860136853",
+		"name": "Remove-bg.ai_1718860136853",
+		"image": "Remove-bg.ai_1718860136853.png"
+	},
+	{
+		"id": "remove-bg.ai_1718860142913",
+		"name": "Remove-bg.ai_1718860142913",
+		"image": "Remove-bg.ai_1718860142913.png"
+	},
+	{
+		"id": "remove-bg.ai_1718860182546",
+		"name": "Remove-bg.ai_1718860182546",
+		"image": "Remove-bg.ai_1718860182546.png"
+	},
+	{
+		"id": "remove-bg.ai_1718860188341",
+		"name": "Remove-bg.ai_1718860188341",
+		"image": "Remove-bg.ai_1718860188341.png"
+	},
+	{
+		"id": "remove-bg.ai_1718860194515",
+		"name": "Remove-bg.ai_1718860194515",
+		"image": "Remove-bg.ai_1718860194515.png"
+	},
+	{
+		"id": "remove-bg.ai_1718860200380",
+		"name": "Remove-bg.ai_1718860200380",
+		"image": "Remove-bg.ai_1718860200380.png"
+	},
+	{
+		"id": "remove-bg.ai_1718860206420",
+		"name": "Remove-bg.ai_1718860206420",
+		"image": "Remove-bg.ai_1718860206420.png"
+	}
+]
