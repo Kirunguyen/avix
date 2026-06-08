@@ -1,9 +1,13 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import heroes from '$lib/data/heroes.json';
 	import items from '$lib/data/items.json';
 	import enchantments from '$lib/data/enchantments.json';
 	import talents from '$lib/data/talents.json';
 	import arcanas from '$lib/data/arcanas.json';
+	function img(path: string) {
+		return `${base}${path}`;
+	}
 	type Hero = {
 		id: string;
 		name: string;
@@ -171,7 +175,7 @@
 						class:selected={hero.id === selectedHero.id}
 						onclick={() => (selectedHero = hero)}
 					>
-						<img src={`/heroes/${hero.image}`} alt={hero.name} />
+						<img src={img(`/heroes/${hero.image}`)} alt={hero.name} />
 					</button>
 				{/each}
 			</div>
@@ -179,7 +183,7 @@
 			<div class="icon-grid">
 				{#each enchantmentList as enchantment (enchantment.id)}
 					<button onclick={() => addEnchantment(enchantment)}>
-						<img src={`/enchantments/${enchantment.image}`} alt={enchantment.name} />
+						<img src={img(`/enchantments/${enchantment.image}`)} alt={enchantment.name} />
 					</button>
 				{/each}
 			</div>
@@ -187,7 +191,7 @@
 			<div class="icon-grid">
 				{#each talentList as talent (talent.id)}
 					<button onclick={() => (selectedTalent = talent)}>
-						<img src={`/talents/${talent.image}`} alt={talent.name} />
+						<img src={img(`/talents/${talent.image}`)} alt={talent.name} />
 					</button>
 				{/each}
 			</div>
@@ -195,7 +199,7 @@
 			<div class="icon-grid">
 				{#each arcanaList as arcana (arcana.id)}
 					<button onclick={() => addArcana(arcana)}>
-						<img src={`/arcanas/${arcana.image}`} alt={arcana.name} />
+						<img src={img(`/arcanas/${arcana.image}`)} alt={arcana.name} />
 					</button>
 				{/each}
 			</div>
@@ -203,14 +207,14 @@
 			<div class="icon-grid">
 				{#each itemList as item (item.id)}
 					<button onclick={() => addItem(item)}>
-						<img src={`/items/${item.image}`} alt={item.name} />
+						<img src={img(`/items/${item.image}`)} alt={item.name} />
 					</button>
 				{/each}
 			</div>
 		{/if}
 	</div>
 	<div class="right-panel">
-		<img class="hero-image" src={`/heroes/${selectedHero.image}`} alt={selectedHero.name} />
+		<img class="hero-image" src={img(`/heroes/${selectedHero.image}`)} alt={selectedHero.name} />
 
 		<h1>{selectedHero.name}</h1>
 
@@ -218,17 +222,18 @@
 			{#each armory as slot, index (index)}
 				<button class="armory-slot" onclick={() => removeItem(index)}>
 					{#if slot}
-						<img src={`/items/${slot.image}`} alt={slot.name} />
+						<img src={img(`/items/${slot.image}`)} alt={slot.name} />
 					{/if}
 				</button>
 			{/each}
 		</div>
+
 		<div class="enchantment-layout">
 			<div class="enchantment-row">
 				{#each selectedEnchantments.slice(0, 3) as slot, index (index)}
 					<button class="enchantment-slot" onclick={() => removeEnchantment(index)}>
 						{#if slot}
-							<img src={`/enchantments/${slot.image}`} alt={slot.name} />
+							<img src={img(`/enchantments/${slot.image}`)} alt={slot.name} />
 						{/if}
 					</button>
 				{/each}
@@ -238,7 +243,7 @@
 				{#each selectedEnchantments.slice(3, 5) as slot, index (index)}
 					<button class="enchantment-slot" onclick={() => removeEnchantment(index + 3)}>
 						{#if slot}
-							<img src={`/enchantments/${slot.image}`} alt={slot.name} />
+							<img src={img(`/enchantments/${slot.image}`)} alt={slot.name} />
 						{/if}
 					</button>
 				{/each}
@@ -246,47 +251,41 @@
 		</div>
 
 		<div class="talent-section">
-			<h3>Talent</h3>
-
 			<div class="talent-slot">
-				<img src={`/talents/${selectedTalent.image}`} alt={selectedTalent.name} />
+				<img src={img(`/talents/${selectedTalent.image}`)} alt={selectedTalent.name} />
 			</div>
 		</div>
 
 		<div class="arcana-section">
 			<div class="arcana-column">
-				<h3>Red</h3>
-
 				<div class="arcana-row">
 					{#each groupArcana(redArcana) as group (group.arcana.id)}
 						<button class="arcana-card" onclick={() => removeArcana('red', group.arcana.id)}>
-							<img src={`/arcanas/${group.arcana.image}`} alt={group.arcana.name} />
+							<img src={img(`/arcanas/${group.arcana.image}`)} alt={group.arcana.name} />
 
 							<span>x{group.count}</span>
 						</button>
 					{/each}
 				</div>
 			</div>
-			<div class="arcana-column">
-				<h3>Purple</h3>
 
+			<div class="arcana-column">
 				<div class="arcana-row">
 					{#each groupArcana(purpleArcana) as group (group.arcana.id)}
 						<button class="arcana-card" onclick={() => removeArcana('purple', group.arcana.id)}>
-							<img src={`/arcanas/${group.arcana.image}`} alt={group.arcana.name} />
+							<img src={img(`/arcanas/${group.arcana.image}`)} alt={group.arcana.name} />
 
 							<span>x{group.count}</span>
 						</button>
 					{/each}
 				</div>
 			</div>
-			<div class="arcana-column">
-				<h3>Teal</h3>
 
+			<div class="arcana-column">
 				<div class="arcana-row">
 					{#each groupArcana(tealArcana) as group (group.arcana.id)}
 						<button class="arcana-card" onclick={() => removeArcana('teal', group.arcana.id)}>
-							<img src={`/arcanas/${group.arcana.image}`} alt={group.arcana.name} />
+							<img src={img(`/arcanas/${group.arcana.image}`)} alt={group.arcana.name} />
 
 							<span>x{group.count}</span>
 						</button>
@@ -298,6 +297,9 @@
 </div>
 
 <style>
+	* {
+		background-color: #fffde7;
+	}
 	.container {
 		display: grid;
 		grid-template-columns: 4fr 6fr;
