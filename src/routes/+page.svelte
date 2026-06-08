@@ -295,6 +295,14 @@
 		</div>
 	</div>
 </div>
+<div class="rotate-warning">
+	<h2>Rotate Device</h2>
+	<p>AVIX is optimized for landscape mode.</p>
+</div>
+
+<div class="app">
+	<!-- existing UI -->
+</div>
 
 <style>
 	* {
@@ -467,5 +475,21 @@
 
 	.arcana-card span {
 		font-size: 0.8rem;
+	}
+
+	@media (orientation: portrait) {
+		.rotate-warning {
+			display: flex;
+		}
+
+		.app {
+			display: none;
+		}
+	}
+
+	@media (orientation: landscape) {
+		.rotate-warning {
+			display: none;
+		}
 	}
 </style>
