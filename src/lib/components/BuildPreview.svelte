@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Hero, Item, Enchantment, Talent, Arcana } from '../types/entities';
 	import { groupArcana, calculateTotalArcanaStats } from '../utils/arcana';
+	import { toPng } from 'html-to-image';
 
 	interface Props {
 		selectedHero: Hero | null;
@@ -28,203 +29,307 @@
 		onRemoveArcana
 	}: Props = $props();
 
-	// Derived grouped and accumulated data
+	// Derived grouped and accumulated statistics
 	const groupedRed = $derived(groupArcana(redArcana));
 	const groupedPurple = $derived(groupArcana(purpleArcana));
 	const groupedTeal = $derived(groupArcana(tealArcana));
 
 	const allSelectedArcanas = $derived([...redArcana, ...purpleArcana, ...tealArcana]);
 	const accumulatedStats = $derived(calculateTotalArcanaStats(allSelectedArcanas));
+
+	let exportElement = $state<HTMLElement | null>(null);
+	let isExporting = $state<boolean>(false);
+
+	/**
+	 * Generates a clean PNG from the DOM node and triggers a browser download.
+	 */
+	async function exportBuildAsImage() {
+		if (!exportElement) return;
+		isExporting = true;
+
+		try {
+			// Minimal delay to ensure DOM changes propagate
+			await new Promise((resolve) => setTimeout(resolve, 100));
+
+			const dataUrl = await toPng(exportElement, {
+				backgroundColor: '#111111',
+				style: {
+					borderRadius: '0px',
+					transform: 'scale(1)'
+				},
+				cacheBust: true
+			});
+
+			const link = document.createElement('a');
+			const heroName = selectedHero ? selectedHero.name.toLowerCase() : 'build';
+			link.download = `avix-${heroName}-build.png`;
+			link.href = dataUrl;
+			link.click();
+		} catch (error) {
+			console.error('Failed to export image:', error);
+		} finally {
+			isExporting = false;
+		}
+	}
 </script>
 
-<div class="right-panel-container">
-	{#if selectedHero}
-		<div class="hero-header">
-			<img class="hero-image" src="/heroes/{selectedHero.image}" alt={selectedHero.name} />
-			<h1>{selectedHero.name}</h1>
-		</div>
-	{:else}
-		<div class="placeholder-hero">
-			<div class="hero-placeholder-icon">👤</div>
-			<h2>No Hero Selected</h2>
-		</div>
-	{/if}
-
-	<!-- Gear Layout Section -->
-	<div class="gear-row">
-		<!-- Armory Bar -->
-		<div class="gear-column flex-3">
-			<div class="section-title">Armory</div>
-			<div class="armory-grid">
-				{#each armory as slot, index (index)}
-					<button
-						class="gear-slot square"
-						onclick={() => onRemoveItem(index)}
-						title={slot ? `Remove ${slot.name}` : 'Empty'}
-					>
-						{#if slot}
-							<img src="/items/{slot.image}" alt={slot.name} />
-						{:else}
-							<span class="placeholder">+</span>
-						{/if}
-					</button>
-				{/each}
-			</div>
-		</div>
-
-		<!-- Enchantments Layout -->
-		<div class="gear-column flex-1">
-			<div class="section-title">Enchantments</div>
-			<div class="enchantment-layout">
-				<div class="enchantment-row">
-					{#each selectedEnchantments.slice(0, 3) as slot, index (index)}
-						<button
-							class="gear-slot circle"
-							onclick={() => onRemoveEnchantment(index)}
-							title={slot ? `Remove ${slot.name}` : 'Empty'}
-						>
-							{#if slot}
-								<img src="/enchantments/{slot.image}" alt={slot.name} />
-							{:else}
-								<span class="placeholder">+</span>
-							{/if}
-						</button>
-					{/each}
-				</div>
-				<div class="enchantment-row">
-					{#each selectedEnchantments.slice(3, 5) as slot, index (index)}
-						<button
-							class="gear-slot circle"
-							onclick={() => onRemoveEnchantment(index + 3)}
-							title={slot ? `Remove ${slot.name}` : 'Empty'}
-						>
-							{#if slot}
-								<img src="/enchantments/{slot.image}" alt={slot.name} />
-							{:else}
-								<span class="placeholder">+</span>
-							{/if}
-						</button>
-					{/each}
-				</div>
-			</div>
-		</div>
-
-		<!-- Talent Section -->
-		<div class="gear-column flex-1">
-			<div class="section-title">Talent</div>
-			<div class="talent-container">
-				<div class="gear-slot square golden">
-					{#if selectedTalent}
-						<img
-							src="/talents/{selectedTalent.image}"
-							alt={selectedTalent.name}
-							title={selectedTalent.name}
-						/>
-					{:else}
-						<span class="placeholder">Empty</span>
-					{/if}
-				</div>
-			</div>
-		</div>
+<div class="build-preview-wrapper">
+	<!-- Action panel containing the download trigger -->
+	<div class="preview-actions">
+		<button class="export-btn" onclick={exportBuildAsImage} disabled={isExporting}>
+			{#if isExporting}
+				<span class="spinner"></span> Generating...
+			{:else}
+				📥 Download Build Image
+			{/if}
+		</button>
 	</div>
 
-	<!-- Arcana Config Panel (Clean, compact display optimized for screenshots) -->
-	<div class="arcana-display-panel">
-		<div class="section-title">Arcana ({allSelectedArcanas.length}/30)</div>
+	<!-- Capture Container Target -->
+	<div class="right-panel-container" bind:this={exportElement} class:exporting={isExporting}>
+		{#if selectedHero}
+			<div class="hero-header">
+				<img class="hero-image" src="/heroes/{selectedHero.image}" alt={selectedHero.name} />
+				<h1>{selectedHero.name}</h1>
+			</div>
+		{:else}
+			<div class="placeholder-hero">
+				<div class="hero-placeholder-icon">👤</div>
+				<h2>No Hero Selected</h2>
+			</div>
+		{/if}
 
-		<!-- Visual Picker Row (Red, Purple, Teal Columns side-by-side) -->
-		<div class="arcana-columns-grid">
-			<!-- Red Column -->
-			<div class="arcana-column red-column">
-				<div class="column-title">Red ({redArcana.length}/10)</div>
-				<div class="arcana-row">
-					{#each groupedRed as group (group.arcana.id)}
+		<!-- Gear Layout Section -->
+		<div class="gear-row">
+			<!-- Armory Bar -->
+			<div class="gear-column flex-3">
+				<div class="section-title">Armory</div>
+				<div class="armory-grid">
+					{#each armory as slot, index (index)}
 						<button
-							class="arcana-card"
-							onclick={() => onRemoveArcana('red', group.arcana.id)}
-							title="Remove 1 {group.arcana.name}"
+							class="gear-slot square"
+							onclick={() => onRemoveItem(index)}
+							title={slot ? `Remove ${slot.name}` : 'Empty'}
 						>
-							<div class="arcana-image-container">
-								<img src="/arcanas/{group.arcana.image}" alt={group.arcana.name} />
-								<span class="badge">x{group.count}</span>
-							</div>
-							<span class="arcana-subtext">{group.arcana.displayName}</span>
+							{#if slot}
+								<img src="/items/{slot.image}" alt={slot.name} />
+							{:else}
+								<span class="placeholder">+</span>
+							{/if}
 						</button>
-					{:else}
-						<span class="empty-text">Empty</span>
 					{/each}
 				</div>
 			</div>
 
-			<!-- Purple Column -->
-			<div class="arcana-column purple-column">
-				<div class="column-title">Purple ({purpleArcana.length}/10)</div>
-				<div class="arcana-row">
-					{#each groupedPurple as group (group.arcana.id)}
-						<button
-							class="arcana-card"
-							onclick={() => onRemoveArcana('purple', group.arcana.id)}
-							title="Remove 1 {group.arcana.name}"
-						>
-							<div class="arcana-image-container">
-								<img src="/arcanas/{group.arcana.image}" alt={group.arcana.name} />
-								<span class="badge">x{group.count}</span>
-							</div>
-							<span class="arcana-subtext">{group.arcana.displayName}</span>
-						</button>
-					{:else}
-						<span class="empty-text">Empty</span>
-					{/each}
+			<!-- Enchantments Layout -->
+			<div class="gear-column flex-1">
+				<div class="section-title">Enchantments</div>
+				<div class="enchantment-layout">
+					<div class="enchantment-row">
+						{#each selectedEnchantments.slice(0, 3) as slot, index (index)}
+							<button
+								class="gear-slot circle"
+								onclick={() => onRemoveEnchantment(index)}
+								title={slot ? `Remove ${slot.name}` : 'Empty'}
+							>
+								{#if slot}
+									<img src="/enchantments/{slot.image}" alt={slot.name} />
+								{:else}
+									<span class="placeholder">+</span>
+								{/if}
+							</button>
+						{/each}
+					</div>
+					<div class="enchantment-row">
+						{#each selectedEnchantments.slice(3, 5) as slot, index (index)}
+							<button
+								class="gear-slot circle"
+								onclick={() => onRemoveEnchantment(index + 3)}
+								title={slot ? `Remove ${slot.name}` : 'Empty'}
+							>
+								{#if slot}
+									<img src="/enchantments/{slot.image}" alt={slot.name} />
+								{:else}
+									<span class="placeholder">+</span>
+								{/if}
+							</button>
+						{/each}
+					</div>
 				</div>
 			</div>
 
-			<!-- Teal Column -->
-			<div class="arcana-column teal-column">
-				<div class="column-title">Teal ({tealArcana.length}/10)</div>
-				<div class="arcana-row">
-					{#each groupedTeal as group (group.arcana.id)}
-						<button
-							class="arcana-card"
-							onclick={() => onRemoveArcana('teal', group.arcana.id)}
-							title="Remove 1 {group.arcana.name}"
-						>
-							<div class="arcana-image-container">
-								<img src="/arcanas/{group.arcana.image}" alt={group.arcana.name} />
-								<span class="badge">x{group.count}</span>
-							</div>
-							<span class="arcana-subtext">{group.arcana.displayName}</span>
-						</button>
-					{:else}
-						<span class="empty-text">Empty</span>
-					{/each}
+			<!-- Talent Section -->
+			<div class="gear-column flex-1">
+				<div class="section-title">Talent</div>
+				<div class="talent-container">
+					<div class="gear-slot square golden">
+						{#if selectedTalent}
+							<img
+								src="/talents/{selectedTalent.image}"
+								alt={selectedTalent.name}
+								title={selectedTalent.name}
+							/>
+						{:else}
+							<span class="placeholder">Empty</span>
+						{/if}
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<hr class="panel-divider" />
+		<!-- Arcana Display Section -->
+		<div class="arcana-display-panel">
+			<div class="section-title">Arcana ({allSelectedArcanas.length}/30)</div>
 
-		<!-- Accumulated Stats Table -->
-		<div class="stats-table-section">
-			<div class="column-title">Accumulated Stats</div>
-			{#if accumulatedStats.length > 0}
-				<div class="stats-grid-table">
-					{#each accumulatedStats as stat}
-						<div class="stat-cell">
-							<span class="stat-label">{stat.key}</span>
-							<span class="stat-value">+{stat.value}</span>
-						</div>
-					{/each}
+			<div class="arcana-columns-grid">
+				<!-- Red Column -->
+				<div class="arcana-column red-column">
+					<div class="column-title">Red ({redArcana.length}/10)</div>
+					<div class="arcana-row">
+						{#each groupedRed as group (group.arcana.id)}
+							<button
+								class="arcana-card"
+								onclick={() => onRemoveArcana('red', group.arcana.id)}
+								title="Remove 1 {group.arcana.name}"
+							>
+								<div class="arcana-image-container">
+									<img src="/arcanas/{group.arcana.image}" alt={group.arcana.name} />
+									<span class="badge">x{group.count}</span>
+								</div>
+								<span class="arcana-subtext">{group.arcana.displayName}</span>
+							</button>
+						{:else}
+							<span class="empty-text">Empty</span>
+						{/each}
+					</div>
 				</div>
-			{:else}
-				<span class="empty-text"
-					>No active stats. Equipping arcanas will populate calculations here.</span
-				>
-			{/if}
+
+				<!-- Purple Column -->
+				<div class="arcana-column purple-column">
+					<div class="column-title">Purple ({purpleArcana.length}/10)</div>
+					<div class="arcana-row">
+						{#each groupedPurple as group (group.arcana.id)}
+							<button
+								class="arcana-card"
+								onclick={() => onRemoveArcana('purple', group.arcana.id)}
+								title="Remove 1 {group.arcana.name}"
+							>
+								<div class="arcana-image-container">
+									<img src="/arcanas/{group.arcana.image}" alt={group.arcana.name} />
+									<span class="badge">x{group.count}</span>
+								</div>
+								<span class="arcana-subtext">{group.arcana.displayName}</span>
+							</button>
+						{:else}
+							<span class="empty-text">Empty</span>
+						{/each}
+					</div>
+				</div>
+
+				<!-- Teal Column -->
+				<div class="arcana-column teal-column">
+					<div class="column-title">Teal ({tealArcana.length}/10)</div>
+					<div class="arcana-row">
+						{#each groupedTeal as group (group.arcana.id)}
+							<button
+								class="arcana-card"
+								onclick={() => onRemoveArcana('teal', group.arcana.id)}
+								title="Remove 1 {group.arcana.name}"
+							>
+								<div class="arcana-image-container">
+									<img src="/arcanas/{group.arcana.image}" alt={group.arcana.name} />
+									<span class="badge">x{group.count}</span>
+								</div>
+								<span class="arcana-subtext">{group.arcana.displayName}</span>
+							</button>
+						{:else}
+							<span class="empty-text">Empty</span>
+						{/each}
+					</div>
+				</div>
+			</div>
+
+			<hr class="panel-divider" />
+
+			<!-- Accumulated Stats Grid Table -->
+			<div class="stats-table-section">
+				<div class="column-title">Accumulated Stats</div>
+				{#if accumulatedStats.length > 0}
+					<div class="stats-grid-table">
+						{#each accumulatedStats as stat}
+							<div class="stat-cell">
+								<span class="stat-label">{stat.key}</span>
+								<span class="stat-value">+{stat.value}</span>
+							</div>
+						{/each}
+					</div>
+				{:else}
+					<span class="empty-text"
+						>No active stats. Equipping arcanas will populate calculations here.</span
+					>
+				{/if}
+			</div>
+		</div>
+
+		<!-- Subtle watermarked brand indicator only displayed on exported PNG -->
+		<div class="brand-watermark">
+			<span>AVIX Build Planner</span>
 		</div>
 	</div>
 </div>
 
 <style>
+	.build-preview-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.preview-actions {
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	.export-btn {
+		background-color: #2563eb;
+		color: #fff;
+		border: none;
+		border-radius: 6px;
+		padding: 0.6rem 1rem;
+		font-size: 0.85rem;
+		font-weight: 600;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		transition: background-color 0.2s;
+	}
+
+	.export-btn:hover:not(:disabled) {
+		background-color: #1d4ed8;
+	}
+
+	.export-btn:disabled {
+		background-color: #1e3a8a;
+		color: #93c5fd;
+		cursor: not-allowed;
+	}
+
+	.spinner {
+		width: 14px;
+		height: 14px;
+		border: 2px solid rgba(255, 255, 255, 0.3);
+		border-radius: 50%;
+		border-top-color: #fff;
+		animation: spin 0.8s linear infinite;
+	}
+
+	@keyframes spin {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
 	.right-panel-container {
 		background-color: #111;
 		border: 1px solid #222;
@@ -234,6 +339,14 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1.25rem;
+		position: relative;
+	}
+
+	/* Isolated styles applied during local image generation */
+	.right-panel-container.exporting {
+		border: none;
+		border-radius: 0px;
+		box-shadow: none;
 	}
 
 	.hero-header {
@@ -284,7 +397,6 @@
 		color: #777;
 	}
 
-	/* Gear Layout & Synchronized Sizes */
 	.gear-row {
 		display: flex;
 		gap: 0.75rem;
@@ -321,7 +433,6 @@
 		gap: 0.35rem;
 	}
 
-	/* Universal Gear Slot sizing */
 	.gear-slot {
 		width: 48px;
 		height: 48px;
@@ -383,7 +494,6 @@
 		height: 100%;
 	}
 
-	/* Arcana Section Grid Panel */
 	.arcana-display-panel {
 		background: #161616;
 		border-radius: 8px;
@@ -434,7 +544,6 @@
 		gap: 0.4rem;
 	}
 
-	/* Compact Arcana Card block design */
 	.arcana-card {
 		background: #141414;
 		border: 1px solid #252525;
@@ -507,7 +616,6 @@
 		margin: 0.25rem 0;
 	}
 
-	/* Accumulated Stats Grid Style Display */
 	.stats-table-section {
 		display: flex;
 		flex-direction: column;
@@ -537,5 +645,21 @@
 	.stat-value {
 		color: #10b981;
 		font-weight: bold;
+	}
+
+	.brand-watermark {
+		display: none;
+		text-align: center;
+		font-size: 0.65rem;
+		color: #444;
+		margin-top: 0.25rem;
+		font-weight: bold;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+	}
+
+	/* Display watermark branded text during exports */
+	.right-panel-container.exporting .brand-watermark {
+		display: block;
 	}
 </style>
