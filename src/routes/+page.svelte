@@ -1,495 +1,203 @@
 <script lang="ts">
-	import { base } from '$app/paths';
-	import heroes from '$lib/data/heroes.json';
-	import items from '$lib/data/items.json';
-	import enchantments from '$lib/data/enchantments.json';
-	import talents from '$lib/data/talents.json';
-	import arcanas from '$lib/data/arcanas.json';
-	function img(path: string) {
-		return `${base}${path}`;
-	}
-	type Hero = {
-		id: string;
-		name: string;
-		image: string;
-	};
+	import Navbar from '$lib/components/Navbar.svelte';
+	import HeroSelector from '$lib/components/HeroSelector.svelte';
+	import ItemSelector from '$lib/components/ItemSelector.svelte';
+	import EnchantmentSelector from '$lib/components/EnchantmentSelector.svelte';
+	import TalentSelector from '$lib/components/TalentSelector.svelte';
+	import ArcanaSelector from '$lib/components/ArcanaSelector.svelte';
+	import BuildPreview from '$lib/components/BuildPreview.svelte';
 
-	type Item = {
-		id: string;
-		name: string;
-		image: string;
-	};
+	// Static data loading
+	import heroListRaw from '$lib/data/heroes.json';
+	import itemListRaw from '$lib/data/items.json';
+	import enchantmentListRaw from '$lib/data/enchantments.json';
+	import talentListRaw from '$lib/data/talents.json';
+	import arcanaListRaw from '$lib/data/arcanas.json';
 
-	type Enchantment = {
-		id: string;
-		name: string;
-		image: string;
-	};
-	type Talent = {
-		id: string;
-		name: string;
-		image: string;
-	};
+	import type { Hero, Item, Enchantment, Talent, Arcana } from '$lib/types/entities';
 
-	type ArcanaColor = 'red' | 'purple' | 'teal';
+	// Cast JSON arrays to defined models
+	const heroList = heroListRaw as Hero[];
+	const itemList = itemListRaw as Item[];
+	const enchantmentList = enchantmentListRaw as Enchantment[];
+	const talentList = talentListRaw as Talent[];
+	const arcanaList = arcanaListRaw as Arcana[];
 
-	type Arcana = {
-		id: string;
-		name: string;
-		color: ArcanaColor;
-		image: string;
-	};
-	const heroList = heroes as Hero[];
-	const itemList = items as Item[];
-	const enchantmentList = enchantments as Enchantment[];
-	const talentList = talents as Talent[];
-	const arcanaList = arcanas as Arcana[];
-	let currentPage = $state<'hero' | 'armory' | 'enchantments' | 'talents' | 'arcana'>('hero');
+	// UI State
+	let currentPage = $state<string>('hero');
 
-	let selectedHero = $state(heroList.find((h) => h.id === 'sephera') ?? heroList[0]);
-
+	// Build State
+	let selectedHero = $state<Hero | null>(heroList[0] || null);
 	let armory = $state<(Item | null)[]>([null, null, null, null, null, null]);
-
 	let selectedEnchantments = $state<(Enchantment | null)[]>([null, null, null, null, null]);
-
-	let selectedTalent = $state(talentList.find((t) => t.id === 'talent05_flicker') ?? talentList[0]);
+	let selectedTalent = $state<Talent | null>(talentList[0] || null);
 
 	let redArcana = $state<Arcana[]>([]);
 	let purpleArcana = $state<Arcana[]>([]);
 	let tealArcana = $state<Arcana[]>([]);
 
-	function addItem(item: Item) {
-		const emptySlot = armory.findIndex((slot) => slot === null);
+	// Handlers
+	function handlePageChange(page: string) {
+		currentPage = page;
+	}
 
-		if (emptySlot !== -1) {
-			armory[emptySlot] = item;
+	function handleSelectHero(hero: Hero) {
+		selectedHero = hero;
+	}
+
+	function handleAddItem(item: Item) {
+		const freeIndex = armory.indexOf(null);
+		if (freeIndex !== -1) {
+			armory[freeIndex] = item;
 		}
 	}
 
-	function removeItem(index: number) {
+	function handleRemoveItem(index: number) {
 		armory[index] = null;
 	}
 
-	function addEnchantment(enchantment: Enchantment) {
-		const emptySlot = selectedEnchantments.findIndex((slot) => slot === null);
-
-		if (emptySlot !== -1) {
-			selectedEnchantments[emptySlot] = enchantment;
+	function handleAddEnchantment(enchantment: Enchantment) {
+		const freeIndex = selectedEnchantments.indexOf(null);
+		if (freeIndex !== -1) {
+			selectedEnchantments[freeIndex] = enchantment;
 		}
 	}
 
-	function removeEnchantment(index: number) {
+	function handleRemoveEnchantment(index: number) {
 		selectedEnchantments[index] = null;
 	}
 
-	function addArcana(arcana: Arcana) {
-		switch (arcana.color) {
-			case 'red':
-				if (redArcana.length < 10) redArcana.push(arcana);
-				break;
+	function handleSelectTalent(talent: Talent) {
+		selectedTalent = talent;
+	}
 
-			case 'purple':
-				if (purpleArcana.length < 10) purpleArcana.push(arcana);
-				break;
-
-			case 'teal':
-				if (tealArcana.length < 10) tealArcana.push(arcana);
-				break;
+	function handleAddArcana(arcana: Arcana) {
+		if (arcana.color === 'red' && redArcana.length < 10) {
+			redArcana = [...redArcana, arcana];
+		} else if (arcana.color === 'purple' && purpleArcana.length < 10) {
+			purpleArcana = [...purpleArcana, arcana];
+		} else if (arcana.color === 'teal' && tealArcana.length < 10) {
+			tealArcana = [...tealArcana, arcana];
 		}
 	}
 
-	function removeArcana(color: ArcanaColor, arcanaId: string) {
-		let targetList: Arcana[];
-
-		switch (color) {
-			case 'red':
-				targetList = redArcana;
-				break;
-
-			case 'purple':
-				targetList = purpleArcana;
-				break;
-
-			default:
-				targetList = tealArcana;
+	function handleRemoveArcana(color: 'red' | 'purple' | 'teal', arcanaId: string) {
+		if (color === 'red') {
+			const idx = redArcana.findIndex((a) => a.id === arcanaId);
+			if (idx !== -1) redArcana = redArcana.filter((_, i) => i !== idx);
+		} else if (color === 'purple') {
+			const idx = purpleArcana.findIndex((a) => a.id === arcanaId);
+			if (idx !== -1) purpleArcana = purpleArcana.filter((_, i) => i !== idx);
+		} else if (color === 'teal') {
+			const idx = tealArcana.findIndex((a) => a.id === arcanaId);
+			if (idx !== -1) tealArcana = tealArcana.filter((_, i) => i !== idx);
 		}
-
-		const index = targetList.findIndex((a) => a.id === arcanaId);
-
-		if (index !== -1) {
-			targetList.splice(index, 1);
-		}
-	}
-	function groupArcana(list: Arcana[]) {
-		// eslint-disable-next-line svelte/prefer-svelte-reactivity
-		const grouped = new Map();
-
-		for (const arcana of list) {
-			const existing = grouped.get(arcana.id);
-
-			if (existing) {
-				existing.count++;
-			} else {
-				grouped.set(arcana.id, {
-					arcana,
-					count: 1
-				});
-			}
-		}
-
-		return Array.from(grouped.values());
 	}
 </script>
 
-<div class="container">
+<div class="planner-layout">
 	<div class="left-panel">
-		<div class="nav">
-			<button class:selected={currentPage === 'hero'} onclick={() => (currentPage = 'hero')}>
-				Hero
-			</button>
+		<Navbar {currentPage} onPageChange={handlePageChange} />
 
-			<button class:selected={currentPage === 'armory'} onclick={() => (currentPage = 'armory')}>
-				Armory
-			</button>
-
-			<button
-				class:selected={currentPage === 'enchantments'}
-				onclick={() => (currentPage = 'enchantments')}
-			>
-				Enchantments
-			</button>
-
-			<button class:selected={currentPage === 'talents'} onclick={() => (currentPage = 'talents')}>
-				Talents
-			</button>
-
-			<button class:selected={currentPage === 'arcana'} onclick={() => (currentPage = 'arcana')}>
-				Arcana
-			</button>
+		<div class="selector-container">
+			{#if currentPage === 'hero'}
+				<HeroSelector
+					heroes={heroList}
+					{selectedHero}
+					onSelect={handleSelectHero}
+				/>
+			{:else if currentPage === 'armory'}
+				<ItemSelector
+					items={itemList}
+					onSelect={handleAddItem}
+				/>
+			{:else if currentPage === 'enchantments'}
+				<EnchantmentSelector
+					enchantments={enchantmentList}
+					onSelect={handleAddEnchantment}
+				/>
+			{:else if currentPage === 'talents'}
+				<TalentSelector
+					talents={talentList}
+					{selectedTalent}
+					onSelect={handleSelectTalent}
+				/>
+			{:else if currentPage === 'arcana'}
+				<ArcanaSelector
+					arcanas={arcanaList}
+					onSelect={handleAddArcana}
+				/>
+			{/if}
 		</div>
-
-		{#if currentPage === 'hero'}
-			<div class="icon-grid">
-				{#each heroList as hero (hero.id)}
-					<button
-						class:selected={hero.id === selectedHero.id}
-						onclick={() => (selectedHero = hero)}
-					>
-						<img src={img(`/heroes/${hero.image}`)} alt={hero.name} />
-					</button>
-				{/each}
-			</div>
-		{:else if currentPage === 'enchantments'}
-			<div class="icon-grid">
-				{#each enchantmentList as enchantment (enchantment.id)}
-					<button onclick={() => addEnchantment(enchantment)}>
-						<img src={img(`/enchantments/${enchantment.image}`)} alt={enchantment.name} />
-					</button>
-				{/each}
-			</div>
-		{:else if currentPage === 'talents'}
-			<div class="icon-grid">
-				{#each talentList as talent (talent.id)}
-					<button onclick={() => (selectedTalent = talent)}>
-						<img src={img(`/talents/${talent.image}`)} alt={talent.name} />
-					</button>
-				{/each}
-			</div>
-		{:else if currentPage === 'arcana'}
-			<div class="icon-grid">
-				{#each arcanaList as arcana (arcana.id)}
-					<button onclick={() => addArcana(arcana)}>
-						<img src={img(`/arcanas/${arcana.image}`)} alt={arcana.name} />
-					</button>
-				{/each}
-			</div>
-		{:else}
-			<div class="icon-grid">
-				{#each itemList as item (item.id)}
-					<button onclick={() => addItem(item)}>
-						<img src={img(`/items/${item.image}`)} alt={item.name} />
-					</button>
-				{/each}
-			</div>
-		{/if}
 	</div>
+
 	<div class="right-panel">
-		<img class="hero-image" src={img(`/heroes/${selectedHero.image}`)} alt={selectedHero.name} />
-
-		<h1>{selectedHero.name}</h1>
-
-		<div class="armory-bar">
-			{#each armory as slot, index (index)}
-				<button class="armory-slot" onclick={() => removeItem(index)}>
-					{#if slot}
-						<img src={img(`/items/${slot.image}`)} alt={slot.name} />
-					{/if}
-				</button>
-			{/each}
-		</div>
-
-		<div class="enchantment-layout">
-			<div class="enchantment-row">
-				{#each selectedEnchantments.slice(0, 3) as slot, index (index)}
-					<button class="enchantment-slot" onclick={() => removeEnchantment(index)}>
-						{#if slot}
-							<img src={img(`/enchantments/${slot.image}`)} alt={slot.name} />
-						{/if}
-					</button>
-				{/each}
-			</div>
-
-			<div class="enchantment-row">
-				{#each selectedEnchantments.slice(3, 5) as slot, index (index)}
-					<button class="enchantment-slot" onclick={() => removeEnchantment(index + 3)}>
-						{#if slot}
-							<img src={img(`/enchantments/${slot.image}`)} alt={slot.name} />
-						{/if}
-					</button>
-				{/each}
-			</div>
-		</div>
-
-		<div class="talent-section">
-			<div class="talent-slot">
-				<img src={img(`/talents/${selectedTalent.image}`)} alt={selectedTalent.name} />
-			</div>
-		</div>
-
-		<div class="arcana-section">
-			<div class="arcana-column">
-				<div class="arcana-row">
-					{#each groupArcana(redArcana) as group (group.arcana.id)}
-						<button class="arcana-card" onclick={() => removeArcana('red', group.arcana.id)}>
-							<img src={img(`/arcanas/${group.arcana.image}`)} alt={group.arcana.name} />
-
-							<span>x{group.count}</span>
-						</button>
-					{/each}
-				</div>
-			</div>
-
-			<div class="arcana-column">
-				<div class="arcana-row">
-					{#each groupArcana(purpleArcana) as group (group.arcana.id)}
-						<button class="arcana-card" onclick={() => removeArcana('purple', group.arcana.id)}>
-							<img src={img(`/arcanas/${group.arcana.image}`)} alt={group.arcana.name} />
-
-							<span>x{group.count}</span>
-						</button>
-					{/each}
-				</div>
-			</div>
-
-			<div class="arcana-column">
-				<div class="arcana-row">
-					{#each groupArcana(tealArcana) as group (group.arcana.id)}
-						<button class="arcana-card" onclick={() => removeArcana('teal', group.arcana.id)}>
-							<img src={img(`/arcanas/${group.arcana.image}`)} alt={group.arcana.name} />
-
-							<span>x{group.count}</span>
-						</button>
-					{/each}
-				</div>
-			</div>
-		</div>
+		<BuildPreview
+			{selectedHero}
+			{armory}
+			{selectedEnchantments}
+			{selectedTalent}
+			{redArcana}
+			{purpleArcana}
+			{tealArcana}
+			onRemoveItem={handleRemoveItem}
+			onRemoveEnchantment={handleRemoveEnchantment}
+			onRemoveArcana={handleRemoveArcana}
+		/>
 	</div>
-</div>
-<div class="rotate-warning">
-	<h2>Rotate Device</h2>
-	<p>AVIX is optimized for landscape mode.</p>
-</div>
-
-<div class="app">
-	<!-- existing UI -->
 </div>
 
 <style>
-	* {
-		background-color: #fffde7;
+	:global(body) {
+		background-color: #050505;
+		color: #e5e5e5;
+		font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+		margin: 0;
+		padding: 0;
 	}
-	.container {
+
+	.planner-layout {
 		display: grid;
-		grid-template-columns: 4fr 6fr;
-		height: 100vh;
-		overflow: hidden;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+		padding: 1.5rem;
+		max-width: 1400px;
+		margin: 0 auto;
+	}
+
+	@media (min-width: 992px) {
+		.planner-layout {
+			grid-template-columns: 3fr 2fr;
+		}
 	}
 
 	.left-panel {
-		border-right: 1px solid #333;
+		background-color: #0b0b0b;
+		border: 1px solid #222;
+		border-radius: 12px;
+		padding: 1.5rem;
 		display: flex;
 		flex-direction: column;
-		min-height: 0;
 	}
 
-	.nav {
-		display: flex;
-		padding: 0.5rem;
-		gap: 0.5rem;
-		border-bottom: 1px solid #333;
-	}
-
-	.nav button.selected {
-		font-weight: bold;
-	}
-
-	.icon-grid {
-		display: grid;
-		grid-template-columns: repeat(5, 1fr);
-		gap: 0.5rem;
-		padding: 1rem;
+	.selector-container {
+		margin-top: 1rem;
+		max-height: 70vh;
 		overflow-y: auto;
-		min-height: 0;
+		scrollbar-width: thin;
+		scrollbar-color: #333 #111;
 	}
 
-	.icon-grid img {
-		width: 100%;
-		aspect-ratio: 1;
-		object-fit: cover;
+	.selector-container::-webkit-scrollbar {
+		width: 6px;
 	}
 
-	.right-panel {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: 1rem;
-		padding: 1rem;
-		overflow-y: auto;
-		min-height: 0;
+	.selector-container::-webkit-scrollbar-track {
+		background: #111;
 	}
 
-	.hero-image {
-		width: 128px;
-		max-width: 80%;
-		max-height: 40vh;
-		object-fit: contain;
-	}
-
-	.armory-bar {
-		display: flex;
-		gap: 0.5rem;
-	}
-
-	.armory-slot {
-		width: 64px;
-		height: 64px;
-		border: 1px solid #666;
-		background: none;
-		padding: 0;
-		cursor: pointer;
-	}
-
-	.armory-slot img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-
-	.enchantment-layout {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-		margin-top: 1rem;
-	}
-
-	.enchantment-row {
-		display: flex;
-		justify-content: center;
-		gap: 0.5rem;
-	}
-
-	.enchantment-slot {
-		width: 64px;
-		height: 64px;
-		border: 1px solid #666;
-		background: none;
-		padding: 0;
-		cursor: pointer;
-	}
-
-	.enchantment-slot img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-	.talent-section {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.5rem;
-		margin-top: 1rem;
-	}
-
-	.talent-slot {
-		width: 64px;
-		height: 64px;
-		border: 1px solid #666;
-	}
-
-	.talent-slot img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-	.arcana-section {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 1rem;
-
-		width: 100%;
-		margin-top: 1rem;
-	}
-
-	.arcana-column {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.5rem;
-	}
-
-	.arcana-list {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-	}
-
-	.arcana-card {
-		width: 72px;
-		height: 90px;
-
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-
-		border: 1px solid #666;
-		background: none;
-		cursor: pointer;
-	}
-
-	.arcana-card img {
-		width: 64px;
-		height: 64px;
-		object-fit: cover;
-	}
-
-	.arcana-card span {
-		font-size: 0.8rem;
-	}
-
-	@media (orientation: portrait) {
-		.rotate-warning {
-			display: flex;
-		}
-
-		.app {
-			display: none;
-		}
-	}
-
-	@media (orientation: landscape) {
-		.rotate-warning {
-			display: none;
-		}
+	.selector-container::-webkit-scrollbar-thumb {
+		background: #333;
+		border-radius: 3px;
 	}
 </style>
