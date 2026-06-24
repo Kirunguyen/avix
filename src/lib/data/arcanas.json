@@ -1,182 +1,326 @@
 [
 	{
-		"id": "purple_assassin",
-		"name": "purple_Assassin",
-		"image": "purple_Assassin.png",
-		"color": "purple"
-	},
-	{
-		"id": "purple_cleric",
-		"name": "purple_Cleric",
-		"image": "purple_Cleric.png",
-		"color": "purple"
-	},
-	{
-		"id": "purple_colossus",
-		"name": "purple_Colossus",
-		"image": "purple_Colossus.png",
-		"color": "purple"
-	},
-	{
-		"id": "purple_crusader",
-		"name": "purple_Crusader",
-		"image": "purple_Crusader.png",
-		"color": "purple"
-	},
-	{
-		"id": "purple_fairy",
-		"name": "purple_Fairy",
-		"image": "purple_Fairy.png",
-		"color": "purple"
-	},
-	{
-		"id": "purple_reaper",
-		"name": "purple_Reaper",
-		"image": "purple_Reaper.png",
-		"color": "purple"
-	},
-	{
-		"id": "purple_reliever",
-		"name": "purple_Reliever",
-		"image": "purple_Reliever.png",
-		"color": "purple"
-	},
-	{
-		"id": "purple_tyrabt",
-		"name": "purple_Tyrabt",
-		"image": "purple_Tyrabt.png",
-		"color": "purple"
-	},
-	{
-		"id": "purple_undying",
-		"name": "purple_Undying",
-		"image": "purple_Undying.png",
-		"color": "purple"
-	},
-	{
-		"id": "purple_vampire",
-		"name": "purple_Vampire",
-		"image": "purple_Vampire.png",
-		"color": "purple"
-	},
-	{
-		"id": "red_berserker",
-		"name": "red_Berserker",
-		"image": "red_Berserker.png",
-		"color": "red"
-	},
-	{
-		"id": "red_blitz",
-		"name": "red_Blitz",
-		"image": "red_Blitz.png",
-		"color": "red"
-	},
-	{
-		"id": "red_bloodlust",
-		"name": "red_Bloodlust",
-		"image": "red_Bloodlust.png",
-		"color": "red"
-	},
-	{
-		"id": "red_guardian",
-		"name": "red_Guardian",
-		"image": "red_Guardian.png",
-		"color": "red"
-	},
-	{
-		"id": "red_nomad",
-		"name": "red_Nomad",
-		"image": "red_Nomad.png",
-		"color": "red"
-	},
-	{
-		"id": "red_rampage",
-		"name": "red_Rampage",
-		"image": "red_Rampage.png",
-		"color": "red"
+		"id": "red_wise",
+		"name": "Wise",
+		"image": "red_Wise.png",
+		"color": "red",
+		"stats": {
+			"abilityPower": 5.3
+		},
+		"displayName": "Ability Power"
 	},
 	{
 		"id": "red_samurai",
-		"name": "red_Samurai",
+		"name": "Samurai",
 		"image": "red_Samurai.png",
-		"color": "red"
+		"color": "red",
+		"stats": {
+			"attackDamage": 3.2
+		},
+		"displayName": "Attack Damage"
 	},
 	{
-		"id": "red_savage",
-		"name": "red_Savage",
-		"image": "red_Savage.png",
-		"color": "red"
+		"id": "red_berserker",
+		"name": "Berserker",
+		"image": "red_Berserker.png",
+		"color": "red",
+		"stats": {
+			"attackDamage": 2,
+			"armorPierce": 3.6
+		},
+		"displayName": "AD/Pen"
+	},
+	{
+		"id": "red_bloodlust",
+		"name": "Bloodlust",
+		"image": "red_Bloodlust.png",
+		"color": "red",
+		"stats": {
+			"attackDamage": 2.5,
+			"lifesteal": 0.5
+		},
+		"displayName": "AD/LS"
+	},
+	{
+		"id": "red_rampage",
+		"name": "Rampage",
+		"image": "red_Rampage.png",
+		"color": "red",
+		"stats": {
+			"criticalRate": 0.7,
+			"criticalDamage": 3.6
+		},
+		"displayName": "Crit/CDmg"
+	},
+	{
+		"id": "red_guardian",
+		"name": "Guardian",
+		"image": "red_Guardian.png",
+		"color": "red",
+		"stats": {
+			"attackSpeed": 1,
+			"maxHp": 33.7,
+			"armor": 2.3
+		},
+		"displayName": "AS/HP/Armor"
+	},
+	{
+		"id": "red_nomad",
+		"name": "Nomad",
+		"image": "red_Nomad.png",
+		"color": "red",
+		"stats": {
+			"abilityPower": 4.2,
+			"magicPierce": 2.4
+		},
+		"displayName": "AP/MPen"
 	},
 	{
 		"id": "red_sovereign",
-		"name": "red_Sovereign",
+		"name": "Sovereign",
 		"image": "red_Sovereign.png",
-		"color": "red"
+		"color": "red",
+		"stats": {
+			"abilityPower": 4.2,
+			"attackSpeed": 0.6
+		},
+		"displayName": "AP/AS"
 	},
 	{
-		"id": "red_wise",
-		"name": "red_Wise",
-		"image": "red_Wise.png",
-		"color": "red"
+		"id": "red_savage",
+		"name": "Savage",
+		"image": "red_Savage.png",
+		"color": "red",
+		"stats": {
+			"criticalRate": 1.6
+		},
+		"displayName": "Critical Rate"
+	},
+	{
+		"id": "red_blitz",
+		"name": "Blitz",
+		"image": "red_Blitz.png",
+		"color": "red",
+		"stats": {
+			"attackSpeed": 1.6,
+			"criticalRate": 0.5
+		},
+		"displayName": "AS/Crit"
+	},
+	{
+		"id": "purple_colossus",
+		"name": "Colossus",
+		"image": "purple_Colossus.png",
+		"color": "purple",
+		"stats": {
+			"maxHp": 75
+		},
+		"displayName": "HP"
+	},
+	{
+		"id": "purple_cleric",
+		"name": "Cleric",
+		"image": "purple_Cleric.png",
+		"color": "purple",
+		"stats": {
+			"magicLifesteal": 1.6
+		},
+		"displayName": "Magic Lifesteal"
+	},
+	{
+		"id": "purple_tyrant",
+		"name": "Tyrant",
+		"image": "purple_Tyrant.png",
+		"color": "purple",
+		"stats": {
+			"criticalRate": 0.5,
+			"maxHp": 60
+		},
+		"displayName": "Crit/HP"
+	},
+	{
+		"id": "purple_reaper",
+		"name": "Reaper",
+		"image": "purple_Reaper.png",
+		"color": "purple",
+		"stats": {
+			"lifesteal": 1.6
+		},
+		"displayName": "Lifesteal"
+	},
+	{
+		"id": "purple_undying",
+		"name": "Undying",
+		"image": "purple_Undying.png",
+		"color": "purple",
+		"stats": {
+			"maxHp": 60,
+			"hp5s": 4.5
+		},
+		"displayName": "HP/Heal"
+	},
+	{
+		"id": "purple_crusader",
+		"name": "Crusader",
+		"image": "purple_Crusader.png",
+		"color": "purple",
+		"stats": {
+			"lifesteal": 1,
+			"magicArmor": 4.1
+		},
+		"displayName": "LS/MDef"
+	},
+	{
+		"id": "purple_vampire",
+		"name": "Vampire",
+		"image": "purple_Vampire.png",
+		"color": "purple",
+		"stats": {
+			"abilityPower": 2.4,
+			"magicLifesteal": 1
+		},
+		"displayName": "AP/MLS"
+	},
+	{
+		"id": "purple_reliever",
+		"name": "Reliever",
+		"image": "purple_Reliever.png",
+		"color": "purple",
+		"stats": {
+			"maxHp": 45,
+			"hp5s": 5.2,
+			"movementSpeed": 0.4
+		},
+		"displayName": "HP/Heal/MV"
+	},
+	{
+		"id": "purple_assassin",
+		"name": "Assassin",
+		"image": "purple_Assassin.png",
+		"color": "purple",
+		"stats": {
+			"attackDamage": 1.6,
+			"movementSpeed": 1
+		},
+		"displayName": "AD/MV"
+	},
+	{
+		"id": "purple_fairy",
+		"name": "Fairy",
+		"image": "purple_Fairy.png",
+		"color": "purple",
+		"stats": {
+			"attackSpeed": 1,
+			"movementSpeed": 1
+		},
+		"displayName": "AS/MV"
 	},
 	{
 		"id": "teal_bastion",
-		"name": "teal_Bastion",
+		"name": "Bastion",
 		"image": "teal_Bastion.png",
-		"color": "teal"
-	},
-	{
-		"id": "teal_crusader",
-		"name": "teal_Crusader",
-		"image": "teal_Crusader.png",
-		"color": "teal"
-	},
-	{
-		"id": "teal_darksider",
-		"name": "teal_Darksider",
-		"image": "teal_Darksider.png",
-		"color": "teal"
-	},
-	{
-		"id": "teal_degenerate",
-		"name": "teal_Degenerate",
-		"image": "teal_Degenerate.png",
-		"color": "teal"
-	},
-	{
-		"id": "teal_dragoon",
-		"name": "teal_Dragoon",
-		"image": "teal_Dragoon.png",
-		"color": "teal"
-	},
-	{
-		"id": "teal_hexer",
-		"name": "teal_Hexer",
-		"image": "teal_Hexer.png",
-		"color": "teal"
-	},
-	{
-		"id": "teal_monarch",
-		"name": "teal_Monarch",
-		"image": "teal_Monarch.png",
-		"color": "teal"
+		"color": "teal",
+		"stats": {
+			"armor": 9
+		},
+		"displayName": "Armor"
 	},
 	{
 		"id": "teal_mythril",
-		"name": "teal_Mythril",
+		"name": "Mythril",
 		"image": "teal_Mythril.png",
-		"color": "teal"
+		"color": "teal",
+		"stats": {
+			"armor": 5,
+			"magicArmor": 5
+		},
+		"displayName": "Armor/MDef"
 	},
 	{
 		"id": "teal_paladin",
-		"name": "teal_Paladin",
+		"name": "Paladin",
 		"image": "teal_Paladin.png",
-		"color": "teal"
+		"color": "teal",
+		"stats": {
+			"maxHp": 37.5,
+			"cooldownReduction": 0.6
+		},
+		"displayName": "HP/CDR"
+	},
+	{
+		"id": "teal_monarch",
+		"name": "Monarch",
+		"image": "teal_Monarch.png",
+		"color": "teal",
+		"stats": {
+			"magicArmor": 9
+		},
+		"displayName": "Magic Armor"
+	},
+	{
+		"id": "teal_hexer",
+		"name": "Hexer",
+		"image": "teal_Hexer.png",
+		"color": "teal",
+		"stats": {
+			"abilityPower": 2.4,
+			"cooldownReduction": 0.7
+		},
+		"displayName": "AP/CDR"
+	},
+	{
+		"id": "teal_dragoon",
+		"name": "Dragoon",
+		"image": "teal_Dragoon.png",
+		"color": "teal",
+		"stats": {
+			"attackDamage": 0.9,
+			"armorPierce": 6.4
+		},
+		"displayName": "AD/Pen"
+	},
+	{
+		"id": "teal_degenerate",
+		"name": "Degenerate",
+		"image": "teal_Degenerate.png",
+		"color": "teal",
+		"stats": {
+			"attackSpeed": 0.6,
+			"magicPierce": 6.4
+		},
+		"displayName": "AS/MPen"
 	},
 	{
 		"id": "teal_templar",
-		"name": "teal_Templar",
+		"name": "Templar",
 		"image": "teal_Templar.png",
-		"color": "teal"
+		"color": "teal",
+		"stats": {
+			"cooldownReduction": 1
+		},
+		"displayName": "Cooldown Reduction"
+	},
+	{
+		"id": "teal_darksider",
+		"name": "Darksider",
+		"image": "teal_Darksider.png",
+		"color": "teal",
+		"stats": {
+			"armor": 5.9,
+			"magicLifesteal": 0.7
+		},
+		"displayName": "Armor/MLS"
+	},
+	{
+		"id": "teal_crusader",
+		"name": "Crusader",
+		"image": "teal_Crusader.png",
+		"color": "teal",
+		"stats": {
+			"armor": 2.7,
+			"magicArmor": 2.7,
+			"cooldownReduction": 0.6
+		},
+		"displayName": "Armor/MDef/CDR"
 	}
 ]

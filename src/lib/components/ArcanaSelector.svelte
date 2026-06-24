@@ -27,6 +27,7 @@
 		<button class="arcana-card {arcana.color}" onclick={() => onSelect(arcana)} title={arcana.name}>
 			<img src="/arcanas/{arcana.image}" alt={arcana.name} loading="lazy" />
 			<span class="arcana-name">{arcana.name}</span>
+			<span class="arcana-display-name">{arcana.displayName}</span>
 		</button>
 	{/each}
 </div>
@@ -67,7 +68,7 @@
 
 	.icon-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
 		gap: 0.75rem;
 		padding: 0.5rem;
 	}
@@ -76,13 +77,15 @@
 		background: #1a1a1a;
 		border: 2px solid #333;
 		border-radius: 8px;
-		padding: 0.25rem;
+		padding: 0.5rem 0.25rem;
 		cursor: pointer;
 		transition: border-color 0.2s, transform 0.1s;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		overflow: hidden;
+		min-height: 110px;
+		justify-content: space-between;
 	}
 
 	.arcana-card:hover {
@@ -94,20 +97,31 @@
 	.arcana-card.teal:hover { border-color: #14b8a6; }
 
 	img {
-		width: 100%;
-		aspect-ratio: 1;
-		object-fit: cover;
-		border-radius: 4px;
+		width: 48px;
+		height: 48px;
+		object-fit: contain;
+		margin-bottom: 0.25rem;
 	}
 
 	.arcana-name {
 		font-size: 0.75rem;
-		color: #ccc;
-		margin-top: 0.25rem;
+		font-weight: bold;
+		color: #fff;
 		text-align: center;
+		width: 100%;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+	}
+
+	.arcana-display-name {
+		font-size: 0.65rem;
+		color: #888;
+		margin-top: 0.15rem;
+		text-align: center;
 		width: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 </style>

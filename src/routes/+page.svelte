@@ -7,7 +7,7 @@
 	import ArcanaSelector from '$lib/components/ArcanaSelector.svelte';
 	import BuildPreview from '$lib/components/BuildPreview.svelte';
 
-	// Static data loading
+	// Static data imports
 	import heroListRaw from '$lib/data/heroes.json';
 	import itemListRaw from '$lib/data/items.json';
 	import enchantmentListRaw from '$lib/data/enchantments.json';
@@ -16,17 +16,15 @@
 
 	import type { Hero, Item, Enchantment, Talent, Arcana } from '$lib/types/entities';
 
-	// Cast JSON arrays to defined models
+	// Parse items securely
 	const heroList = heroListRaw as Hero[];
 	const itemList = itemListRaw as Item[];
 	const enchantmentList = enchantmentListRaw as Enchantment[];
 	const talentList = talentListRaw as Talent[];
 	const arcanaList = arcanaListRaw as Arcana[];
 
-	// UI State
+	// Svelte 5 Runes State Variables
 	let currentPage = $state<string>('hero');
-
-	// Build State
 	let selectedHero = $state<Hero | null>(heroList[0] || null);
 	let armory = $state<(Item | null)[]>([null, null, null, null, null, null]);
 	let selectedEnchantments = $state<(Enchantment | null)[]>([null, null, null, null, null]);
@@ -36,7 +34,7 @@
 	let purpleArcana = $state<Arcana[]>([]);
 	let tealArcana = $state<Arcana[]>([]);
 
-	// Handlers
+	// Actions
 	function handlePageChange(page: string) {
 		currentPage = page;
 	}
@@ -46,9 +44,9 @@
 	}
 
 	function handleAddItem(item: Item) {
-		const freeIndex = armory.indexOf(null);
-		if (freeIndex !== -1) {
-			armory[freeIndex] = item;
+		const freeIdx = armory.indexOf(null);
+		if (freeIdx !== -1) {
+			armory[freeIdx] = item;
 		}
 	}
 
@@ -57,9 +55,9 @@
 	}
 
 	function handleAddEnchantment(enchantment: Enchantment) {
-		const freeIndex = selectedEnchantments.indexOf(null);
-		if (freeIndex !== -1) {
-			selectedEnchantments[freeIndex] = enchantment;
+		const freeIdx = selectedEnchantments.indexOf(null);
+		if (freeIdx !== -1) {
+			selectedEnchantments[freeIdx] = enchantment;
 		}
 	}
 
@@ -94,6 +92,14 @@
 		}
 	}
 </script>
+
+<!-- Mobile Portrait Orientation Warning -->
+<div class="orientation-warning">
+	<div class="warning-box">
+		<span class="warning-icon">🔄</span>
+		<p>For the best builder experience, please rotate your device horizontally to Landscape mode.</p>
+	</div>
+</div>
 
 <div class="planner-layout">
 	<div class="left-panel">
@@ -156,18 +162,20 @@
 		padding: 0;
 	}
 
+	/* Responsive Grid Layout */
 	.planner-layout {
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: 2rem;
-		padding: 1.5rem;
+		gap: 1.5rem;
+		padding: 1rem;
 		max-width: 1400px;
 		margin: 0 auto;
 	}
 
 	@media (min-width: 992px) {
 		.planner-layout {
-			grid-template-columns: 3fr 2fr;
+			grid-template-columns: 1.2fr 0.8fr;
+			padding: 2rem;
 		}
 	}
 
@@ -175,14 +183,14 @@
 		background-color: #0b0b0b;
 		border: 1px solid #222;
 		border-radius: 12px;
-		padding: 1.5rem;
+		padding: 1.25rem;
 		display: flex;
 		flex-direction: column;
 	}
 
 	.selector-container {
 		margin-top: 1rem;
-		max-height: 70vh;
+		max-height: 65vh;
 		overflow-y: auto;
 		scrollbar-width: thin;
 		scrollbar-color: #333 #111;
@@ -199,5 +207,52 @@
 	.selector-container::-webkit-scrollbar-thumb {
 		background: #333;
 		border-radius: 3px;
+	}
+
+	/* Orientation Prompt Styles */
+	.orientation-warning {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(5, 5, 5, 0.98);
+		z-index: 9999;
+		justify-content: center;
+		align-items: center;
+		padding: 2rem;
+		text-align: center;
+	}
+
+	.warning-box {
+		max-width: 320px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.warning-icon {
+		font-size: 3rem;
+		animation: rotate 2.5s infinite ease-in-out;
+	}
+
+	.warning-box p {
+		font-size: 1rem;
+		line-height: 1.5;
+		color: #aaa;
+	}
+
+	@keyframes rotate {
+		0%, 100% { transform: rotate(0deg); }
+		50% { transform: rotate(90deg); }
+	}
+
+	/* Target devices under 992px width when used in Portrait orientation */
+	@media (max-width: 991px) and (orientation: portrait) {
+		.orientation-warning {
+			display: flex;
+		}
 	}
 </style>
