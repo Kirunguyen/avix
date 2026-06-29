@@ -23,7 +23,11 @@
 
 	let currentPage = $state<string>('hero');
 	let selectedHero = $state<Hero | null>(heroList[0] || null);
+
+	// Armory capacity management
+	let isExpandedArmory = $state<boolean>(false);
 	let armory = $state<(Item | null)[]>([null, null, null, null, null, null]);
+
 	let selectedEnchantments = $state<(Enchantment | null)[]>([null, null, null, null, null]);
 	let selectedTalent = $state<Talent | null>(talentList[0] || null);
 
@@ -87,6 +91,21 @@
 			if (idx !== -1) tealArcana = tealArcana.filter((_, i) => i !== idx);
 		}
 	}
+
+	/**
+	 * Toggles capacity of the armory slot array safely.
+	 */
+	function toggleArmoryExpansion() {
+		if (isExpandedArmory) {
+			// Shrink array back down to 6 elements, preserving first 6 items
+			armory = armory.slice(0, 6);
+			isExpandedArmory = false;
+		} else {
+			// Expand array with empty slots up to 10
+			armory = [...armory, null, null, null, null];
+			isExpandedArmory = true;
+		}
+	}
 </script>
 
 <div class="planner-layout">
@@ -120,6 +139,8 @@
 			onRemoveItem={handleRemoveItem}
 			onRemoveEnchantment={handleRemoveEnchantment}
 			onRemoveArcana={handleRemoveArcana}
+			{isExpandedArmory}
+			onToggleArmoryExpansion={toggleArmoryExpansion}
 		/>
 	</div>
 </div>
@@ -149,7 +170,6 @@
 		box-sizing: border-box;
 	}
 
-	/* Parallel workspace display activated on desktop screens */
 	@media (min-width: 1024px) {
 		.planner-layout {
 			grid-template-columns: 1.25fr 0.75fr;

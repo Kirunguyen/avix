@@ -14,6 +14,9 @@
 		onRemoveItem: (index: number) => void;
 		onRemoveEnchantment: (index: number) => void;
 		onRemoveArcana: (color: 'red' | 'purple' | 'teal', arcanaId: string) => void;
+		// Prop interfaces to allow parent to manage armory scaling
+		isExpandedArmory: boolean;
+		onToggleArmoryExpansion: () => void;
 	}
 
 	let {
@@ -26,10 +29,12 @@
 		tealArcana,
 		onRemoveItem,
 		onRemoveEnchantment,
-		onRemoveArcana
+		onRemoveArcana,
+		isExpandedArmory,
+		onToggleArmoryExpansion
 	}: Props = $props();
 
-	// Derived grouped and accumulated statistics
+	// Derived grouped and accumulated stats
 	const groupedRed = $derived(groupArcana(redArcana));
 	const groupedPurple = $derived(groupArcana(purpleArcana));
 	const groupedTeal = $derived(groupArcana(tealArcana));
@@ -40,17 +45,12 @@
 	let exportElement = $state<HTMLElement | null>(null);
 	let isExporting = $state<boolean>(false);
 
-	/**
-	 * Generates a clean PNG from the DOM node and triggers a browser download.
-	 */
 	async function exportBuildAsImage() {
 		if (!exportElement) return;
 		isExporting = true;
 
 		try {
-			// Minimal delay to ensure DOM changes propagate
 			await new Promise((resolve) => setTimeout(resolve, 100));
-
 			const dataUrl = await toPng(exportElement, {
 				backgroundColor: '#111111',
 				style: {
@@ -74,7 +74,6 @@
 </script>
 
 <div class="build-preview-wrapper">
-	<!-- Action panel containing the download trigger -->
 	<div class="preview-actions">
 		<button class="export-btn" onclick={exportBuildAsImage} disabled={isExporting}>
 			{#if isExporting}
@@ -100,11 +99,21 @@
 		{/if}
 
 		<!-- Gear Layout Section -->
-		<div class="gear-row">
+		<div class="gear-row" class:compact-armory-view={isExpandedArmory}>
 			<!-- Armory Bar -->
 			<div class="gear-column flex-3">
-				<div class="section-title">Armory</div>
-				<div class="armory-grid">
+				<div class="section-title-container">
+					<div class="section-title">Armory</div>
+					<button
+						class="expand-armory-btn"
+						class:expanded={isExpandedArmory}
+						onclick={onToggleArmoryExpansion}
+						title={isExpandedArmory ? 'Reduce to 6 slots' : 'Expand to 10 slots'}
+					>
+						{isExpandedArmory ? '− 6 Slots' : '+ 10 Slots'}
+					</button>
+				</div>
+				<div class="armory-grid" class:expanded-slots={isExpandedArmory}>
 					{#each armory as slot, index (index)}
 						<button
 							class="gear-slot square"
@@ -256,7 +265,7 @@
 				<div class="column-title">Accumulated Stats</div>
 				{#if accumulatedStats.length > 0}
 					<div class="stats-grid-table">
-						{#each accumulatedStats as stat}
+						{#each accumulatedStats as stat (stat.key)}
 							<div class="stat-cell">
 								<span class="stat-label">{stat.key}</span>
 								<span class="stat-value">+{stat.value}</span>
@@ -271,7 +280,7 @@
 			</div>
 		</div>
 
-		<!-- Subtle watermarked brand indicator only displayed on exported PNG -->
+		<!-- Watermarked Indicator only visible on generated PNG -->
 		<div class="brand-watermark">
 			<span>AVIX Build Planner</span>
 		</div>
@@ -342,7 +351,6 @@
 		position: relative;
 	}
 
-	/* Isolated styles applied during local image generation */
 	.right-panel-container.exporting {
 		border: none;
 		border-radius: 0px;
@@ -418,13 +426,46 @@
 		flex: 1;
 	}
 
+	.section-title-container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 0.25rem;
+	}
+
 	.section-title {
 		font-size: 0.7rem;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
 		color: #888;
 		font-weight: bold;
-		margin-bottom: 0.25rem;
+	}
+
+	.expand-armory-btn {
+		background: #111;
+		border: 1px solid #059669;
+		color: #34d399;
+		font-size: 0.6rem;
+		padding: 0.15rem 0.35rem;
+		border-radius: 4px;
+		font-weight: bold;
+		cursor: pointer;
+		transition: all 0.15s;
+	}
+
+	.expand-armory-btn:hover {
+		background: #065f46;
+		color: #fff;
+	}
+
+	.expand-armory-btn.expanded {
+		border-color: #ef4444;
+		color: #f87171;
+	}
+
+	.expand-armory-btn.expanded:hover {
+		background: #991b1b;
+		color: #fff;
 	}
 
 	.armory-grid {
@@ -433,6 +474,12 @@
 		gap: 0.35rem;
 	}
 
+	/* Compact grid view for 10 items */
+	.armory-grid.expanded-slots {
+		grid-template-columns: repeat(5, 1fr);
+	}
+
+	/* Universal Gear Slot sizing */
 	.gear-slot {
 		width: 48px;
 		height: 48px;
@@ -445,6 +492,12 @@
 		padding: 0;
 		overflow: hidden;
 		transition: border-color 0.2s;
+	}
+
+	/* Scale slot sizes down to maintain layout sync when expanded */
+	.compact-armory-view .gear-slot {
+		width: 36px;
+		height: 36px;
 	}
 
 	.gear-slot:hover {
@@ -473,6 +526,10 @@
 	.placeholder {
 		color: #444;
 		font-size: 0.85rem;
+	}
+
+	.compact-armory-view .placeholder {
+		font-size: 0.7rem;
 	}
 
 	.enchantment-layout {
@@ -658,7 +715,6 @@
 		letter-spacing: 0.1em;
 	}
 
-	/* Display watermark branded text during exports */
 	.right-panel-container.exporting .brand-watermark {
 		display: block;
 	}

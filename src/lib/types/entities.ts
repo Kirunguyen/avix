@@ -6,14 +6,20 @@ export interface Hero {
 
 export interface Item {
 	id: string;
-	name: string;
 	image: string;
+	category: 'Attack' | 'Magic' | 'Defense' | 'Movement' | 'Jungling' | 'Support';
+	level: number;
+	number: number;
+	name: string;
 }
 
 export interface Enchantment {
 	id: string;
-	name: string;
 	image: string;
+	category: 'Veda' | 'Lokheim' | 'Afata' | 'League of Humans';
+	level: number;
+	number: number;
+	name: string;
 }
 
 export interface Talent {

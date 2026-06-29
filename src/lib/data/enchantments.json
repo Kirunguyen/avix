@@ -1,157 +1,250 @@
 [
 	{
-		"id": "a11_axeofsacrifice",
-		"name": "A11_AxeofSacrifice",
-		"image": "A11_AxeofSacrifice.png"
+		"id": "a11_axeofsacrifice.png",
+		"image": "A11_AxeofSacrifice.png",
+		"category": "Veda",
+		"level": 1,
+		"number": 1,
+		"name": "Axe of Sacrifice"
 	},
 	{
-		"id": "a12_manarefill",
-		"name": "A12_ManaRefill",
-		"image": "A12_ManaRefill.png"
+		"id": "a12_manarefill.png",
+		"image": "A12_ManaRefill.png",
+		"category": "Veda",
+		"level": 1,
+		"number": 2,
+		"name": "Mana Refill"
 	},
 	{
-		"id": "a13_sacredbead",
-		"name": "A13_SacredBead",
-		"image": "A13_SacredBead.png"
+		"id": "a13_sacredbead.png",
+		"image": "A13_SacredBead.png",
+		"category": "Veda",
+		"level": 1,
+		"number": 3,
+		"name": "Sacred Bead"
 	},
 	{
-		"id": "a21_blessing",
-		"name": "A21_Blessing",
-		"image": "A21_Blessing.png"
+		"id": "a21_blessing.png",
+		"image": "A21_Blessing.png",
+		"category": "Veda",
+		"level": 2,
+		"number": 1,
+		"name": "Blessing"
 	},
 	{
-		"id": "a22_holyverdict",
-		"name": "A22_HolyVerdict",
-		"image": "A22_HolyVerdict.png"
+		"id": "a22_holyverdict.png",
+		"image": "A22_HolyVerdict.png",
+		"category": "Veda",
+		"level": 2,
+		"number": 2,
+		"name": "Holy Verdict"
 	},
 	{
-		"id": "a31_holysummoner",
-		"name": "A31_HolySummoner",
-		"image": "A31_HolySummoner.png"
+		"id": "a31_holysummoner.png",
+		"image": "A31_HolySummoner.png",
+		"category": "Veda",
+		"level": 3,
+		"number": 1,
+		"name": "Holy Summoner"
 	},
 	{
-		"id": "a32_holythunder",
-		"name": "A32_HolyThunder",
-		"image": "A32_HolyThunder.png"
+		"id": "a32_holythunder.png",
+		"image": "A32_HolyThunder.png",
+		"category": "Veda",
+		"level": 3,
+		"number": 2,
+		"name": "Holy Thunder"
 	},
 	{
-		"id": "a33_sacredprotection",
-		"name": "A33_SacredProtection",
-		"image": "A33_SacredProtection.png"
+		"id": "a33_sacredprotection.png",
+		"image": "A33_SacredProtection.png",
+		"category": "Veda",
+		"level": 3,
+		"number": 3,
+		"name": "Sacred Protection"
 	},
 	{
-		"id": "b11_devourer",
-		"name": "B11_Devourer",
-		"image": "B11_Devourer.png"
+		"id": "b11_devourer.png",
+		"image": "B11_Devourer.png",
+		"category": "Lokheim",
+		"level": 1,
+		"number": 1,
+		"name": "Devourer"
 	},
 	{
-		"id": "b12_shadowblade",
-		"name": "B12_ShadowBlade",
-		"image": "B12_ShadowBlade.png"
+		"id": "b12_shadowblade.png",
+		"image": "B12_ShadowBlade.png",
+		"category": "Lokheim",
+		"level": 1,
+		"number": 2,
+		"name": "Shadow Blade"
 	},
 	{
-		"id": "b13_raginginferno",
-		"name": "B13_RagingInferno",
-		"image": "B13_RagingInferno.png"
+		"id": "b13_raginginferno.png",
+		"image": "B13_RagingInferno.png",
+		"category": "Lokheim",
+		"level": 1,
+		"number": 3,
+		"name": "Raging Inferno"
 	},
 	{
-		"id": "b21_deadlyclaw",
-		"name": "B21_DeadlyClaw",
-		"image": "B21_DeadlyClaw.png"
+		"id": "b21_deadlyclaw.png",
+		"image": "B21_DeadlyClaw.png",
+		"category": "Lokheim",
+		"level": 2,
+		"number": 1,
+		"name": "Deadly Claw"
 	},
 	{
-		"id": "b22_bonecutter",
-		"name": "B22_BoneCutter",
-		"image": "B22_BoneCutter.png"
+		"id": "b22_bonecutter.png",
+		"image": "B22_BoneCutter.png",
+		"category": "Lokheim",
+		"level": 2,
+		"number": 2,
+		"name": "Bone Cutter"
 	},
 	{
-		"id": "b31_desperateduel",
-		"name": "B31_DesperateDuel",
-		"image": "B31_DesperateDuel.png"
+		"id": "b31_desperateduel.png",
+		"image": "B31_DesperateDuel.png",
+		"category": "Lokheim",
+		"level": 3,
+		"number": 1,
+		"name": "Desperate Duel"
 	},
 	{
-		"id": "b32_curseofdeath",
-		"name": "B32_CurseofDeath",
-		"image": "B32_CurseofDeath.png"
+		"id": "b32_curseofdeath.png",
+		"image": "B32_CurseofDeath.png",
+		"category": "Lokheim",
+		"level": 3,
+		"number": 2,
+		"name": "Curse of Death"
 	},
 	{
-		"id": "b33_devilsawakening",
-		"name": "B33_DevilsAwakening",
-		"image": "B33_DevilsAwakening.png"
+		"id": "b33_devilsawakening.png",
+		"image": "B33_DevilsAwakening.png",
+		"category": "Lokheim",
+		"level": 3,
+		"number": 3,
+		"name": "Devil's Awakening"
 	},
 	{
-		"id": "c11_rivertreader",
-		"name": "C11_RiverTreader",
-		"image": "C11_RiverTreader.png"
+		"id": "c11_rivertreader.png",
+		"image": "C11_RiverTreader.png",
+		"category": "Afata",
+		"level": 1,
+		"number": 1,
+		"name": "River Treader"
 	},
 	{
-		"id": "c12_backstabbing",
-		"name": "C12_Backstabbing",
-		"image": "C12_Backstabbing.png"
+		"id": "c12_backstabbing.png",
+		"image": "C12_Backstabbing.png",
+		"category": "Afata",
+		"level": 1,
+		"number": 2,
+		"name": "Backstabbing"
 	},
 	{
-		"id": "c13_towerblessing",
-		"name": "C13_TowerBlessing",
-		"image": "C13_TowerBlessing.png"
+		"id": "c13_towerblessing.png",
+		"image": "C13_TowerBlessing.png",
+		"category": "Afata",
+		"level": 1,
+		"number": 3,
+		"name": "Tower Blessing"
 	},
 	{
-		"id": "c21_regrowth",
-		"name": "C21_Regrowth",
-		"image": "C21_Regrowth.png"
+		"id": "c21_regrowth.png",
+		"image": "C21_Regrowth.png",
+		"category": "Afata",
+		"level": 2,
+		"number": 1,
+		"name": "Regrowth"
 	},
 	{
-		"id": "c22_naturesgift",
-		"name": "C22_NaturesGift",
-		"image": "C22_NaturesGift.png"
+		"id": "c22_naturesgift.png",
+		"image": "C22_NaturesGift.png",
+		"category": "Afata",
+		"level": 2,
+		"number": 2,
+		"name": "Nature's Gift"
 	},
 	{
-		"id": "c31_naturesrage",
-		"name": "C31_NaturesRage",
-		"image": "C31_NaturesRage.png"
+		"id": "c31_naturesrage.png",
+		"image": "C31_NaturesRage.png",
+		"category": "Afata",
+		"level": 3,
+		"number": 1,
+		"name": "Nature's Rage"
 	},
 	{
-		"id": "c32_explosiveshield",
-		"name": "C32_ExplosiveShield",
-		"image": "C32_ExplosiveShield.png"
+		"id": "c32_explosiveshield.png",
+		"image": "C32_ExplosiveShield.png",
+		"category": "Afata",
+		"level": 3,
+		"number": 2,
+		"name": "Explosive Shield"
 	},
 	{
-		"id": "c33_forestwanderer",
-		"name": "C33_ForestWanderer",
-		"image": "C33_ForestWanderer.png"
+		"id": "c33_forestwanderer.png",
+		"image": "C33_ForestWanderer.png",
+		"category": "Afata",
+		"level": 3,
+		"number": 3,
+		"name": "Forest Wanderer"
 	},
 	{
-		"id": "d11_markoffrost",
-		"name": "D11_MarkOfFrost",
-		"image": "D11_MarkOfFrost.png"
+		"id": "d11_markoffrost.png",
+		"image": "D11_MarkOfFrost.png",
+		"category": "League of Humans",
+		"level": 1,
+		"number": 1,
+		"name": "Mark of Frost"
 	},
 	{
-		"id": "d12_enhancedrestore",
-		"name": "D12_EnhancedRestore",
-		"image": "D12_EnhancedRestore.png"
+		"id": "d12_enhancedrestore.png",
+		"image": "D12_EnhancedRestore.png",
+		"category": "League of Humans",
+		"level": 1,
+		"number": 2,
+		"name": "Enhanced Restore"
 	},
 	{
-		"id": "d13_arcanewhisper",
-		"name": "D13_ArcaneWhisper",
-		"image": "D13_ArcaneWhisper.png"
+		"id": "d13_arcanewhisper.png",
+		"image": "D13_ArcaneWhisper.png",
+		"category": "League of Humans",
+		"level": 1,
+		"number": 3,
+		"name": "Arcane Whisper"
 	},
 	{
-		"id": "d21_minionkill",
-		"name": "D21_MinionKill",
-		"image": "D21_MinionKill.png"
+		"id": "d21_minionkill.png",
+		"image": "D21_MinionKill.png",
+		"category": "League of Humans",
+		"level": 2,
+		"number": 1,
+		"name": "Minion Kill"
 	},
 	{
-		"id": "d22_gunslinger",
-		"name": "D22_Gunslinger",
-		"image": "D22_Gunslinger.png"
+		"id": "d22_gunslinger.png",
+		"image": "D22_Gunslinger.png",
+		"category": "League of Humans",
+		"level": 2,
+		"number": 2,
+		"name": "Gunslinger"
 	},
 	{
-		"id": "d31_alchemy",
-		"name": "D31_Alchemy",
-		"image": "D31_Alchemy.png"
+		"id": "d31_alchemy.png",
+		"image": "D31_Alchemy.png",
+		"category": "League of Humans",
+		"level": 3,
+		"number": 1,
+		"name": "Alchemy"
 	},
 	{
-		"id": "d32_endlesscycle",
-		"name": "D32_EndlessCycle",
-		"image": "D32_EndlessCycle.png"
+		"id": "d32_endlesscycle.png",
+		"image": "D32_EndlessCycle.png",
+		"category": "League of Humans",
+		"level": 3,
+		"number": 2,
+		"name": "Endless Cycle"
 	}
 ]

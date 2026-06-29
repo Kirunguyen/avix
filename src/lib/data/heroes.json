@@ -66,7 +66,7 @@
 	},
 	{
 		"id": "azzenka",
-		"name": "AzzenKa",
+		"name": "Azzen'Ka",
 		"image": "AzzenKa.png"
 	},
 	{
@@ -91,7 +91,7 @@
 	},
 	{
 		"id": "bolt_baron",
-		"name": "Bolt_Baron",
+		"name": "Bolt Baron",
 		"image": "Bolt_Baron.png"
 	},
 	{
@@ -136,7 +136,7 @@
 	},
 	{
 		"id": "darcy",
-		"name": "Darcy",
+		"name": "D'Arcy",
 		"image": "Darcy.png"
 	},
 	{
@@ -171,7 +171,7 @@
 	},
 	{
 		"id": "elandorr",
-		"name": "Elandorr",
+		"name": "Eland'orr",
 		"image": "Elandorr.png"
 	},
 	{
@@ -206,22 +206,22 @@
 	},
 	{
 		"id": "flowborn_f_mage",
-		"name": "Flowborn_F_Mage",
+		"name": "Flowborn (Mage)",
 		"image": "Flowborn_F_Mage.png"
 	},
 	{
 		"id": "flowborn_f_marksman",
-		"name": "Flowborn_F_Marksman",
+		"name": "Flowborn (Marksman)",
 		"image": "Flowborn_F_Marksman.png"
 	},
 	{
 		"id": "flowborn_m_mage",
-		"name": "Flowborn_M_Mage",
+		"name": "Flowborn (Mage)",
 		"image": "Flowborn_M_Mage.png"
 	},
 	{
 		"id": "flowborn_m_marksman",
-		"name": "Flowborn_M_Marksman",
+		"name": "Flowborn (Marksman)",
 		"image": "Flowborn_M_Marksman.png"
 	},
 	{
@@ -296,7 +296,7 @@
 	},
 	{
 		"id": "kilgroth",
-		"name": "Kilgroth",
+		"name": "Kil'Groth",
 		"image": "Kilgroth.png"
 	},
 	{
@@ -341,7 +341,7 @@
 	},
 	{
 		"id": "lubu",
-		"name": "Lubu",
+		"name": "Lu Bu",
 		"image": "Lubu.png"
 	},
 	{
@@ -511,7 +511,7 @@
 	},
 	{
 		"id": "telannas",
-		"name": "Telannas",
+		"name": "Tel'Annas",
 		"image": "Telannas.png"
 	},
 	{
@@ -525,9 +525,9 @@
 		"image": "Thane.png"
 	},
 	{
-		"id": "the_joker",
-		"name": "The_Joker",
-		"image": "The_Joker.png"
+		"id": "the_flash",
+		"name": "The Flash",
+		"image": "The_Flash.png"
 	},
 	{
 		"id": "thorne",
@@ -581,7 +581,7 @@
 	},
 	{
 		"id": "wonderwoman",
-		"name": "WonderWoman",
+		"name": "Wonder Woman",
 		"image": "WonderWoman.png"
 	},
 	{
@@ -601,7 +601,7 @@
 	},
 	{
 		"id": "ybneth",
-		"name": "Ybneth",
+		"name": "Y'Bneth",
 		"image": "Ybneth.png"
 	},
 	{
