@@ -320,6 +320,7 @@
 			"armor": 2.7,
 			"magicArmor": 2.7,
 			"cooldownReduction": 0.6
-		}
+		},
+		"displayName": "Dual Armor/CDR"
 	}
 ]
