@@ -17,7 +17,7 @@
 			onclick={() => onSelect(hero)}
 			title={hero.name}
 		>
-			<img src="/heroes/{hero.image}" alt={hero.name} loading="lazy" />
+			<img src="/heroes/icons/{hero.image}" alt={hero.name} loading="lazy" />
 			<span class="hero-name">{hero.name}</span>
 		</button>
 	{/each}
@@ -37,7 +37,9 @@
 		border-radius: 8px;
 		padding: 0.25rem;
 		cursor: pointer;
-		transition: border-color 0.2s, transform 0.1s;
+		transition:
+			border-color 0.2s,
+			transform 0.1s;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

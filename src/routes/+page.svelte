@@ -24,8 +24,8 @@
 	let currentPage = $state<string>('hero');
 	let selectedHero = $state<Hero | null>(heroList[0] || null);
 
-	// Armory capacity management
-	let isExpandedArmory = $state<boolean>(false);
+	// Dynamic Slot Capacity State managed globally (Defaulted to 6, max 12)
+	let armoryCapacity = $state<number>(6);
 	let armory = $state<(Item | null)[]>([null, null, null, null, null, null]);
 
 	let selectedEnchantments = $state<(Enchantment | null)[]>([null, null, null, null, null]);
@@ -93,18 +93,18 @@
 	}
 
 	/**
-	 * Toggles capacity of the armory slot array safely.
+	 * Adjusts the size capacity of the equipment array dynamically.
 	 */
-	function toggleArmoryExpansion() {
-		if (isExpandedArmory) {
-			// Shrink array back down to 6 elements, preserving first 6 items
-			armory = armory.slice(0, 6);
-			isExpandedArmory = false;
+	function handleArmoryCapacityChange(newCapacity: number) {
+		if (newCapacity < 6 || newCapacity > 12) return;
+
+		if (newCapacity > armory.length) {
+			const difference = newCapacity - armory.length;
+			armory = [...armory, ...Array(difference).fill(null)];
 		} else {
-			// Expand array with empty slots up to 10
-			armory = [...armory, null, null, null, null];
-			isExpandedArmory = true;
+			armory = armory.slice(0, newCapacity);
 		}
+		armoryCapacity = newCapacity;
 	}
 </script>
 
@@ -139,8 +139,8 @@
 			onRemoveItem={handleRemoveItem}
 			onRemoveEnchantment={handleRemoveEnchantment}
 			onRemoveArcana={handleRemoveArcana}
-			{isExpandedArmory}
-			onToggleArmoryExpansion={toggleArmoryExpansion}
+			{armoryCapacity}
+			onChangeArmoryCapacity={handleArmoryCapacityChange}
 		/>
 	</div>
 </div>
