@@ -1,79 +1,79 @@
 [
 	{
-		"id": "a101_ss_short-sword.png",
-		"image": "A101_SS_Short-Sword.png",
+		"id": "a101_ss_short-sword.webp",
+		"image": "A101_SS_Short-Sword.webp",
 		"category": "Attack",
 		"level": 1,
 		"number": 1,
 		"name": "Short Sword"
 	},
 	{
-		"id": "a102_dg_dagger.png",
-		"image": "A102_DG_Dagger.png",
+		"id": "a102_dg_dagger.webp",
+		"image": "A102_DG_Dagger.webp",
 		"category": "Attack",
 		"level": 1,
 		"number": 2,
 		"name": "Dagger"
 	},
 	{
-		"id": "a103_gl_gloves.png",
-		"image": "A103_GL_Gloves.png",
+		"id": "a103_gl_gloves.webp",
+		"image": "A103_GL_Gloves.webp",
 		"category": "Attack",
 		"level": 1,
 		"number": 3,
 		"name": "Gloves"
 	},
 	{
-		"id": "a104_bc_bloodied-club.png",
-		"image": "A104_BC_Bloodied-Club.png",
+		"id": "a104_bc_bloodied-club.webp",
+		"image": "A104_BC_Bloodied-Club.webp",
 		"category": "Attack",
 		"level": 1,
 		"number": 4,
 		"name": "Bloodied Club"
 	},
 	{
-		"id": "a105_ch_chain-hammer.png",
-		"image": "A105_CH_Chain-Hammer.png",
+		"id": "a105_ch_chain-hammer.webp",
+		"image": "A105_CH_Chain-Hammer.webp",
 		"category": "Attack",
 		"level": 1,
 		"number": 5,
 		"name": "Chain Hammer"
 	},
 	{
-		"id": "a201_cc_cleaving-claymore.png",
-		"image": "A201_CC_Cleaving-Claymore.png",
+		"id": "a201_cc_cleaving-claymore.webp",
+		"image": "A201_CC_Cleaving-Claymore.webp",
 		"category": "Attack",
 		"level": 2,
 		"number": 1,
 		"name": "Cleaving Claymore"
 	},
 	{
-		"id": "a202_ah_arcane-hammer.png",
-		"image": "A202_AH_Arcane-Hammer.png",
+		"id": "a202_ah_arcane-hammer.webp",
+		"image": "A202_AH_Arcane-Hammer.webp",
 		"category": "Attack",
 		"level": 2,
 		"number": 2,
 		"name": "Arcane Hammer"
 	},
 	{
-		"id": "a203_tb_tempest-blades.png",
-		"image": "A203_TB_Tempest-Blades.png",
+		"id": "a203_tb_tempest-blades.webp",
+		"image": "A203_TB_Tempest-Blades.webp",
 		"category": "Attack",
 		"level": 2,
 		"number": 3,
 		"name": "Tempest Blades"
 	},
 	{
-		"id": "a204_as_astral-spear.png",
-		"image": "A204_AS_Astral-Spear.png",
+		"id": "a204_as_astral-spear.webp",
+		"image": "A204_AS_Astral-Spear.webp",
 		"category": "Attack",
 		"level": 2,
 		"number": 4,
 		"name": "Astral Spear"
 	},
 	{
-		"id": "a205_srk_shuriken.png",
-		"image": "A205_SRK_Shuriken.png",
+		"id": "a205_srk_shuriken.webp",
+		"image": "A205_SRK_Shuriken.webp",
 		"category": "Attack",
 		"level": 2,
 		"number": 5,
@@ -88,144 +88,144 @@
 		"name": "Bloodthirsty Blade"
 	},
 	{
-		"id": "a207_cb_chaos-bow.png",
-		"image": "A207_CB_Chaos-Bow.png",
+		"id": "a207_cb_chaos-bow.webp",
+		"image": "A207_CB_Chaos-Bow.webp",
 		"category": "Attack",
 		"level": 2,
 		"number": 7,
 		"name": "Chaos Bow"
 	},
 	{
-		"id": "a208_ub_uriels-brand.png",
-		"image": "A208_UB_Uriels-Brand.png",
+		"id": "a208_ub_uriels-brand.webp",
+		"image": "A208_UB_Uriels-Brand.webp",
 		"category": "Attack",
 		"level": 2,
 		"number": 8,
 		"name": "Uriel's Brand"
 	},
 	{
-		"id": "a209_dc_death-curse.png",
-		"image": "A209_DC_Death-Curse.png",
+		"id": "a209_dc_death-curse.webp",
+		"image": "A209_DC_Death-Curse.webp",
 		"category": "Attack",
 		"level": 2,
 		"number": 9,
 		"name": "Death Curse"
 	},
 	{
-		"id": "a210_ds_death-sickle.png",
-		"image": "A210_DS_Death-Sickle.png",
+		"id": "a210_ds_death-sickle.webp",
+		"image": "A210_DS_Death-Sickle.webp",
 		"category": "Attack",
 		"level": 2,
 		"number": 10,
 		"name": "Death Sickle"
 	},
 	{
-		"id": "a211_bos_bow-of-slaughter.png",
-		"image": "A211_BoS_Bow-of-Slaughter.png",
+		"id": "a211_bos_bow-of-slaughter.webp",
+		"image": "A211_BoS_Bow-of-Slaughter.webp",
 		"category": "Attack",
 		"level": 2,
 		"number": 11,
 		"name": "Bow of Slaughter"
 	},
 	{
-		"id": "a212_td_the-diminisher.png",
-		"image": "A212_TD_The-Diminisher.png",
+		"id": "a212_td_the-diminisher.webp",
+		"image": "A212_TD_The-Diminisher.webp",
 		"category": "Attack",
 		"level": 2,
 		"number": 12,
 		"name": "The Diminisher"
 	},
 	{
-		"id": "a213_eb_eclipsing-bow.png",
-		"image": "A213_EB_Eclipsing-Bow.png",
+		"id": "a213_eb_eclipsing-bow.webp",
+		"image": "A213_EB_Eclipsing-Bow.webp",
 		"category": "Attack",
 		"level": 2,
 		"number": 13,
 		"name": "Eclipsing Bow"
 	},
 	{
-		"id": "a301_ls_longinus-spear.png",
-		"image": "A301_LS_Longinus-Spear.png",
+		"id": "a301_ls_longinus-spear.webp",
+		"image": "A301_LS_Longinus-Spear.webp",
 		"category": "Attack",
 		"level": 3,
 		"number": 1,
 		"name": "Longinus Spear"
 	},
 	{
-		"id": "a302_ft_fafnirs-talon.png",
-		"image": "A302_FT_Fafnirs-Talon.png",
+		"id": "a302_ft_fafnirs-talon.webp",
+		"image": "A302_FT_Fafnirs-Talon.webp",
 		"category": "Attack",
 		"level": 3,
 		"number": 2,
 		"name": "Fafnir's Talon"
 	},
 	{
-		"id": "a303_cs_claves-sancti.png",
-		"image": "A303_CS_Claves-Sancti.png",
+		"id": "a303_cs_claves-sancti.webp",
+		"image": "A303_CS_Claves-Sancti.webp",
 		"category": "Attack",
 		"level": 3,
 		"number": 3,
 		"name": "Claves Sancti"
 	},
 	{
-		"id": "a304_mr_muramasa.png",
-		"image": "A304_MR_Muramasa.png",
+		"id": "a304_mr_muramasa.webp",
+		"image": "A304_MR_Muramasa.webp",
 		"category": "Attack",
 		"level": 3,
 		"number": 4,
 		"name": "Muramasa"
 	},
 	{
-		"id": "a305_tb_the-beast.png",
-		"image": "A305_TB_The-Beast.png",
+		"id": "a305_tb_the-beast.webp",
+		"image": "A305_TB_The-Beast.webp",
 		"category": "Attack",
 		"level": 3,
 		"number": 5,
 		"name": "The Beast"
 	},
 	{
-		"id": "a306_oa_omni-arms.png",
-		"image": "A306_OA_Omni-Arms.png",
+		"id": "a306_oa_omni-arms.webp",
+		"image": "A306_OA_Omni-Arms.webp",
 		"category": "Attack",
 		"level": 3,
 		"number": 6,
 		"name": "Omni Arms"
 	},
 	{
-		"id": "a307_ss_slikks-sting.png",
-		"image": "A307_SS_Slikks-Sting.png",
+		"id": "a307_ss_slikks-sting.webp",
+		"image": "A307_SS_Slikks-Sting.webp",
 		"category": "Attack",
 		"level": 3,
 		"number": 7,
 		"name": "Slikk's Sting"
 	},
 	{
-		"id": "a308_ft_fenrirs-tooth.png",
-		"image": "A308_FT_Fenrirs-Tooth.png",
+		"id": "a308_ft_fenrirs-tooth.webp",
+		"image": "A308_FT_Fenrirs-Tooth.webp",
 		"category": "Attack",
 		"level": 3,
 		"number": 8,
 		"name": "Fenrir's Tooth"
 	},
 	{
-		"id": "a309_bb_blitz-blade.png",
-		"image": "A309_BB_Blitz-Blade.png",
+		"id": "a309_bb_blitz-blade.webp",
+		"image": "A309_BB_Blitz-Blade.webp",
 		"category": "Attack",
 		"level": 3,
 		"number": 9,
 		"name": "Blitz Blade"
 	},
 	{
-		"id": "a310_dh_devils-handshake.png",
-		"image": "A310_DH_Devils-Handshake.png",
+		"id": "a310_dh_devils-handshake.webp",
+		"image": "A310_DH_Devils-Handshake.webp",
 		"category": "Attack",
 		"level": 3,
 		"number": 10,
 		"name": "Devil's Handshake"
 	},
 	{
-		"id": "a311_rb_rankbreaker.png",
-		"image": "A311_RB_Rankbreaker.png",
+		"id": "a311_rb_rankbreaker.webp",
+		"image": "A311_RB_Rankbreaker.webp",
 		"category": "Attack",
 		"level": 3,
 		"number": 11,
@@ -240,136 +240,136 @@
 		"name": "Frost Hammer"
 	},
 	{
-		"id": "a313_ds_dawning-star.png",
-		"image": "A313_DS_Dawning-Star.png",
+		"id": "a313_ds_dawning-star.webp",
+		"image": "A313_DS_Dawning-Star.webp",
 		"category": "Attack",
 		"level": 3,
 		"number": 13,
 		"name": "Dawning Star"
 	},
 	{
-		"id": "b101_st_spell-tome.png",
-		"image": "B101_ST_Spell-Tome.png",
+		"id": "b101_st_spell-tome.webp",
+		"image": "B101_ST_Spell-Tome.webp",
 		"category": "Magic",
 		"level": 1,
 		"number": 1,
 		"name": "Spell Tome"
 	},
 	{
-		"id": "b102_lr_lapis-ring.png",
-		"image": "B102_LR_Lapis-Ring.png",
+		"id": "b102_lr_lapis-ring.webp",
+		"image": "B102_LR_Lapis-Ring.webp",
 		"category": "Magic",
 		"level": 1,
 		"number": 2,
 		"name": "Lapis Ring"
 	},
 	{
-		"id": "b103_pof_pendant-of-faith.png",
-		"image": "B103_PoF_Pendant-of-Faith.png",
+		"id": "b103_pof_pendant-of-faith.webp",
+		"image": "B103_PoF_Pendant-of-Faith.webp",
 		"category": "Magic",
 		"level": 1,
 		"number": 3,
 		"name": "Pendant of Faith"
 	},
 	{
-		"id": "b104_as_ancient-scriptures.png",
-		"image": "B104_AS_Ancient-Scriptures.png",
+		"id": "b104_as_ancient-scriptures.webp",
+		"image": "B104_AS_Ancient-Scriptures.webp",
 		"category": "Magic",
 		"level": 1,
 		"number": 4,
 		"name": "Ancient Scriptures"
 	},
 	{
-		"id": "b105_mr_magic-ring.png",
-		"image": "B105_MR_Magic-Ring.png",
+		"id": "b105_mr_magic-ring.webp",
+		"image": "B105_MR_Magic-Ring.webp",
 		"category": "Magic",
 		"level": 1,
 		"number": 5,
 		"name": "Magic Ring"
 	},
 	{
-		"id": "b201_es_enchanted-scroll.png",
-		"image": "B201_ES_Enchanted-Scroll.png",
+		"id": "b201_es_enchanted-scroll.webp",
+		"image": "B201_ES_Enchanted-Scroll.webp",
 		"category": "Magic",
 		"level": 2,
 		"number": 1,
 		"name": "Enchanted Scroll"
 	},
 	{
-		"id": "b202_tb_trick-blade.png",
-		"image": "B202_TB_Trick-Blade.png",
+		"id": "b202_tb_trick-blade.webp",
+		"image": "B202_TB_Trick-Blade.webp",
 		"category": "Magic",
 		"level": 2,
 		"number": 2,
 		"name": "Trick Blade"
 	},
 	{
-		"id": "b203_sm_spooky-mask.png",
-		"image": "B203_SM_Spooky-Mask.png",
+		"id": "b203_sm_spooky-mask.webp",
+		"image": "B203_SM_Spooky-Mask.webp",
 		"category": "Magic",
 		"level": 2,
 		"number": 3,
 		"name": "Spooky Mask"
 	},
 	{
-		"id": "b204_pt_phoenix-tear.png",
-		"image": "B204_PT_Phoenix-Tear.png",
+		"id": "b204_pt_phoenix-tear.webp",
+		"image": "B204_PT_Phoenix-Tear.webp",
 		"category": "Magic",
 		"level": 2,
 		"number": 4,
 		"name": "Phoenix Tear"
 	},
 	{
-		"id": "b205_vb_virtues-bracelet.png",
-		"image": "B205_VB_Virtues-Bracelet.png",
+		"id": "b205_vb_virtues-bracelet.webp",
+		"image": "B205_VB_Virtues-Bracelet.webp",
 		"category": "Magic",
 		"level": 2,
 		"number": 5,
 		"name": "Virtue's Bracelet"
 	},
 	{
-		"id": "b206_vi_vlads-impaler.png",
-		"image": "B206_VI_Vlads-Impaler.png",
+		"id": "b206_vi_vlads-impaler.webp",
+		"image": "B206_VI_Vlads-Impaler.webp",
 		"category": "Magic",
 		"level": 2,
 		"number": 6,
 		"name": "Vlad's Impaler"
 	},
 	{
-		"id": "b207_son_staff-of-nuul.png",
-		"image": "B207_SoN_Staff-of-Nuul.png",
+		"id": "b207_son_staff-of-nuul.webp",
+		"image": "B207_SoN_Staff-of-Nuul.webp",
 		"category": "Magic",
 		"level": 2,
 		"number": 7,
 		"name": "Staff of Nuul"
 	},
 	{
-		"id": "b208_vn_virtues-necklace.png",
-		"image": "B208_VN_Virtues-Necklace.png",
+		"id": "b208_vn_virtues-necklace.webp",
+		"image": "B208_VN_Virtues-Necklace.webp",
 		"category": "Magic",
 		"level": 2,
 		"number": 8,
 		"name": "Virtue's Necklace"
 	},
 	{
-		"id": "b209_at_astrolobe.png",
-		"image": "B209_AT_Astrolobe.png",
+		"id": "b209_at_astrolobe.webp",
+		"image": "B209_AT_Astrolobe.webp",
 		"category": "Magic",
 		"level": 2,
 		"number": 9,
 		"name": "Astrolobe"
 	},
 	{
-		"id": "b210_es_evil-secrets.png",
-		"image": "B210_ES_Evil-Secrets.png",
+		"id": "b210_es_evil-secrets.webp",
+		"image": "B210_ES_Evil-Secrets.webp",
 		"category": "Magic",
 		"level": 2,
 		"number": 10,
 		"name": "Evil Secrets"
 	},
 	{
-		"id": "b211_totr_tome-of-the-reaper.png",
-		"image": "B211_TotR_Tome-of-the-Reaper.png",
+		"id": "b211_totr_tome-of-the-reaper.webp",
+		"image": "B211_TotR_Tome-of-the-Reaper.webp",
 		"category": "Magic",
 		"level": 2,
 		"number": 11,
@@ -384,96 +384,96 @@
 		"name": "Caranos Vow"
 	},
 	{
-		"id": "b301_bs_boomstick.png",
-		"image": "B301_BS_Boomstick.png",
+		"id": "b301_bs_boomstick.webp",
+		"image": "B301_BS_Boomstick.webp",
 		"category": "Magic",
 		"level": 3,
 		"number": 1,
 		"name": "Boomstick"
 	},
 	{
-		"id": "b302_hd_hecates-diadem.png",
-		"image": "B302_HD_Hecates-Diadem.png",
+		"id": "b302_hd_hecates-diadem.webp",
+		"image": "B302_HD_Hecates-Diadem.webp",
 		"category": "Magic",
 		"level": 3,
 		"number": 2,
 		"name": "Hecate's Diadem"
 	},
 	{
-		"id": "b303_ootm_orb-of-the-magi.png",
-		"image": "B303_OotM_Orb-of-the-Magi.png",
+		"id": "b303_ootm_orb-of-the-magi.webp",
+		"image": "B303_OotM_Orb-of-the-Magi.webp",
 		"category": "Magic",
 		"level": 3,
 		"number": 3,
 		"name": "Orb of the Magi"
 	},
 	{
-		"id": "b304_rb_rheas-blessing.png",
-		"image": "B304_RB_Rheas-Blessing.png",
+		"id": "b304_rb_rheas-blessing.webp",
+		"image": "B304_RB_Rheas-Blessing.webp",
 		"category": "Magic",
 		"level": 3,
 		"number": 4,
 		"name": "Rhea's Blessing"
 	},
 	{
-		"id": "b305_zw_zweihander.png",
-		"image": "B305_Zw_Zweihander.png",
+		"id": "b305_zw_zweihander.webp",
+		"image": "B305_Zw_Zweihander.webp",
 		"category": "Magic",
 		"level": 3,
 		"number": 5,
 		"name": "Zweihander"
 	},
 	{
-		"id": "b306_fr_frostys-revenge.png",
-		"image": "B306_FR_Frostys-Revenge.png",
+		"id": "b306_fr_frostys-revenge.webp",
+		"image": "B306_FR_Frostys-Revenge.webp",
 		"category": "Magic",
 		"level": 3,
 		"number": 6,
 		"name": "Frosty's Revenge"
 	},
 	{
-		"id": "b307_ba_beriths-agony.png",
-		"image": "B307_BA_Beriths-Agony.png",
+		"id": "b307_ba_beriths-agony.webp",
+		"image": "B307_BA_Beriths-Agony.webp",
 		"category": "Magic",
 		"level": 3,
 		"number": 7,
 		"name": "Berith's Agony"
 	},
 	{
-		"id": "b308_apo_apocalypse.png",
-		"image": "B308_Apo_Apocalypse.png",
+		"id": "b308_apo_apocalypse.webp",
+		"image": "B308_Apo_Apocalypse.webp",
 		"category": "Magic",
 		"level": 3,
 		"number": 8,
 		"name": "Apocalypse"
 	},
 	{
-		"id": "b309_sa_soaring-aura.png",
-		"image": "B309_SA_Soaring-Aura.png",
+		"id": "b309_sa_soaring-aura.webp",
+		"image": "B309_SA_Soaring-Aura.webp",
 		"category": "Magic",
 		"level": 3,
 		"number": 9,
 		"name": "Soaring Aura"
 	},
 	{
-		"id": "b310_hoh_holy-of-holies.png",
-		"image": "B310_HoH_Holy-of-Holies.png",
+		"id": "b310_hoh_holy-of-holies.webp",
+		"image": "B310_HoH_Holy-of-Holies.webp",
 		"category": "Magic",
 		"level": 3,
 		"number": 10,
 		"name": "Holy of Holies"
 	},
 	{
-		"id": "b311_ao_arctic-orb.png",
-		"image": "B311_AO_Arctic-Orb.png",
+		"id": "b311_ao_arctic-orb.webp",
+		"image": "B311_AO_Arctic-Orb.webp",
 		"category": "Magic",
 		"level": 3,
 		"number": 11,
 		"name": "Arctic Orb"
 	},
 	{
-		"id": "b312_fg_frost-guard.png",
-		"image": "B312_FG_Frost-Guard.png",
+		"id": "b312_fg_frost-guard.webp",
+		"image": "B312_FG_Frost-Guard.webp",
 		"category": "Magic",
 		"level": 3,
 		"number": 12,
@@ -488,320 +488,320 @@
 		"name": "Carano Robe"
 	},
 	{
-		"id": "c101_rov_ring-of-vitality.png",
-		"image": "C101_RoV_Ring-of-Vitality.png",
+		"id": "c101_rov_ring-of-vitality.webp",
+		"image": "C101_RoV_Ring-of-Vitality.webp",
 		"category": "Defense",
 		"level": 1,
 		"number": 1,
 		"name": "Ring of Vitality"
 	},
 	{
-		"id": "c102_la_light-armor.png",
-		"image": "C102_LA_Light-Armor.png",
+		"id": "c102_la_light-armor.webp",
+		"image": "C102_LA_Light-Armor.webp",
 		"category": "Defense",
 		"level": 1,
 		"number": 2,
 		"name": "Light Armor"
 	},
 	{
-		"id": "c103_gg_gladiators-gauntlets.png",
-		"image": "C103_GG_Gladiators-Gauntlets.png",
+		"id": "c103_gg_gladiators-gauntlets.webp",
+		"image": "C103_GG_Gladiators-Gauntlets.webp",
 		"category": "Defense",
 		"level": 1,
 		"number": 3,
 		"name": "Gladiator's Gauntlets"
 	},
 	{
-		"id": "c104_tos_talisman-of-strength.png",
-		"image": "C104_ToS_Talisman-of-Strength.png",
+		"id": "c104_tos_talisman-of-strength.webp",
+		"image": "C104_ToS_Talisman-of-Strength.webp",
 		"category": "Defense",
 		"level": 1,
 		"number": 4,
 		"name": "Talisman of Strength"
 	},
 	{
-		"id": "c105_nov_necklace-of-vitality.png",
-		"image": "C105_NoV_Necklace-of-Vitality.png",
+		"id": "c105_nov_necklace-of-vitality.webp",
+		"image": "C105_NoV_Necklace-of-Vitality.webp",
 		"category": "Defense",
 		"level": 1,
 		"number": 5,
 		"name": "Necklace of Vitality"
 	},
 	{
-		"id": "c201_gop_greaves-of-protection.png",
-		"image": "C201_GoP_Greaves-of-Protection.png",
+		"id": "c201_gop_greaves-of-protection.webp",
+		"image": "C201_GoP_Greaves-of-Protection.webp",
 		"category": "Defense",
 		"level": 2,
 		"number": 1,
 		"name": "Greaves of Protection"
 	},
 	{
-		"id": "c202_hoi_heart-of-incubus.png",
-		"image": "C202_HoI_Heart-of-Incubus.png",
+		"id": "c202_hoi_heart-of-incubus.webp",
+		"image": "C202_HoI_Heart-of-Incubus.webp",
 		"category": "Defense",
 		"level": 2,
 		"number": 2,
 		"name": "Heart of Incubus"
 	},
 	{
-		"id": "c203_boc_belt-of-clarity.png",
-		"image": "C203_BoC_Belt-of-Clarity.png",
+		"id": "c203_boc_belt-of-clarity.webp",
+		"image": "C203_BoC_Belt-of-Clarity.webp",
 		"category": "Defense",
 		"level": 2,
 		"number": 3,
 		"name": "Belt of Clarity"
 	},
 	{
-		"id": "c204_pg_platinum-gauntlets.png",
-		"image": "C204_PG_Platinum-Gauntlets.png",
+		"id": "c204_pg_platinum-gauntlets.webp",
+		"image": "C204_PG_Platinum-Gauntlets.webp",
 		"category": "Defense",
 		"level": 2,
 		"number": 4,
 		"name": "Platinum Gauntlets"
 	},
 	{
-		"id": "c205_kp_knights-plate.png",
-		"image": "C205_KP_Knights-Plate.png",
+		"id": "c205_kp_knights-plate.webp",
+		"image": "C205_KP_Knights-Plate.webp",
 		"category": "Defense",
 		"level": 2,
 		"number": 5,
 		"name": "Knight's Plate"
 	},
 	{
-		"id": "c206_mop_mail-of-pain.png",
-		"image": "C206_MoP_Mail-of-Pain.png",
+		"id": "c206_mop_mail-of-pain.webp",
+		"image": "C206_MoP_Mail-of-Pain.webp",
 		"category": "Defense",
 		"level": 2,
 		"number": 6,
 		"name": "Mail of Pain"
 	},
 	{
-		"id": "c207_hm_hecules-madness.png",
-		"image": "C207_HM_Hecules-Madness.png",
+		"id": "c207_hm_hecules-madness.webp",
+		"image": "C207_HM_Hecules-Madness.webp",
 		"category": "Defense",
 		"level": 2,
 		"number": 7,
 		"name": "Hecule's Madness"
 	},
 	{
-		"id": "c208_ow_odins-will.png",
-		"image": "C208_OW_Odins-Will.png",
+		"id": "c208_ow_odins-will.webp",
+		"image": "C208_OW_Odins-Will.webp",
 		"category": "Defense",
 		"level": 2,
 		"number": 8,
 		"name": "Odin's Will"
 	},
 	{
-		"id": "c301_mor_mantle-of-ra.png",
-		"image": "C301_MoR_Mantle-of-Ra.png",
+		"id": "c301_mor_mantle-of-ra.webp",
+		"image": "C301_MoR_Mantle-of-Ra.webp",
 		"category": "Defense",
 		"level": 3,
 		"number": 1,
 		"name": "Mantle of Ra"
 	},
 	{
-		"id": "c302_sotl_shield-of-the-lost.png",
-		"image": "C302_SotL_Shield-of-the-Lost.png",
+		"id": "c302_sotl_shield-of-the-lost.webp",
+		"image": "C302_SotL_Shield-of-the-Lost.webp",
 		"category": "Defense",
 		"level": 3,
 		"number": 2,
 		"name": "Shield of the Lost"
 	},
 	{
-		"id": "c303_ta_the-aegis.png",
-		"image": "C303_TA_The-Aegis.png",
+		"id": "c303_ta_the-aegis.webp",
+		"image": "C303_TA_The-Aegis.webp",
 		"category": "Defense",
 		"level": 3,
 		"number": 3,
 		"name": "The Aegis"
 	},
 	{
-		"id": "c304_gs_gaias-standard.png",
-		"image": "C304_GS_Gaias-Standard.png",
+		"id": "c304_gs_gaias-standard.webp",
+		"image": "C304_GS_Gaias-Standard.webp",
 		"category": "Defense",
 		"level": 3,
 		"number": 4,
 		"name": "Gaia's Standard"
 	},
 	{
-		"id": "c305_mot_medallion-of-troy.png",
-		"image": "C305_MoT_Medallion-of-Troy.png",
+		"id": "c305_mot_medallion-of-troy.webp",
+		"image": "C305_MoT_Medallion-of-Troy.webp",
 		"category": "Defense",
 		"level": 3,
 		"number": 5,
 		"name": "Medallion of Troy"
 	},
 	{
-		"id": "c306_he_hyogas-edge.png",
-		"image": "C306_HE_Hyogas-Edge.png",
+		"id": "c306_he_hyogas-edge.webp",
+		"image": "C306_HE_Hyogas-Edge.webp",
 		"category": "Defense",
 		"level": 3,
 		"number": 6,
 		"name": "Hyoga's Edge"
 	},
 	{
-		"id": "c307_boe_blade-of-eternity.png",
-		"image": "C307_BoE_Blade-of-Eternity.png",
+		"id": "c307_boe_blade-of-eternity.webp",
+		"image": "C307_BoE_Blade-of-Eternity.webp",
 		"category": "Defense",
 		"level": 3,
 		"number": 7,
 		"name": "Blade of Eternity"
 	},
 	{
-		"id": "c308_fc_frost-cape.png",
-		"image": "C308_FC_Frost-Cape.png",
+		"id": "c308_fc_frost-cape.webp",
+		"image": "C308_FC_Frost-Cape.webp",
 		"category": "Defense",
 		"level": 3,
 		"number": 8,
 		"name": "Frost Cape"
 	},
 	{
-		"id": "c309_aol_amulet-of-longetivity.png",
-		"image": "C309_AoL_Amulet-of-Longetivity.png",
+		"id": "c309_aol_amulet-of-longetivity.webp",
+		"image": "C309_AoL_Amulet-of-Longetivity.webp",
 		"category": "Defense",
 		"level": 3,
 		"number": 9,
 		"name": "Amulet of Longetivity"
 	},
 	{
-		"id": "c310_rs_rock-shield.png",
-		"image": "C310_RS_Rock-Shield.png",
+		"id": "c310_rs_rock-shield.webp",
+		"image": "C310_RS_Rock-Shield.webp",
 		"category": "Defense",
 		"level": 3,
 		"number": 10,
 		"name": "Rock Shield"
 	},
 	{
-		"id": "d101_sb_speed-boots.png",
-		"image": "D101_SB_Speed-Boots.png",
+		"id": "d101_sb_speed-boots.webp",
+		"image": "D101_SB_Speed-Boots.webp",
 		"category": "Movement",
 		"level": 1,
 		"number": 1,
 		"name": "Speed Boots"
 	},
 	{
-		"id": "d201_sb_sonic-boots.png",
-		"image": "D201_SB_Sonic-Boots.png",
+		"id": "d201_sb_sonic-boots.webp",
+		"image": "D201_SB_Sonic-Boots.webp",
 		"category": "Movement",
 		"level": 2,
 		"number": 1,
 		"name": "Sonic Boots"
 	},
 	{
-		"id": "d202_gg_gilded-greaves.png",
-		"image": "D202_GG_Gilded-Greaves.png",
+		"id": "d202_gg_gilded-greaves.webp",
+		"image": "D202_GG_Gilded-Greaves.webp",
 		"category": "Movement",
 		"level": 2,
 		"number": 2,
 		"name": "Gilded Greaves"
 	},
 	{
-		"id": "d203_fb_flashy-boots.png",
-		"image": "D203_FB_Flashy-Boots.png",
+		"id": "d203_fb_flashy-boots.webp",
+		"image": "D203_FB_Flashy-Boots.webp",
 		"category": "Movement",
 		"level": 2,
 		"number": 3,
 		"name": "Flashy Boots"
 	},
 	{
-		"id": "d204_ek_enchanted-kicks.png",
-		"image": "D204_EK_Enchanted-Kicks.png",
+		"id": "d204_ek_enchanted-kicks.webp",
+		"image": "D204_EK_Enchanted-Kicks.webp",
 		"category": "Movement",
 		"level": 2,
 		"number": 4,
 		"name": "Enchanted Kicks"
 	},
 	{
-		"id": "d205_wb_war-boots.png",
-		"image": "D205_WB_War-Boots.png",
+		"id": "d205_wb_war-boots.webp",
+		"image": "D205_WB_War-Boots.webp",
 		"category": "Movement",
 		"level": 2,
 		"number": 5,
 		"name": "War Boots"
 	},
 	{
-		"id": "d206_hs_hermes-select.png",
-		"image": "D206_HS_Hermes-Select.png",
+		"id": "d206_hs_hermes-select.webp",
+		"image": "D206_HS_Hermes-Select.webp",
 		"category": "Movement",
 		"level": 2,
 		"number": 6,
 		"name": "Hermes Select"
 	},
 	{
-		"id": "e101_kr_kukri.png",
-		"image": "E101_KR_Kukri.png",
+		"id": "e101_kr_kukri.webp",
+		"image": "E101_KR_Kukri.webp",
 		"category": "Jungling",
 		"level": 1,
 		"number": 1,
 		"name": "Kukri"
 	},
 	{
-		"id": "e201_mb_monsters-bane.png",
-		"image": "E201_MB_Monsters-Bane.png",
+		"id": "e201_mb_monsters-bane.webp",
+		"image": "E201_MB_Monsters-Bane.webp",
 		"category": "Jungling",
 		"level": 2,
 		"number": 1,
 		"name": "Monster's Bane"
 	},
 	{
-		"id": "e202_gc_gnoll-cleaver.png",
-		"image": "E202_GC_Gnoll-Cleaver.png",
+		"id": "e202_gc_gnoll-cleaver.webp",
+		"image": "E202_GC_Gnoll-Cleaver.webp",
 		"category": "Jungling",
 		"level": 2,
 		"number": 2,
 		"name": "Gnoll Cleaver"
 	},
 	{
-		"id": "e203_ms_mr.-stabby.png",
-		"image": "E203_MS_Mr.-Stabby.png",
+		"id": "e203_ms_mr.-stabby.webp",
+		"image": "E203_MS_Mr.-Stabby.webp",
 		"category": "Jungling",
 		"level": 2,
 		"number": 3,
 		"name": "Mr. Stabby"
 	},
 	{
-		"id": "e204_ww_whispering-wind.png",
-		"image": "E204_WW_Whispering-Wind.png",
+		"id": "e204_ww_whispering-wind.webp",
+		"image": "E204_WW_Whispering-Wind.webp",
 		"category": "Jungling",
 		"level": 2,
 		"number": 4,
 		"name": "Whispering Wind"
 	},
 	{
-		"id": "e301_lc_lokis-curse.png",
-		"image": "E301_LC_Lokis-Curse.png",
+		"id": "e301_lc_lokis-curse.webp",
+		"image": "E301_LC_Lokis-Curse.webp",
 		"category": "Jungling",
 		"level": 3,
 		"number": 1,
 		"name": "Loki's Curse"
 	},
 	{
-		"id": "e302_lvt_leviathan.png",
-		"image": "E302_LVT_Leviathan.png",
+		"id": "e302_lvt_leviathan.webp",
+		"image": "E302_LVT_Leviathan.webp",
 		"category": "Jungling",
 		"level": 3,
 		"number": 2,
 		"name": "Leviathan"
 	},
 	{
-		"id": "e303_sr_soulreaver.png",
-		"image": "E303_SR_Soulreaver.png",
+		"id": "e303_sr_soulreaver.webp",
+		"image": "E303_SR_Soulreaver.webp",
 		"category": "Jungling",
 		"level": 3,
 		"number": 3,
 		"name": "Soulreaver"
 	},
 	{
-		"id": "e304_sw_scorching-wind.png",
-		"image": "E304_SW_Scorching-Wind.png",
+		"id": "e304_sw_scorching-wind.webp",
+		"image": "E304_SW_Scorching-Wind.webp",
 		"category": "Jungling",
 		"level": 3,
 		"number": 4,
 		"name": "Scorching Wind"
 	},
 	{
-		"id": "g101_eg_elementalgem.png",
-		"image": "G101_EG_ElementalGem.png",
+		"id": "g101_eg_elementalgem.webp",
+		"image": "G101_EG_ElementalGem.webp",
 		"category": "Support",
 		"level": 1,
 		"number": 1,
@@ -816,96 +816,96 @@
 		"name": "Earth Gem"
 	},
 	{
-		"id": "g201_eg_earth-gem.png",
-		"image": "G201_EG_Earth-Gem.png",
+		"id": "g201_eg_earth-gem.webp",
+		"image": "G201_EG_Earth-Gem.webp",
 		"category": "Support",
 		"level": 2,
 		"number": 1,
 		"name": "Earth Gem"
 	},
 	{
-		"id": "g202_fg_fire-gem.png",
-		"image": "G202_FG_Fire-Gem.png",
+		"id": "g202_fg_fire-gem.webp",
+		"image": "G202_FG_Fire-Gem.webp",
 		"category": "Support",
 		"level": 2,
 		"number": 2,
 		"name": "Fire Gem"
 	},
 	{
-		"id": "g301_me-b_mother-earth-barrier.png",
-		"image": "G301_ME-B_Mother-Earth-Barrier.png",
+		"id": "g301_me-b_mother-earth-barrier.webp",
+		"image": "G301_ME-B_Mother-Earth-Barrier.webp",
 		"category": "Support",
 		"level": 3,
 		"number": 1,
 		"name": "Earth: Barrier"
 	},
 	{
-		"id": "g302_me-me_mother-earth-magic-eye.png",
-		"image": "G302_ME-ME_Mother-Earth-Magic-Eye.png",
+		"id": "g302_me-me_mother-earth-magic-eye.webp",
+		"image": "G302_ME-ME_Mother-Earth-Magic-Eye.webp",
 		"category": "Support",
 		"level": 3,
 		"number": 2,
 		"name": "Earth: Magic Eye"
 	},
 	{
-		"id": "g303_me-s_mother-earth-surge.png",
-		"image": "G303_ME-S_Mother-Earth-Surge.png",
+		"id": "g303_me-s_mother-earth-surge.webp",
+		"image": "G303_ME-S_Mother-Earth-Surge.webp",
 		"category": "Support",
 		"level": 3,
 		"number": 3,
 		"name": "Earth: Surge"
 	},
 	{
-		"id": "g304_me-c_mother-earth-cleansing.png",
-		"image": "G304_ME-C_Mother-Earth-Cleansing.png",
+		"id": "g304_me-c_mother-earth-cleansing.webp",
+		"image": "G304_ME-C_Mother-Earth-Cleansing.webp",
 		"category": "Support",
 		"level": 3,
 		"number": 4,
 		"name": "Earth: Cleansing"
 	},
 	{
-		"id": "g305_me-sp_mother-earth-spout.png",
-		"image": "G305_ME-SP_Mother-Earth-Spout.png",
+		"id": "g305_me-sp_mother-earth-spout.webp",
+		"image": "G305_ME-SP_Mother-Earth-Spout.webp",
 		"category": "Support",
 		"level": 3,
 		"number": 5,
 		"name": "Earth: Spout"
 	},
 	{
-		"id": "g306_wf-b_wildfire-barrier.png",
-		"image": "G306_WF-B_Wildfire-Barrier.png",
+		"id": "g306_wf-b_wildfire-barrier.webp",
+		"image": "G306_WF-B_Wildfire-Barrier.webp",
 		"category": "Support",
 		"level": 3,
 		"number": 6,
 		"name": "Fire: Barrier"
 	},
 	{
-		"id": "g307_wf-me_wildfire-magic-eye.png",
-		"image": "G307_WF-ME_Wildfire-Magic-Eye.png",
+		"id": "g307_wf-me_wildfire-magic-eye.webp",
+		"image": "G307_WF-ME_Wildfire-Magic-Eye.webp",
 		"category": "Support",
 		"level": 3,
 		"number": 7,
 		"name": "Fire: Magic Eye"
 	},
 	{
-		"id": "g308_wf-s_wildfire-surge.png",
-		"image": "G308_WF-S_Wildfire-Surge.png",
+		"id": "g308_wf-s_wildfire-surge.webp",
+		"image": "G308_WF-S_Wildfire-Surge.webp",
 		"category": "Support",
 		"level": 3,
 		"number": 8,
 		"name": "Fire: Surge"
 	},
 	{
-		"id": "g309_wf-c_wildfire-cleansing.png",
-		"image": "G309_WF-C_Wildfire-Cleansing.png",
+		"id": "g309_wf-c_wildfire-cleansing.webp",
+		"image": "G309_WF-C_Wildfire-Cleansing.webp",
 		"category": "Support",
 		"level": 3,
 		"number": 9,
 		"name": "Fire: Cleansing"
 	},
 	{
-		"id": "g310_wf-sp_wildfire-spout.png",
-		"image": "G310_WF-SP_Wildfire-Spout.png",
+		"id": "g310_wf-sp_wildfire-spout.webp",
+		"image": "G310_WF-SP_Wildfire-Spout.webp",
 		"category": "Support",
 		"level": 3,
 		"number": 10,
