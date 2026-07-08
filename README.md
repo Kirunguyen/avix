@@ -1,42 +1,76 @@
-# sv
+AVIX.
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+1. Backend: For now it's just a static site hosted on GitHub Pages, so only JavaScript is used. Data is stored in JSON files.
 
-## Creating a project
+2. DevOps: (my main focus)
+   Topics explored include:
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Git
+- GitHub
+- GitHub Pages
+- GitHub Actions
+- Cloudflare
+- CI/CD pipelines
+- Semantic Versioning (SemVer)
+- Conventional Commits
+- Branching strategies
+- Release management
+- Issue tracking
+- Pull Request workflows
+  Although I am currently the sole developer, I intentionally follow collaborative development practices to build habits that transfer naturally into professional team environments.
 
-```sh
-# create a new project
-npx sv create my-app
-```
+---
 
-To recreate this project with the same configuration:
+## AI-assisted Workflow
 
-```sh
-# recreate this project
-npx sv@0.12.7 create --template minimal --types ts --add prettier eslint --install npm avix
-```
+AI is an important part of this project—but not the project itself.
+I use multiple AI tools, namely:
 
-## Developing
+- ChatGPT: Ideas container, I like its Project feature
+- Deepseek: Repetitive tasks with huge context windows, such as updating JSON files or summarizing Git diffs
+- Google AIStudio: Main implementation, actually build the codes
+- Antigravity CLI: For automating repetitive tasks straight into local files
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Implementation is heavily AI-assisted, allowing me to focus on defining AoV's logic and mechanics in details, and gradually becoming more comfortable with Svelte/SvelteKit.
+The objective is not to replace engineering with AI, but to learn how modern software engineers can effectively collaborate with AI while retaining ownership of technical decisions.
 
-```sh
-npm run dev
+---
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+## Inspiration
 
-## Building
+AVIX would not exist without inspiration from existing projects and interfaces. Which are:
 
-To create a production version of your app:
+- Arena of Valor's in-game interface
+- OADex (currently down for now, sad)
 
-```sh
-npm run build
-```
+---
 
-You can preview the production build with `npm run preview`.
+## Contributing
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Contributions are always welcome.
+Either DM me on Discord (@kiruaaaa) or ping me in AoV's Discord server
+
+### Developers
+
+- GitHub Issues
+- Pull Requests
+- Discussions
+
+### Players
+
+Most users are players rather than developers, so GitHub may not be the most comfortable platform.
+
+If you're unfamiliar with Git or GitHub, the easiest way to contribute is simply by:
+
+- use AVIX and tell me what you think
+- reporting bugs
+- suggesting features
+- discussing UI improvements
+
+through Discord.
+
+Every piece of feedback helps improve AVIX.
+
+![image](misc/image.png)
+![image](misc/image2.png)
+![image](misc/image3.png)
