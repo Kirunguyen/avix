@@ -1,8 +1,46 @@
-AVIX.
+Hi this is Kiru, welcone to AVIX
 
-1. Backend: For now it's just a static site hosted on GitHub Pages, so only JavaScript is used. Data is stored in JSON files.
+AVIX is a web to help **Arena of Valor** players to share hero builds without login into the game.
 
-2. DevOps: (my main focus)
+🌐 **Live Demo:** <https://avix.kiruaaaa.io.vn/>
+
+---
+
+## Features Plan
+
+### Short-term
+
+- Build a full set of armory
+- Share builds
+- Be mobile-friendly (hardest part)
+
+### Long-term
+
+- Update with the latest AoV updates
+- Discord Bot integration
+- Backend services
+- User accounts
+- Recommendation system
+- Android application for smoother mobile experience
+- Public API
+- Similar MOBAs using AVIX as a reusable platform (I play HoK too)
+
+---
+
+## Learning Goals
+
+Although AVIX is a community tool, it is equally important as my personal engineering sandbox.
+Through AVIX, I aim to study DevOps, Svelte/SvelteKit (hopefully), and AI-assisted development.
+I don't expect to become a professional engineer, but I hope to learn how to collaborate with AI and engineers to create a better product.
+
+## Tech Stack
+
+1. Frontend: Svelte/SvelteKit/TypeScript/HTML/CSS
+   I chose SvelteKit largely because of **OADex**, one of the projects that inspired AVIX.
+
+2. Backend: For now it's just a static site hosted on GitHub Pages, so only JavaScript is used. Data is stored in JSON files.
+
+3. DevOps: (my main focus)
    Topics explored include:
 
 - Git
