@@ -1,166 +1,150 @@
 <script lang="ts">
-	import Navbar from '$lib/components/Navbar.svelte';
-	import HeroSelector from '$lib/components/HeroSelector.svelte';
-	import ItemSelector from '$lib/components/ItemSelector.svelte';
-	import EnchantmentSelector from '$lib/components/EnchantmentSelector.svelte';
-	import TalentSelector from '$lib/components/TalentSelector.svelte';
-	import ArcanaSelector from '$lib/components/ArcanaSelector.svelte';
+	import { resolve } from '$app/paths';
+	import { buildState } from '$lib/state.svelte';
 	import BuildPreview from '$lib/components/BuildPreview.svelte';
 
-	import heroListRaw from '$lib/data/heroes.json';
-	import itemListRaw from '$lib/data/items.json';
-	import enchantmentListRaw from '$lib/data/enchantments.json';
-	import talentListRaw from '$lib/data/talents.json';
-	import arcanaListRaw from '$lib/data/arcanas.json';
+	let downloadTrigger = $state<() => Promise<void>>();
 
-	import type { Hero, Item, Enchantment, Talent, Arcana } from '$lib/types/entities';
+	const armoryItemCount = $derived(buildState.armory.filter(Boolean).length);
+	const enchantmentCount = $derived(buildState.selectedEnchantments.filter(Boolean).length);
+	const arcanaCount = $derived(
+		buildState.redArcana.length + buildState.purpleArcana.length + buildState.tealArcana.length
+	);
 
-	const heroList = heroListRaw as Hero[];
-	const itemList = itemListRaw as Item[];
-	const enchantmentList = enchantmentListRaw as Enchantment[];
-	const talentList = talentListRaw as Talent[];
-	const arcanaList = arcanaListRaw as Arcana[];
-
-	let currentPage = $state<string>('hero');
-	let selectedHero = $state<Hero | null>(heroList[0] || null);
-
-	// Armory capacity management
-	let isExpandedArmory = $state<boolean>(false);
-	let armory = $state<(Item | null)[]>([null, null, null, null, null, null]);
-
-	let selectedEnchantments = $state<(Enchantment | null)[]>([null, null, null, null, null]);
-	let selectedTalent = $state<Talent | null>(talentList[0] || null);
-
-	let redArcana = $state<Arcana[]>([]);
-	let purpleArcana = $state<Arcana[]>([]);
-	let tealArcana = $state<Arcana[]>([]);
-
-	function handlePageChange(page: string) {
-		currentPage = page;
-	}
-
-	function handleSelectHero(hero: Hero) {
-		selectedHero = hero;
-	}
-
-	function handleAddItem(item: Item) {
-		const freeIdx = armory.indexOf(null);
-		if (freeIdx !== -1) {
-			armory[freeIdx] = item;
-		}
-	}
-
-	function handleRemoveItem(index: number) {
-		armory[index] = null;
-	}
-
-	function handleAddEnchantment(enchantment: Enchantment) {
-		const freeIdx = selectedEnchantments.indexOf(null);
-		if (freeIdx !== -1) {
-			selectedEnchantments[freeIdx] = enchantment;
-		}
-	}
-
-	function handleRemoveEnchantment(index: number) {
-		selectedEnchantments[index] = null;
-	}
-
-	function handleSelectTalent(talent: Talent) {
-		selectedTalent = talent;
-	}
-
-	function handleAddArcana(arcana: Arcana) {
-		if (arcana.color === 'red' && redArcana.length < 10) {
-			redArcana = [...redArcana, arcana];
-		} else if (arcana.color === 'purple' && purpleArcana.length < 10) {
-			purpleArcana = [...purpleArcana, arcana];
-		} else if (arcana.color === 'teal' && tealArcana.length < 10) {
-			tealArcana = [...tealArcana, arcana];
-		}
-	}
-
-	function handleRemoveArcana(color: 'red' | 'purple' | 'teal', arcanaId: string) {
-		if (color === 'red') {
-			const idx = redArcana.findIndex((a) => a.id === arcanaId);
-			if (idx !== -1) redArcana = redArcana.filter((_, i) => i !== idx);
-		} else if (color === 'purple') {
-			const idx = purpleArcana.findIndex((a) => a.id === arcanaId);
-			if (idx !== -1) purpleArcana = purpleArcana.filter((_, i) => i !== idx);
-		} else if (color === 'teal') {
-			const idx = tealArcana.findIndex((a) => a.id === arcanaId);
-			if (idx !== -1) tealArcana = tealArcana.filter((_, i) => i !== idx);
-		}
-	}
-
-	/**
-	 * Toggles capacity of the armory slot array safely.
-	 */
-	function toggleArmoryExpansion() {
-		if (isExpandedArmory) {
-			// Shrink array back down to 6 elements, preserving first 6 items
-			armory = armory.slice(0, 6);
-			isExpandedArmory = false;
-		} else {
-			// Expand array with empty slots up to 10
-			armory = [...armory, null, null, null, null];
-			isExpandedArmory = true;
+	function triggerDownload() {
+		if (downloadTrigger) {
+			downloadTrigger();
 		}
 	}
 </script>
 
-<div class="planner-layout">
-	<div class="left-panel">
-		<Navbar {currentPage} onPageChange={handlePageChange} />
+<div class="dashboard-grid">
+	<!-- Left Side: Build Navigator (30%) -->
+	<div class="navigator-panel">
+		<div class="brand-header">
+			<span class="brand-title">AVIX</span>
+			<span class="brand-subtitle">MOBA Build Architect</span>
+		</div>
 
-		<div class="selector-container">
-			{#if currentPage === 'hero'}
-				<HeroSelector heroes={heroList} {selectedHero} onSelect={handleSelectHero} />
-			{:else if currentPage === 'armory'}
-				<ItemSelector items={itemList} onSelect={handleAddItem} />
-			{:else if currentPage === 'enchantments'}
-				<EnchantmentSelector enchantments={enchantmentList} onSelect={handleAddEnchantment} />
-			{:else if currentPage === 'talents'}
-				<TalentSelector talents={talentList} {selectedTalent} onSelect={handleSelectTalent} />
-			{:else if currentPage === 'arcana'}
-				<ArcanaSelector arcanas={arcanaList} onSelect={handleAddArcana} />
-			{/if}
+		<div class="nav-cards-list">
+			<!-- Hero Card -->
+			<a class="nav-card hero-card" href={resolve('/build/hero')}>
+				<div class="card-meta">
+					<span class="card-category">Hero</span>
+					<span class="card-value"
+						>{buildState.selectedHero ? buildState.selectedHero.name : 'Unselected'}</span
+					>
+				</div>
+				{#if buildState.selectedHero}
+					<img
+						class="card-icon circle-icon"
+						src="/heroes/icons/{buildState.selectedHero.image}"
+						alt=""
+					/>
+				{:else}
+					<div class="card-icon-placeholder circle-placeholder">👤</div>
+				{/if}
+			</a>
+
+			<!-- Equipment Card -->
+			<a class="nav-card" href={resolve('/build/equipment')}>
+				<div class="card-meta">
+					<span class="card-category">Equipment</span>
+					<span class="card-value">{armoryItemCount} / {buildState.armoryCapacity} Items</span>
+				</div>
+				<div class="mini-icon-row">
+					{#each buildState.armory
+						.filter(Boolean)
+						.slice(0, 4) as item, idx (item ? `${idx}-${item.id}` : idx)}
+						<img src="/items/{item?.image}" alt="" class="mini-img" />
+					{/each}
+				</div>
+			</a>
+
+			<!-- Enchantments Card -->
+			<a class="nav-card" href={resolve('/build/enchantment')}>
+				<div class="card-meta">
+					<span class="card-category">Enchantment</span>
+					<span class="card-value">{enchantmentCount} / 5 Selected</span>
+				</div>
+				<div class="mini-icon-row circle-row">
+					{#each buildState.selectedEnchantments.filter(Boolean).slice(0, 3) as ench (ench?.id)}
+						<img src="/enchantments/{ench?.image}" alt="" class="mini-img circular-img" />
+					{/each}
+				</div>
+			</a>
+
+			<!-- Talent Card -->
+			<a class="nav-card" href={resolve('/build/talent')}>
+				<div class="card-meta">
+					<span class="card-category">Talent</span>
+					<span class="card-value"
+						>{buildState.selectedTalent ? buildState.selectedTalent.name : 'Unselected'}</span
+					>
+				</div>
+				{#if buildState.selectedTalent}
+					<img
+						class="card-icon square-icon"
+						src="/talents/{buildState.selectedTalent.image}"
+						alt=""
+					/>
+				{:else}
+					<div class="card-icon-placeholder square-placeholder">+</div>
+				{/if}
+			</a>
+
+			<!-- Arcana Card -->
+			<a class="nav-card" href={resolve('/build/arcana')}>
+				<div class="card-meta">
+					<span class="card-category">Arcana Configuration</span>
+					<span class="card-value">{arcanaCount} / 30 Equipped</span>
+				</div>
+				<div class="arcana-colors-pills">
+					<span class="color-pill red-pill">{buildState.redArcana.length}</span>
+					<span class="color-pill purple-pill">{buildState.purpleArcana.length}</span>
+					<span class="color-pill teal-pill">{buildState.tealArcana.length}</span>
+				</div>
+			</a>
+
+			<!-- Card Customization Inputs Block -->
+			<div class="meta-customization-box">
+				<div class="input-element">
+					<label for="b-name">Build Name</label>
+					<input
+						id="b-name"
+						type="text"
+						bind:value={buildState.buildName}
+						placeholder="Enter loadout title..."
+						maxlength="28"
+					/>
+				</div>
+				<div class="input-element">
+					<label for="c-name">Creator Name</label>
+					<input
+						id="c-name"
+						type="text"
+						bind:value={buildState.authorName}
+						placeholder="Enter your name..."
+						maxlength="20"
+					/>
+				</div>
+			</div>
+
+			<!-- Export trigger inside Navigator list -->
+			<button class="export-nav-action" onclick={triggerDownload}>
+				<span>📥 Export Build Image</span>
+			</button>
 		</div>
 	</div>
 
-	<div class="right-panel">
-		<BuildPreview
-			{selectedHero}
-			{armory}
-			{selectedEnchantments}
-			{selectedTalent}
-			{redArcana}
-			{purpleArcana}
-			{tealArcana}
-			onRemoveItem={handleRemoveItem}
-			onRemoveEnchantment={handleRemoveEnchantment}
-			onRemoveArcana={handleRemoveArcana}
-			{isExpandedArmory}
-			onToggleArmoryExpansion={toggleArmoryExpansion}
-		/>
+	<!-- Right Side: Live preview frame (70%) -->
+	<div class="preview-panel">
+		<BuildPreview bind:downloadTrigger />
 	</div>
 </div>
 
 <style>
-	:global(body) {
-		background-color: #050505;
-		color: #e5e5e5;
-		font-family:
-			system-ui,
-			-apple-system,
-			BlinkMacSystemFont,
-			'Segoe UI',
-			Roboto,
-			sans-serif;
-		margin: 0;
-		padding: 0;
-	}
-
-	.planner-layout {
+	.dashboard-grid {
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: 1.5rem;
@@ -171,56 +155,237 @@
 	}
 
 	@media (min-width: 1024px) {
-		.planner-layout {
-			grid-template-columns: 1.25fr 0.75fr;
+		.dashboard-grid {
+			grid-template-columns: 3fr 7fr;
+			height: 100vh;
 			gap: 2rem;
 			padding: 2rem;
-			height: 100vh;
 			overflow: hidden;
 		}
 
-		.left-panel,
-		.right-panel {
+		.navigator-panel,
+		.preview-panel {
 			height: calc(100vh - 4rem);
 			overflow-y: auto;
-			box-sizing: border-box;
 		}
 	}
 
-	.left-panel {
+	.navigator-panel {
 		background-color: #0b0b0b;
-		border: 1px solid #222;
-		border-radius: 12px;
-		padding: 1.25rem;
+		border: 1px solid #1f1f1f;
+		border-radius: 14px;
+		padding: 1.5rem;
 		display: flex;
 		flex-direction: column;
+		gap: 1rem;
+		box-sizing: border-box;
 	}
 
-	.selector-container {
-		margin-top: 1rem;
-		max-height: 60vh;
-		overflow-y: auto;
-		scrollbar-width: thin;
-		scrollbar-color: #333 #111;
+	.brand-header {
+		display: flex;
+		flex-direction: column;
+		border-bottom: 1px solid #222;
+		padding-bottom: 0.5rem;
 	}
 
-	@media (min-width: 1024px) {
-		.selector-container {
-			max-height: none;
-			flex: 1;
-		}
+	.brand-title {
+		font-size: 1.85rem;
+		font-weight: 900;
+		color: #fff;
+		letter-spacing: 0.1em;
 	}
 
-	.selector-container::-webkit-scrollbar {
-		width: 5px;
+	.brand-subtitle {
+		font-size: 0.75rem;
+		color: #555;
+		font-weight: bold;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
 	}
 
-	.selector-container::-webkit-scrollbar-track {
-		background: #111;
+	.nav-cards-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.65rem;
 	}
 
-	.selector-container::-webkit-scrollbar-thumb {
-		background: #333;
-		border-radius: 3px;
+	.nav-card {
+		background-color: #121212;
+		border: 1px solid #222;
+		border-radius: 10px;
+		padding: 0.85rem;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		text-align: left;
+		transition:
+			border-color 0.15s,
+			background-color 0.15s;
+		box-sizing: border-box;
+		text-decoration: none;
+		outline: none;
+	}
+
+	.nav-card:hover {
+		border-color: #3b82f6;
+		background-color: #161616;
+	}
+
+	.card-meta {
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+	}
+
+	.card-category {
+		font-size: 0.65rem;
+		text-transform: uppercase;
+		color: #64748b;
+		font-weight: 800;
+		letter-spacing: 0.05em;
+	}
+
+	.card-value {
+		font-size: 0.95rem;
+		color: #f8fafc;
+		font-weight: 700;
+	}
+
+	.card-icon {
+		width: 38px;
+		height: 38px;
+		object-fit: cover;
+		border: 1px solid #333;
+	}
+
+	.circle-icon {
+		border-radius: 50%;
+	}
+
+	.square-icon {
+		border-radius: 8px;
+		border-color: #eab308;
+	}
+
+	.card-icon-placeholder {
+		width: 38px;
+		height: 38px;
+		background-color: #1f1f1f;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #444;
+		font-size: 1.1rem;
+		font-weight: bold;
+	}
+
+	.circle-placeholder {
+		border-radius: 50%;
+	}
+
+	.square-placeholder {
+		border-radius: 8px;
+	}
+
+	.mini-icon-row {
+		display: flex;
+		gap: 0.25rem;
+	}
+
+	.mini-img {
+		width: 24px;
+		height: 24px;
+		object-fit: cover;
+		border-radius: 4px;
+		background-color: #0d0d0d;
+		border: 1px solid #333;
+	}
+
+	.circular-img {
+		border-radius: 50%;
+	}
+
+	.arcana-colors-pills {
+		display: flex;
+		gap: 0.25rem;
+	}
+
+	.color-pill {
+		font-size: 0.65rem;
+		font-weight: bold;
+		color: #fff;
+		padding: 0.1rem 0.45rem;
+		border-radius: 4px;
+	}
+
+	.red-pill {
+		background-color: #ef4444;
+	}
+	.purple-pill {
+		background-color: #a855f7;
+	}
+	.teal-pill {
+		background-color: #14b8a6;
+	}
+
+	/* Custom inputs block styling */
+	.meta-customization-box {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		background-color: #121212;
+		border: 1px solid #222;
+		border-radius: 10px;
+		padding: 0.75rem;
+		box-sizing: border-box;
+	}
+
+	.input-element {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.input-element label {
+		font-size: 0.65rem;
+		text-transform: uppercase;
+		color: #64748b;
+		font-weight: 800;
+		letter-spacing: 0.05em;
+	}
+
+	.input-element input {
+		background-color: #0d0d0d;
+		border: 1px solid #2a2a2a;
+		border-radius: 6px;
+		color: #fff;
+		padding: 0.45rem 0.6rem;
+		font-size: 0.8rem;
+		outline: none;
+		transition: border-color 0.15s;
+	}
+
+	.input-element input:focus {
+		border-color: #2563eb;
+	}
+
+	.export-nav-action {
+		background-color: #2563eb;
+		color: #fff;
+		border: none;
+		border-radius: 8px;
+		padding: 0.75rem;
+		font-size: 0.85rem;
+		font-weight: bold;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: background-color 0.15s;
+	}
+
+	.export-nav-action:hover {
+		background-color: #1d4ed8;
 	}
 </style>

@@ -28,7 +28,7 @@
 			"attackDamage": 2,
 			"armorPierce": 3.6
 		},
-		"displayName": "AD/Pen"
+		"displayName": "Atk Dmg/Pierce"
 	},
 	{
 		"id": "red_bloodlust",
@@ -39,7 +39,7 @@
 			"attackDamage": 2.5,
 			"lifesteal": 0.5
 		},
-		"displayName": "AD/LS"
+		"displayName": "Atk Dmg/LSteal"
 	},
 	{
 		"id": "red_rampage",
@@ -50,7 +50,7 @@
 			"criticalRate": 0.7,
 			"criticalDamage": 3.6
 		},
-		"displayName": "Crit/CDmg"
+		"displayName": "%Crit/CritDmg"
 	},
 	{
 		"id": "red_guardian",
@@ -73,7 +73,7 @@
 			"abilityPower": 4.2,
 			"magicPierce": 2.4
 		},
-		"displayName": "AP/MPen"
+		"displayName": "AP/MPierce"
 	},
 	{
 		"id": "red_sovereign",
@@ -84,7 +84,7 @@
 			"abilityPower": 4.2,
 			"attackSpeed": 0.6
 		},
-		"displayName": "AP/AS"
+		"displayName": "AP/ATSP"
 	},
 	{
 		"id": "red_savage",
@@ -105,7 +105,7 @@
 			"attackSpeed": 1.6,
 			"criticalRate": 0.5
 		},
-		"displayName": "AS/Crit"
+		"displayName": "ATSP/%Crit"
 	},
 	{
 		"id": "purple_colossus",
@@ -125,7 +125,7 @@
 		"stats": {
 			"magicLifesteal": 1.6
 		},
-		"displayName": "Magic Lifesteal"
+		"displayName": "Magic LSteal"
 	},
 	{
 		"id": "purple_tyrant",
@@ -136,7 +136,7 @@
 			"criticalRate": 0.5,
 			"maxHp": 60
 		},
-		"displayName": "Crit/HP"
+		"displayName": "%Crit/HP"
 	},
 	{
 		"id": "purple_reaper",
@@ -179,7 +179,7 @@
 			"abilityPower": 2.4,
 			"magicLifesteal": 1
 		},
-		"displayName": "AP/MLS"
+		"displayName": "AP/M.LS"
 	},
 	{
 		"id": "purple_reliever",
@@ -191,7 +191,7 @@
 			"hp5s": 5.2,
 			"movementSpeed": 0.4
 		},
-		"displayName": "HP/Heal/MV"
+		"displayName": "HP/Heal/MVSP"
 	},
 	{
 		"id": "purple_assassin",
@@ -202,7 +202,7 @@
 			"attackDamage": 1.6,
 			"movementSpeed": 1
 		},
-		"displayName": "AD/MV"
+		"displayName": "Atk Dmg/MVSP"
 	},
 	{
 		"id": "purple_fairy",
@@ -213,7 +213,7 @@
 			"attackSpeed": 1,
 			"movementSpeed": 1
 		},
-		"displayName": "AS/MV"
+		"displayName": "ATSP/MVSP"
 	},
 	{
 		"id": "teal_bastion",
@@ -277,7 +277,7 @@
 			"attackDamage": 0.9,
 			"armorPierce": 6.4
 		},
-		"displayName": "AD/Pen"
+		"displayName": "Atk Dmg/Pierce"
 	},
 	{
 		"id": "teal_degenerate",
@@ -288,7 +288,7 @@
 			"attackSpeed": 0.6,
 			"magicPierce": 6.4
 		},
-		"displayName": "AS/MPen"
+		"displayName": "ATSP/MPierce"
 	},
 	{
 		"id": "teal_templar",
@@ -298,7 +298,7 @@
 		"stats": {
 			"cooldownReduction": 1
 		},
-		"displayName": "Cooldown Reduction"
+		"displayName": "CD Reduction"
 	},
 	{
 		"id": "teal_darksider",
@@ -309,7 +309,7 @@
 			"armor": 5.9,
 			"magicLifesteal": 0.7
 		},
-		"displayName": "Armor/MLS"
+		"displayName": "Armor/M.LS"
 	},
 	{
 		"id": "teal_crusader",
