@@ -2,13 +2,19 @@
 	import { buildState } from '$lib/state.svelte';
 	import { groupArcana, calculateTotalArcanaStats } from '../utils/arcana';
 
+	// Import Vite-managed category assets
+	import afataIcon from '$lib/assets/enchantments/Afata.png';
+	import humanIcon from '$lib/assets/enchantments/League-Of-Humans.png';
+	import lokheimIcon from '$lib/assets/enchantments/Lokheim.png';
+	import vedaIcon from '$lib/assets/enchantments/Veda.png';
+
 	interface Props {
 		downloadTrigger?: () => Promise<void>;
 	}
 
 	let { downloadTrigger = $bindable() }: Props = $props();
 
-	// Read-only calculations directly from global state
+	// Derived calculations directly from global state
 	const allSelectedArcanas = $derived([
 		...buildState.redArcana,
 		...buildState.purpleArcana,
@@ -24,6 +30,23 @@
 	);
 
 	let exportElement = $state<HTMLElement | null>(null);
+
+	// Category configuration lookup helper
+	function getCategoryMeta(category?: string) {
+		if (!category) return { icon: '', color: '#252525' };
+		switch (category) {
+			case 'Veda':
+				return { icon: vedaIcon, color: '#F2D95E' };
+			case 'Lokheim':
+				return { icon: lokheimIcon, color: '#C12817' };
+			case 'Afata':
+				return { icon: afataIcon, color: '#B2D246' };
+			case 'League of Humans':
+				return { icon: humanIcon, color: '#4CA9E2' };
+			default:
+				return { icon: '', color: '#252525' };
+		}
+	}
 
 	// Defer browser-only dynamic import to prevent SvelteKit SSR build/hydration freeze
 	async function downloadBuildCard() {
@@ -91,10 +114,10 @@
 
 		<!-- Bottom Details Container -->
 		<div class="export-bottom-summary relative-preview-summary">
-			<!-- Segment 1: Equipment Grid Row (Statically computed CSS Grid prevents Reflow Deadlocks) -->
+			<!-- Segment 1: Equipment Grid Row (Centered and evenly spaced across full width) -->
 			<div class="card-row-section">
 				<div class="card-section-label">Equipment Build Path</div>
-				<div class="card-equipment-grid" style="--cols: {buildState.armoryCapacity};">
+				<div class="card-equipment-row">
 					{#each buildState.armory as item, idx (item ? `preview-item-${item.id}-${idx}` : `preview-empty-item-${idx}`)}
 						<div class="card-item-slot">
 							{#if item}
@@ -107,35 +130,127 @@
 				</div>
 			</div>
 
-			<!-- Segment 2: Runes & Spell -->
+			<!-- Segment 2: Runes & Spell (Rebalanced 2-line structure with category indicators) -->
 			<div class="card-row-section">
 				<div class="card-section-label">Enchantments & Active Spell</div>
 				<div class="card-runes-talent-row">
-					<div class="card-enchantments-subgroup">
-						{#each buildState.selectedEnchantments as ench, idx (ench ? `preview-ench-${ench.id}-${idx}` : `preview-empty-ench-${idx}`)}
-							<div class="card-enchantment-slot">
-								{#if ench}
-									<img src="/enchantments/{ench.image}" alt={ench.name} />
-								{:else}
-									<div class="card-enchantment-empty"></div>
+					<!-- Left: Two-line Symmetrical Enchantment Grid -->
+					<div class="enchantment-two-lines-grid">
+						<!-- Row 1: Slots 1, 2, 3, 4 -->
+						<div class="enchantment-row">
+							<!-- Slot 1 (Category mapped to Enchantment 2/Slot 4) -->
+							<div
+								class="card-enchantment-slot category-slot"
+								style="border-color: {getCategoryMeta(buildState.selectedEnchantments[2]?.category)
+									.color};"
+							>
+								{#if buildState.selectedEnchantments[2]}
+									<img
+										src={getCategoryMeta(buildState.selectedEnchantments[2]?.category).icon}
+										alt=""
+										class="cat-img"
+									/>
 								{/if}
 							</div>
-						{/each}
+							<!-- Slot 2 (Enchantment 0) -->
+							<div
+								class="card-enchantment-slot"
+								style="border-color: {getCategoryMeta(buildState.selectedEnchantments[0]?.category)
+									.color};"
+							>
+								{#if buildState.selectedEnchantments[0]}
+									<img src="/enchantments/{buildState.selectedEnchantments[0].image}" alt="" />
+								{/if}
+							</div>
+							<!-- Slot 3 (Enchantment 1) -->
+							<div
+								class="card-enchantment-slot"
+								style="border-color: {getCategoryMeta(buildState.selectedEnchantments[1]?.category)
+									.color};"
+							>
+								{#if buildState.selectedEnchantments[1]}
+									<img src="/enchantments/{buildState.selectedEnchantments[1].image}" alt="" />
+								{/if}
+							</div>
+							<!-- Slot 4 (Enchantment 2) -->
+							<div
+								class="card-enchantment-slot"
+								style="border-color: {getCategoryMeta(buildState.selectedEnchantments[2]?.category)
+									.color};"
+							>
+								{#if buildState.selectedEnchantments[2]}
+									<img src="/enchantments/{buildState.selectedEnchantments[2].image}" alt="" />
+								{/if}
+							</div>
+						</div>
+
+						<!-- Row 2: Slots 5, 6, 7, 8 -->
+						<div class="enchantment-row">
+							<!-- Slot 5 (Category mapped to Enchantment 3/Slot 6) -->
+							<div
+								class="card-enchantment-slot category-slot"
+								style="border-color: {getCategoryMeta(buildState.selectedEnchantments[3]?.category)
+									.color};"
+							>
+								{#if buildState.selectedEnchantments[3]}
+									<img
+										src={getCategoryMeta(buildState.selectedEnchantments[3]?.category).icon}
+										alt=""
+										class="cat-img"
+									/>
+								{/if}
+							</div>
+							<!-- Slot 6 (Enchantment 3) -->
+							<div
+								class="card-enchantment-slot"
+								style="border-color: {getCategoryMeta(buildState.selectedEnchantments[3]?.category)
+									.color};"
+							>
+								{#if buildState.selectedEnchantments[3]}
+									<img src="/enchantments/{buildState.selectedEnchantments[3].image}" alt="" />
+								{/if}
+							</div>
+							<!-- Slot 7 (Category mapped to Enchantment 4/Slot 8) -->
+							<div
+								class="card-enchantment-slot category-slot"
+								style="border-color: {getCategoryMeta(buildState.selectedEnchantments[4]?.category)
+									.color};"
+							>
+								{#if buildState.selectedEnchantments[4]}
+									<img
+										src={getCategoryMeta(buildState.selectedEnchantments[4]?.category).icon}
+										alt=""
+										class="cat-img"
+									/>
+								{/if}
+							</div>
+							<!-- Slot 8 (Enchantment 4) -->
+							<div
+								class="card-enchantment-slot"
+								style="border-color: {getCategoryMeta(buildState.selectedEnchantments[4]?.category)
+									.color};"
+							>
+								{#if buildState.selectedEnchantments[4]}
+									<img src="/enchantments/{buildState.selectedEnchantments[4].image}" alt="" />
+								{/if}
+							</div>
+						</div>
 					</div>
 
 					<div class="vertical-panel-divider"></div>
 
-					<div class="card-talent-subgroup">
+					<!-- Right: Vertical Talent Stack -->
+					<div class="card-talent-column">
 						<div class="card-talent-slot">
 							{#if buildState.selectedTalent}
-								<img
-									src="/talents/{buildState.selectedTalent.image}"
-									alt={buildState.selectedTalent.name}
-								/>
+								<img src="/talents/{buildState.selectedTalent.image}" alt="" />
 							{:else}
 								<div class="card-talent-empty"></div>
 							{/if}
 						</div>
+						{#if buildState.selectedTalent}
+							<span class="card-talent-name">{buildState.selectedTalent.name}</span>
+						{/if}
 					</div>
 				</div>
 			</div>
@@ -232,7 +347,7 @@
 				<!-- Segment 1: Equipment Grid Row -->
 				<div class="card-row-section">
 					<div class="card-section-label">Equipment Build Path</div>
-					<div class="card-equipment-grid" style="--cols: {buildState.armoryCapacity};">
+					<div class="card-equipment-row">
 						{#each buildState.armory as item, idx (item ? `export-item-${item.id}-${idx}` : `export-empty-item-${idx}`)}
 							<div class="card-item-slot">
 								{#if item}
@@ -249,31 +364,121 @@
 				<div class="card-row-section">
 					<div class="card-section-label">Enchantments & Active Spell</div>
 					<div class="card-runes-talent-row">
-						<div class="card-enchantments-subgroup">
-							{#each buildState.selectedEnchantments as ench, idx (ench ? `export-ench-${ench.id}-${idx}` : `export-empty-ench-${idx}`)}
-								<div class="card-enchantment-slot">
-									{#if ench}
-										<img src="/enchantments/{ench.image}" alt={ench.name} />
-									{:else}
-										<div class="card-enchantment-empty"></div>
+						<!-- Symmetrical Enchantment Grid -->
+						<div class="enchantment-two-lines-grid">
+							<div class="enchantment-row">
+								<div
+									class="card-enchantment-slot category-slot"
+									style="border-color: {getCategoryMeta(
+										buildState.selectedEnchantments[2]?.category
+									).color};"
+								>
+									{#if buildState.selectedEnchantments[2]}
+										<img
+											src={getCategoryMeta(buildState.selectedEnchantments[2]?.category).icon}
+											alt=""
+											class="cat-img"
+										/>
 									{/if}
 								</div>
-							{/each}
+								<div
+									class="card-enchantment-slot"
+									style="border-color: {getCategoryMeta(
+										buildState.selectedEnchantments[0]?.category
+									).color};"
+								>
+									{#if buildState.selectedEnchantments[0]}
+										<img src="/enchantments/{buildState.selectedEnchantments[0].image}" alt="" />
+									{/if}
+								</div>
+								<div
+									class="card-enchantment-slot"
+									style="border-color: {getCategoryMeta(
+										buildState.selectedEnchantments[1]?.category
+									).color};"
+								>
+									{#if buildState.selectedEnchantments[1]}
+										<img src="/enchantments/{buildState.selectedEnchantments[1].image}" alt="" />
+									{/if}
+								</div>
+								<div
+									class="card-enchantment-slot"
+									style="border-color: {getCategoryMeta(
+										buildState.selectedEnchantments[2]?.category
+									).color};"
+								>
+									{#if buildState.selectedEnchantments[2]}
+										<img src="/enchantments/{buildState.selectedEnchantments[2].image}" alt="" />
+									{/if}
+								</div>
+							</div>
+
+							<div class="enchantment-row">
+								<div
+									class="card-enchantment-slot category-slot"
+									style="border-color: {getCategoryMeta(
+										buildState.selectedEnchantments[3]?.category
+									).color};"
+								>
+									{#if buildState.selectedEnchantments[3]}
+										<img
+											src={getCategoryMeta(buildState.selectedEnchantments[3]?.category).icon}
+											alt=""
+											class="cat-img"
+										/>
+									{/if}
+								</div>
+								<div
+									class="card-enchantment-slot"
+									style="border-color: {getCategoryMeta(
+										buildState.selectedEnchantments[3]?.category
+									).color};"
+								>
+									{#if buildState.selectedEnchantments[3]}
+										<img src="/enchantments/{buildState.selectedEnchantments[3].image}" alt="" />
+									{/if}
+								</div>
+								<div
+									class="card-enchantment-slot"
+									style="border-color: {getCategoryMeta(
+										buildState.selectedEnchantments[4]?.category
+									).color};"
+								>
+									{#if buildState.selectedEnchantments[4]}
+										<img
+											src={getCategoryMeta(buildState.selectedEnchantments[4]?.category).icon}
+											alt=""
+											class="cat-img"
+										/>
+									{/if}
+								</div>
+								<div
+									class="card-enchantment-slot"
+									style="border-color: {getCategoryMeta(
+										buildState.selectedEnchantments[4]?.category
+									).color};"
+								>
+									{#if buildState.selectedEnchantments[4]}
+										<img src="/enchantments/{buildState.selectedEnchantments[4].image}" alt="" />
+									{/if}
+								</div>
+							</div>
 						</div>
 
 						<div class="vertical-panel-divider"></div>
 
-						<div class="card-talent-subgroup">
+						<!-- Vertical Talent Stack -->
+						<div class="card-talent-column">
 							<div class="card-talent-slot">
 								{#if buildState.selectedTalent}
-									<img
-										src="/talents/{buildState.selectedTalent.image}"
-										alt={buildState.selectedTalent.name}
-									/>
+									<img src="/talents/{buildState.selectedTalent.image}" alt="" />
 								{:else}
 									<div class="card-talent-empty"></div>
 								{/if}
 							</div>
+							{#if buildState.selectedTalent}
+								<span class="card-talent-name">{buildState.selectedTalent.name}</span>
+							{/if}
 						</div>
 					</div>
 				</div>
@@ -413,65 +618,75 @@
 		justify-content: center;
 	}
 
-	/* CSS Grid replaces flex row, preventing rendering lockups */
-	.card-equipment-grid {
-		display: grid;
-		grid-template-columns: repeat(var(--cols, 6), 1fr);
-		gap: 0.35rem;
+	/* Symmetrical Spaced-Between Horizontal Row for Equipment */
+	.card-equipment-row {
+		display: flex;
+		justify-content: space-between; /* Spreads slots equally across the card width */
+		gap: 0.25rem;
 		width: 100%;
+		flex-wrap: nowrap;
 		box-sizing: border-box;
 	}
 
-	.card-item-slot {
-		width: 100%;
+	/* Symmetrical squares without rounded corners, displaying full covers */
+	.relative-preview-summary .card-item-slot {
+		flex: 1;
+		max-width: 48px;
 		aspect-ratio: 1;
 		background: #181818;
 		border: 1px solid #333;
-		border-radius: 8px;
+		border-radius: 0px; /* Sharp squares */
 		overflow: hidden;
-		box-sizing: border-box;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		box-sizing: border-box;
 	}
 
-	.card-item-slot img {
+	.relative-preview-summary .card-item-slot img {
 		width: 100%;
 		height: 100%;
-		object-fit: cover;
+		object-fit: cover; /* Fill the square cleanly */
 	}
 
-	.card-item-empty {
-		width: 100%;
-		height: 100%;
-		background: #141414;
-		border: 1px dashed #333;
-		border-radius: 8px;
-	}
-
+	/* Symmetrical 2-Line Enchantment Grid System */
 	.card-runes-talent-row {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
+		gap: 1rem;
 		box-sizing: border-box;
 	}
 
-	.card-enchantments-subgroup {
+	.enchantment-two-lines-grid {
 		display: flex;
-		gap: 0.5rem;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+
+	.enchantment-row {
+		display: flex;
+		gap: 0.35rem;
 	}
 
 	.card-enchantment-slot {
-		width: 48px;
-		height: 48px;
+		width: 44px;
+		height: 44px;
 		background: #181818;
 		border-radius: 50%;
-		border: 1px solid #333;
+		border: 2px solid #333;
 		overflow: hidden;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		box-sizing: border-box;
+		flex-shrink: 0;
+	}
+
+	.card-enchantment-slot.category-slot {
+		background: #0d0d0d;
+		border-style: solid;
 	}
 
 	.card-enchantment-slot img {
@@ -480,36 +695,49 @@
 		object-fit: contain;
 	}
 
+	.card-enchantment-slot .cat-img {
+		width: 60%;
+		height: 60%;
+		filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.15));
+	}
+
 	.card-enchantment-empty {
 		width: 100%;
 		height: 100%;
 		background: #121212;
-		border-radius: 50%;
 		border: 1px dashed #333;
+		border-radius: 50%;
 	}
 
 	.vertical-panel-divider {
 		width: 2px;
-		height: 40px;
+		height: 80px;
 		background-color: #334155;
+		align-self: center;
 	}
 
-	.card-talent-subgroup {
+	/* Talent display vertical block sizing */
+	.card-talent-column {
 		display: flex;
+		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		gap: 0.35rem;
+		flex-shrink: 0;
+		width: 80px;
 	}
 
 	.card-talent-slot {
-		width: 48px;
-		height: 48px;
+		width: 60px;
+		height: 60px;
 		background: #181818;
-		border: 2px solid #eab308;
-		border-radius: 8px;
+		border: 1px solid #333; /* Removed golden border as requested */
+		border-radius: 10px;
 		overflow: hidden;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		box-sizing: border-box;
 	}
 
 	.card-talent-slot img {
@@ -523,9 +751,85 @@
 		height: 100%;
 		background: #121212;
 		border: 1px dashed #444;
-		border-radius: 8px;
+		border-radius: 10px;
 	}
 
+	.card-talent-name {
+		font-size: 0.6rem;
+		color: #888;
+		text-align: center;
+		font-weight: 700;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		width: 100%;
+	}
+
+	/* Export Canvas High-Res sizing (Auto-scaled down symmetrically) */
+	.export-bottom-summary .card-item-slot {
+		flex: 1;
+		max-width: 90px;
+		aspect-ratio: 1;
+		border-radius: 0px; /* Sharp squares on exported PNG */
+		background: #181818;
+		border: 2px solid #333;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-sizing: border-box;
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+	}
+
+	.export-bottom-summary .card-item-slot img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.export-bottom-summary .enchantment-two-lines-grid {
+		gap: 0.65rem;
+	}
+
+	.export-bottom-summary .enchantment-row {
+		gap: 0.65rem;
+	}
+
+	.export-bottom-summary .card-enchantment-slot {
+		width: 76px;
+		height: 76px;
+		border-width: 3px;
+	}
+
+	.export-bottom-summary .vertical-panel-divider {
+		height: 140px;
+	}
+
+	.export-bottom-summary .card-talent-column {
+		width: 140px;
+		gap: 0.5rem;
+	}
+
+	.export-bottom-summary .card-talent-slot {
+		width: 110px;
+		height: 110px;
+		border-radius: 16px;
+	}
+
+	.export-bottom-summary .card-talent-name {
+		font-size: 0.9rem;
+		color: #bbb;
+	}
+
+	.card-item-empty {
+		width: 100%;
+		height: 100%;
+		background: #141414;
+		border: 1px dashed #333;
+		border-radius: inherit;
+	}
+
+	/* Arcana Section Row Styling */
 	.bg-arcana-row {
 		background: #141414;
 		border: 1px solid #222;
@@ -715,7 +1019,7 @@
 		width: 100%;
 	}
 
-	/* ABSOLUTE OFSCREEN CANVAS */
+	/* ABSOLUTE OFFSCREEN CANVAS */
 	.export-sandbox-container {
 		position: absolute;
 		left: -9999px;
