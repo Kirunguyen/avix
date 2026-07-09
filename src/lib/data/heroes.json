@@ -2,651 +2,911 @@
 	{
 		"id": "airi",
 		"name": "Airi",
-		"image": "Airi.webp"
+		"image": "Airi.webp",
+		"roles": ["Warrior", "Assassin"],
+		"lanes": ["Slayer", "Jungle"]
 	},
 	{
 		"id": "aleister",
 		"name": "Aleister",
-		"image": "Aleister.webp"
+		"image": "Aleister.webp",
+		"roles": ["Mage", "Support"],
+		"lanes": ["Mid", "Roam"]
 	},
 	{
 		"id": "alice",
 		"name": "Alice",
-		"image": "Alice.webp"
+		"image": "Alice.webp",
+		"roles": ["Support"],
+		"lanes": ["Roam"]
 	},
 	{
 		"id": "allain",
 		"name": "Allain",
-		"image": "Allain.webp"
+		"image": "Allain.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Slayer"]
 	},
 	{
 		"id": "amily",
 		"name": "Amily",
-		"image": "Amily.webp"
+		"image": "Amily.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Slayer", "Jungle"]
 	},
 	{
 		"id": "annette",
 		"name": "Annette",
-		"image": "Annette.webp"
+		"image": "Annette.webp",
+		"roles": ["Mage", "Support"],
+		"lanes": ["Roam", "Mid"]
 	},
 	{
 		"id": "aoi",
 		"name": "Aoi",
-		"image": "Aoi.webp"
+		"image": "Aoi.webp",
+		"roles": ["Assassin"],
+		"lanes": ["Jungle"]
 	},
 	{
 		"id": "arduin",
 		"name": "Arduin",
-		"image": "Arduin.webp"
+		"image": "Arduin.webp",
+		"roles": ["Tank"],
+		"lanes": ["Roam", "Slayer"]
 	},
 	{
 		"id": "arthur",
 		"name": "Arthur",
-		"image": "Arthur.webp"
+		"image": "Arthur.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Slayer", "Roam"]
 	},
 	{
 		"id": "arum",
 		"name": "Arum",
-		"image": "Arum.webp"
+		"image": "Arum.webp",
+		"roles": ["Support"],
+		"lanes": ["Roam"]
 	},
 	{
 		"id": "astrid",
 		"name": "Astrid",
-		"image": "Astrid.webp"
+		"image": "Astrid.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Slayer", "Jungle"]
 	},
 	{
 		"id": "ata",
 		"name": "Ata",
-		"image": "Ata.webp"
+		"image": "Ata.webp",
+		"roles": ["Warrior", "Tank"],
+		"lanes": ["Slayer", "Roam"]
 	},
 	{
 		"id": "aya",
 		"name": "Aya",
-		"image": "Aya.webp"
+		"image": "Aya.webp",
+		"roles": ["Support"],
+		"lanes": ["Roam", "Mid"]
 	},
 	{
 		"id": "azzenka",
 		"name": "Azzen'Ka",
-		"image": "AzzenKa.webp"
+		"image": "AzzenKa.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "baldum",
 		"name": "Baldum",
-		"image": "Baldum.webp"
+		"image": "Baldum.webp",
+		"roles": ["Tank"],
+		"lanes": ["Roam"]
 	},
 	{
 		"id": "bijan",
 		"name": "Bijan",
-		"image": "Bijan.webp"
+		"image": "Bijan.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Slayer"]
 	},
 	{
 		"id": "billow",
 		"name": "Billow",
-		"image": "Billow.webp"
+		"image": "Billow.webp",
+		"roles": ["Warrior", "Assassin"],
+		"lanes": ["Jungle", "Slayer"]
 	},
 	{
 		"id": "biron",
 		"name": "Biron",
-		"image": "Biron.webp"
+		"image": "Biron.webp",
+		"roles": ["Warrior", "Tank"],
+		"lanes": ["Slayer"]
 	},
 	{
 		"id": "bolt_baron",
 		"name": "Bolt Baron",
-		"image": "Bolt_Baron.webp"
+		"image": "Bolt_Baron.webp",
+		"roles": ["Warrior", "Mage"],
+		"lanes": ["Slayer", "Jungle"]
 	},
 	{
 		"id": "bonnie",
 		"name": "Bonnie",
-		"image": "Bonnie.webp"
+		"image": "Bonnie.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid", "Roam"]
 	},
 	{
 		"id": "bright",
 		"name": "Bright",
-		"image": "Bright.webp"
+		"image": "Bright.webp",
+		"roles": ["Assassin", "Marksman"],
+		"lanes": ["Jungle", "Dragon", "Slayer"]
 	},
 	{
 		"id": "butterfly",
 		"name": "Butterfly",
-		"image": "Butterfly.webp"
+		"image": "Butterfly.webp",
+		"roles": ["Warrior", "Assassin"],
+		"lanes": ["Jungle"]
 	},
 	{
 		"id": "capheny",
 		"name": "Capheny",
-		"image": "Capheny.webp"
+		"image": "Capheny.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Dragon"]
 	},
 	{
 		"id": "celica",
 		"name": "Celica",
-		"image": "Celica.webp"
+		"image": "Celica.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Dragon"]
 	},
 	{
 		"id": "charlotte",
 		"name": "Charlotte",
-		"image": "Charlotte.webp"
+		"image": "Charlotte.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Slayer"]
 	},
 	{
 		"id": "chaugnar",
 		"name": "Chaugnar",
-		"image": "Chaugnar.webp"
+		"image": "Chaugnar.webp",
+		"roles": ["Tank", "Support"],
+		"lanes": ["Roam"]
 	},
 	{
 		"id": "cresht",
 		"name": "Cresht",
-		"image": "Cresht.webp"
+		"image": "Cresht.webp",
+		"roles": ["Tank", "Support"],
+		"lanes": ["Roam"]
 	},
 	{
 		"id": "darcy",
 		"name": "D'Arcy",
-		"image": "Darcy.webp"
+		"image": "Darcy.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid", "Jungle"]
 	},
 	{
 		"id": "dextra",
 		"name": "Dextra",
-		"image": "Dextra.webp"
+		"image": "Dextra.webp",
+		"roles": ["Warrior", "Tank"],
+		"lanes": ["Slayer"]
 	},
 	{
 		"id": "diaochan",
 		"name": "Diaochan",
-		"image": "Diaochan.webp"
+		"image": "Diaochan.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid", "Roam"]
 	},
 	{
 		"id": "dirak",
 		"name": "Dirak",
-		"image": "Dirak.webp"
+		"image": "Dirak.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "dolia",
 		"name": "Dolia",
-		"image": "Dolia.webp"
+		"image": "Dolia.webp",
+		"roles": ["Support"],
+		"lanes": ["Roam", "Mid"]
 	},
 	{
 		"id": "dyadia",
 		"name": "Dyadia",
-		"image": "Dyadia.webp"
+		"image": "Dyadia.webp",
+		"roles": ["Mage", "Support"],
+		"lanes": ["Roam"]
 	},
 	{
 		"id": "edras",
 		"name": "Edras",
-		"image": "Edras.webp"
+		"image": "Edras.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Slayer", "Jungle"]
 	},
 	{
 		"id": "elandorr",
 		"name": "Eland'orr",
-		"image": "Elandorr.webp"
+		"image": "Elandorr.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Jungle", "Dragon"]
 	},
 	{
 		"id": "elsu",
 		"name": "Elsu",
-		"image": "Elsu.webp"
+		"image": "Elsu.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Dragon"]
 	},
 	{
 		"id": "enzo",
 		"name": "Enzo",
-		"image": "Enzo.webp"
+		"image": "Enzo.webp",
+		"roles": ["Assassin"],
+		"lanes": ["Roam", "Jungle"]
 	},
 	{
 		"id": "erin",
 		"name": "Erin",
-		"image": "Erin.webp"
+		"image": "Erin.webp",
+		"roles": ["Mage", "Marksman"],
+		"lanes": ["Dragon", "Mid"]
 	},
 	{
 		"id": "errol",
 		"name": "Errol",
-		"image": "Errol.webp"
+		"image": "Errol.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Jungle", "Slayer"]
 	},
 	{
 		"id": "fennik",
 		"name": "Fennik",
-		"image": "Fennik.webp"
+		"image": "Fennik.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Dragon", "Jungle"]
 	},
 	{
 		"id": "florentino",
 		"name": "Florentino",
-		"image": "Florentino.webp"
+		"image": "Florentino.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Slayer"]
 	},
 	{
 		"id": "flowborn_f_mage",
 		"name": "Flowborn (Mage)",
-		"image": "Flowborn_F_Mage.webp"
+		"image": "Flowborn_F_Mage.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "flowborn_f_marksman",
 		"name": "Flowborn (Marksman)",
-		"image": "Flowborn_F_Marksman.webp"
+		"image": "Flowborn_F_Marksman.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Dragon"]
 	},
 	{
 		"id": "flowborn_m_mage",
 		"name": "Flowborn (Mage)",
-		"image": "Flowborn_M_Mage.webp"
+		"image": "Flowborn_M_Mage.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "flowborn_m_marksman",
 		"name": "Flowborn (Marksman)",
-		"image": "Flowborn_M_Marksman.webp"
+		"image": "Flowborn_M_Marksman.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Dragon"]
 	},
 	{
 		"id": "gildur",
 		"name": "Gildur",
-		"image": "Gildur.webp"
+		"image": "Gildur.webp",
+		"roles": ["Warrior", "Mage"],
+		"lanes": ["Mid", "Roam"]
 	},
 	{
 		"id": "goverra",
 		"name": "Goverra",
-		"image": "Goverra.webp"
+		"image": "Goverra.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "grakk",
 		"name": "Grakk",
-		"image": "Grakk.webp"
+		"image": "Grakk.webp",
+		"roles": ["Tank", "Support"],
+		"lanes": ["Roam"]
 	},
 	{
 		"id": "hayate",
 		"name": "Hayate",
-		"image": "Hayate.webp"
+		"image": "Hayate.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Dragon"]
 	},
 	{
 		"id": "heino",
 		"name": "Heino",
-		"image": "Heino.webp"
+		"image": "Heino.webp",
+		"roles": ["Warrior", "Mage"],
+		"lanes": ["Mid", "Slayer"]
 	},
 	{
 		"id": "helen",
 		"name": "Helen",
-		"image": "Helen.webp"
+		"image": "Helen.webp",
+		"roles": ["Support"],
+		"lanes": ["Roam"]
 	},
 	{
 		"id": "iggy",
 		"name": "Iggy",
-		"image": "Iggy.webp"
+		"image": "Iggy.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "ignis",
 		"name": "Ignis",
-		"image": "Ignis.webp"
+		"image": "Ignis.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "ilumia",
 		"name": "Ilumia",
-		"image": "Ilumia.webp"
+		"image": "Ilumia.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "ishar",
 		"name": "Ishar",
-		"image": "Ishar.webp"
+		"image": "Ishar.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "jinna",
 		"name": "Jinna",
-		"image": "Jinna.webp"
+		"image": "Jinna.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "kahlii",
 		"name": "Kahlii",
-		"image": "Kahlii.webp"
+		"image": "Kahlii.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "kaine",
 		"name": "Kaine",
-		"image": "Kaine.webp"
+		"image": "Kaine.webp",
+		"roles": ["Assassin"],
+		"lanes": ["Jungle", "Slayer", "Roam"]
 	},
 	{
 		"id": "keera",
 		"name": "Keera",
-		"image": "Keera.webp"
+		"image": "Keera.webp",
+		"roles": ["Assassin"],
+		"lanes": ["Jungle"]
 	},
 	{
 		"id": "kilgroth",
 		"name": "Kil'Groth",
-		"image": "Kilgroth.webp"
+		"image": "Kilgroth.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Slayer", "Jungle"]
 	},
 	{
 		"id": "kriknak",
 		"name": "Kriknak",
-		"image": "Kriknak.webp"
+		"image": "Kriknak.webp",
+		"roles": ["Assassin"],
+		"lanes": ["Jungle"]
 	},
 	{
 		"id": "krixi",
 		"name": "Krixi",
-		"image": "Krixi.webp"
+		"image": "Krixi.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "krizzix",
 		"name": "Krizzix",
-		"image": "Krizzix.webp"
+		"image": "Krizzix.webp",
+		"roles": ["Support"],
+		"lanes": ["Roam"]
 	},
 	{
 		"id": "lauriel",
 		"name": "Lauriel",
-		"image": "Lauriel.webp"
+		"image": "Lauriel.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "laville",
 		"name": "Laville",
-		"image": "Laville.webp"
+		"image": "Laville.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Dragon"]
 	},
 	{
 		"id": "liliana",
 		"name": "Liliana",
-		"image": "Liliana.webp"
+		"image": "Liliana.webp",
+		"roles": ["Assassin", "Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "lindis",
 		"name": "Lindis",
-		"image": "Lindis.webp"
+		"image": "Lindis.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Dragon", "Jungle"]
 	},
 	{
 		"id": "lorion",
 		"name": "Lorion",
-		"image": "Lorion.webp"
+		"image": "Lorion.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "lubu",
 		"name": "Lu Bu",
-		"image": "Lubu.webp"
+		"image": "Lubu.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Slayer", "Jungle"]
 	},
 	{
 		"id": "lumburr",
 		"name": "Lumburr",
-		"image": "Lumburr.webp"
+		"image": "Lumburr.webp",
+		"roles": ["Tank", "Support"],
+		"lanes": ["Roam"]
 	},
 	{
 		"id": "maloch",
 		"name": "Maloch",
-		"image": "Maloch.webp"
+		"image": "Maloch.webp",
+		"roles": ["Warrior", "Tank"],
+		"lanes": ["Slayer", "Roam"]
 	},
 	{
 		"id": "marja",
 		"name": "Marja",
-		"image": "Marja.webp"
+		"image": "Marja.webp",
+		"roles": ["Warrior", "Mage"],
+		"lanes": ["Slayer", "Jungle"]
 	},
 	{
 		"id": "max",
 		"name": "Max",
-		"image": "Max.webp"
+		"image": "Max.webp",
+		"roles": ["Warrior", "Tank"],
+		"lanes": ["Slayer", "Jungle", "Roam"]
 	},
 	{
 		"id": "mganga",
 		"name": "Mganga",
-		"image": "Mganga.webp"
+		"image": "Mganga.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "mina",
 		"name": "Mina",
-		"image": "Mina.webp"
+		"image": "Mina.webp",
+		"roles": ["Tank", "Support"],
+		"lanes": ["Roam"]
 	},
 	{
 		"id": "ming",
 		"name": "Ming",
-		"image": "Ming.webp"
+		"image": "Ming.webp",
+		"roles": ["Support"],
+		"lanes": ["Roam"]
 	},
 	{
 		"id": "moren",
 		"name": "Moren",
-		"image": "Moren.webp"
+		"image": "Moren.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Dragon"]
 	},
 	{
 		"id": "murad",
 		"name": "Murad",
-		"image": "Murad.webp"
+		"image": "Murad.webp",
+		"roles": ["Warrior", "Assassin"],
+		"lanes": ["Slayer", "Jungle"]
 	},
 	{
 		"id": "nakroth",
 		"name": "Nakroth",
-		"image": "Nakroth.webp"
+		"image": "Nakroth.webp",
+		"roles": ["Assassin"],
+		"lanes": ["Jungle"]
 	},
 	{
 		"id": "natalya",
 		"name": "Natalya",
-		"image": "Natalya.webp"
+		"image": "Natalya.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "omega",
 		"name": "Omega",
-		"image": "Omega.webp"
+		"image": "Omega.webp",
+		"roles": ["Tank", "Support"],
+		"lanes": ["Roam"]
 	},
 	{
 		"id": "omen",
 		"name": "Omen",
-		"image": "Omen.webp"
+		"image": "Omen.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Slayer", "Roam"]
 	},
 	{
 		"id": "ormarr",
 		"name": "Ormarr",
-		"image": "Ormarr.webp"
+		"image": "Ormarr.webp",
+		"roles": ["Tank"],
+		"lanes": ["Roam"]
 	},
 	{
 		"id": "paine",
 		"name": "Paine",
-		"image": "Paine.webp"
+		"image": "Paine.webp",
+		"roles": ["Assassin"],
+		"lanes": ["Jungle"]
 	},
 	{
 		"id": "preyta",
 		"name": "Preyta",
-		"image": "Preyta.webp"
+		"image": "Preyta.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "qi",
 		"name": "Qi",
-		"image": "Qi.webp"
+		"image": "Qi.webp",
+		"roles": ["Warrior", "Assassin"],
+		"lanes": ["Slayer"]
 	},
 	{
 		"id": "quillen",
 		"name": "Quillen",
-		"image": "Quillen.webp"
+		"image": "Quillen.webp",
+		"roles": ["Assassin"],
+		"lanes": ["Jungle"]
 	},
 	{
 		"id": "raz",
 		"name": "Raz",
-		"image": "Raz.webp"
+		"image": "Raz.webp",
+		"roles": ["Assassin", "Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "richter",
 		"name": "Richter",
-		"image": "Richter.webp"
+		"image": "Richter.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Slayer", "Roam"]
 	},
 	{
 		"id": "rouie",
 		"name": "Rouie",
-		"image": "Rouie.webp"
+		"image": "Rouie.webp",
+		"roles": ["Mage", "Support"],
+		"lanes": ["Mid", "Roam"]
 	},
 	{
 		"id": "rourke",
 		"name": "Rourke",
-		"image": "Rourke.webp"
+		"image": "Rourke.webp",
+		"roles": ["Warrior", "Marksman"],
+		"lanes": ["Jungle"]
 	},
 	{
 		"id": "roxie",
 		"name": "Roxie",
-		"image": "Roxie.webp"
+		"image": "Roxie.webp",
+		"roles": ["Warrior", "Tank"],
+		"lanes": ["Roam", "Slayer"]
 	},
 	{
 		"id": "ryoma",
 		"name": "Ryoma",
-		"image": "Ryoma.webp"
+		"image": "Ryoma.webp",
+		"roles": ["Warrior", "Assassin"],
+		"lanes": ["Slayer", "Jungle"]
 	},
 	{
 		"id": "sephera",
 		"name": "Sephera",
-		"image": "Sephera.webp"
+		"image": "Sephera.webp",
+		"roles": ["Mage", "Support"],
+		"lanes": ["Mid", "Roam"]
 	},
 	{
 		"id": "sinestrea",
 		"name": "Sinestrea",
-		"image": "Sinestrea.webp"
+		"image": "Sinestrea.webp",
+		"roles": ["Assassin"],
+		"lanes": ["Jungle"]
 	},
 	{
 		"id": "skud",
 		"name": "Skud",
-		"image": "Skud.webp"
+		"image": "Skud.webp",
+		"roles": ["Warrior", "Tank"],
+		"lanes": ["Slayer"]
 	},
 	{
 		"id": "slimz",
 		"name": "Slimz",
-		"image": "Slimz.webp"
+		"image": "Slimz.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Dragon"]
 	},
 	{
 		"id": "stuart",
 		"name": "Stuart",
-		"image": "Stuart.webp"
+		"image": "Stuart.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Dragon"]
 	},
 	{
 		"id": "superman",
 		"name": "Superman",
-		"image": "Superman.webp"
+		"image": "Superman.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Slayer", "Roam"]
 	},
 	{
 		"id": "taara",
 		"name": "Taara",
-		"image": "Taara.webp"
+		"image": "Taara.webp",
+		"roles": ["Warrior", "Tank"],
+		"lanes": ["Slayer", "Jungle", "Roam"]
 	},
 	{
 		"id": "tachi",
 		"name": "Tachi",
-		"image": "Tachi.webp"
+		"image": "Tachi.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Jungle", "Slayer"]
 	},
 	{
 		"id": "teemee",
 		"name": "Teemee",
-		"image": "Teemee.webp"
+		"image": "Teemee.webp",
+		"roles": ["Tank", "Support"],
+		"lanes": ["Roam"]
 	},
 	{
 		"id": "telannas",
 		"name": "Tel'Annas",
-		"image": "Telannas.webp"
+		"image": "Telannas.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Dragon"]
 	},
 	{
 		"id": "terri",
 		"name": "Terri",
-		"image": "Terri.webp"
+		"image": "Terri.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Dragon"]
 	},
 	{
 		"id": "thane",
 		"name": "Thane",
-		"image": "Thane.webp"
+		"image": "Thane.webp",
+		"roles": ["Tank"],
+		"lanes": ["Roam"]
 	},
 	{
 		"id": "the_flash",
 		"name": "The Flash",
-		"image": "The_Flash.webp"
+		"image": "The_Flash.webp",
+		"roles": ["Assassin", "Mage"],
+		"lanes": ["Mid", "Slayer"]
 	},
 	{
 		"id": "thorne",
 		"name": "Thorne",
-		"image": "Thorne.webp"
+		"image": "Thorne.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Dragon"]
 	},
 	{
 		"id": "toro",
 		"name": "Toro",
-		"image": "Toro.webp"
+		"image": "Toro.webp",
+		"roles": ["Tank", "Support"],
+		"lanes": ["Roam"]
 	},
 	{
 		"id": "tulen",
 		"name": "Tulen",
-		"image": "Tulen.webp"
+		"image": "Tulen.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid", "Jungle"]
 	},
 	{
 		"id": "valhein",
 		"name": "Valhein",
-		"image": "Valhein.webp"
+		"image": "Valhein.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Dragon"]
 	},
 	{
 		"id": "veera",
 		"name": "Veera",
-		"image": "Veera.webp"
+		"image": "Veera.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "veres",
 		"name": "Veres",
-		"image": "Veres.webp"
+		"image": "Veres.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Slayer", "Jungle"]
 	},
 	{
 		"id": "violet",
 		"name": "Violet",
-		"image": "Violet.webp"
+		"image": "Violet.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Dragon"]
 	},
 	{
 		"id": "volkath",
 		"name": "Volkath",
-		"image": "Volkath.webp"
+		"image": "Volkath.webp",
+		"roles": ["Warrior", "Assassin"],
+		"lanes": ["Slayer", "Jungle"]
 	},
 	{
 		"id": "wiro",
 		"name": "Wiro",
-		"image": "Wiro.webp"
+		"image": "Wiro.webp",
+		"roles": ["Warrior", "Tank"],
+		"lanes": ["Roam", "Slayer"]
 	},
 	{
 		"id": "wisp",
 		"name": "Wisp",
-		"image": "Wisp.webp"
+		"image": "Wisp.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Dragon"]
 	},
 	{
 		"id": "wonderwoman",
 		"name": "Wonder Woman",
-		"image": "WonderWoman.webp"
+		"image": "WonderWoman.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Jungle", "Slayer", "Roam"]
 	},
 	{
 		"id": "wukong",
 		"name": "Wukong",
-		"image": "Wukong.webp"
+		"image": "Wukong.webp",
+		"roles": ["Warrior", "Assassin"],
+		"lanes": ["Jungle", "Slayer"]
 	},
 	{
 		"id": "xeniel",
 		"name": "Xeniel",
-		"image": "Xeniel.webp"
+		"image": "Xeniel.webp",
+		"roles": ["Tank", "Support"],
+		"lanes": ["Roam", "Slayer"]
 	},
 	{
 		"id": "yan",
 		"name": "Yan",
-		"image": "Yan.webp"
+		"image": "Yan.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Jungle", "Slayer"]
 	},
 	{
 		"id": "ybneth",
 		"name": "Y'Bneth",
-		"image": "Ybneth.webp"
+		"image": "Ybneth.webp",
+		"roles": ["Tank"],
+		"lanes": ["Roam"]
 	},
 	{
 		"id": "yena",
 		"name": "Yena",
-		"image": "Yena.webp"
+		"image": "Yena.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Slayer"]
 	},
 	{
 		"id": "yorn",
 		"name": "Yorn",
-		"image": "Yorn.webp"
+		"image": "Yorn.webp",
+		"roles": ["Marksman"],
+		"lanes": ["Dragon"]
 	},
 	{
 		"id": "yue",
 		"name": "Yue",
-		"image": "Yue.webp"
+		"image": "Yue.webp",
+		"roles": ["Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "zanis",
 		"name": "Zanis",
-		"image": "Zanis.webp"
+		"image": "Zanis.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Slayer", "Jungle"]
 	},
 	{
 		"id": "zata",
 		"name": "Zata",
-		"image": "Zata.webp"
+		"image": "Zata.webp",
+		"roles": ["Assassin", "Mage"],
+		"lanes": ["Mid"]
 	},
 	{
 		"id": "zephys",
 		"name": "Zephys",
-		"image": "Zephys.webp"
+		"image": "Zephys.webp",
+		"roles": ["Warrior", "Assassin"],
+		"lanes": ["Jungle"]
 	},
 	{
 		"id": "zill",
 		"name": "Zill",
-		"image": "Zill.webp"
+		"image": "Zill.webp",
+		"roles": ["Assassin", "Mage"],
+		"lanes": ["Jungle", "Slayer", "Mid"]
 	},
 	{
 		"id": "zip",
 		"name": "Zip",
-		"image": "Zip.webp"
+		"image": "Zip.webp",
+		"roles": ["Support"],
+		"lanes": ["Roam"]
 	},
 	{
 		"id": "zuka",
 		"name": "Zuka",
-		"image": "Zuka.webp"
+		"image": "Zuka.webp",
+		"roles": ["Warrior", "Assassin"],
+		"lanes": ["Jungle", "Slayer"]
 	}
 ]
