@@ -2,10 +2,10 @@
 	import type { Enchantment } from '../types/entities';
 
 	// Import Vite-managed category assets
-	import afataIcon from '$lib/assets/enchantments/Afata.png';
-	import humanIcon from '$lib/assets/enchantments/League-Of-Humans.png';
-	import lokheimIcon from '$lib/assets/enchantments/Lokheim.png';
-	import vedaIcon from '$lib/assets/enchantments/Veda.png';
+	import afataIcon from '$lib/assets/enchantments/Afata.webp';
+	import humanIcon from '$lib/assets/enchantments/League-Of-Humans.webp';
+	import lokheimIcon from '$lib/assets/enchantments/Lokheim.webp';
+	import vedaIcon from '$lib/assets/enchantments/Veda.webp';
 
 	interface Props {
 		enchantments: Enchantment[];
