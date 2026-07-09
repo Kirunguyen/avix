@@ -2,6 +2,8 @@ export interface Hero {
 	id: string;
 	name: string;
 	image: string;
+	roles: Array<string>;
+	lanes: Array<string>;
 }
 
 export interface Item {
