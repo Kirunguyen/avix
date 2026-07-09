@@ -15,7 +15,6 @@ export class BuildState {
   purpleArcana = $state<Arcana[]>([]);
   tealArcana = $state<Arcana[]>([]);
 
-  // Custom configuration fields moved to global state
   buildName = $state<string>('');
   authorName = $state<string>('');
 
@@ -81,6 +80,19 @@ export class BuildState {
       const idx = this.tealArcana.findIndex((a) => a.id === arcanaId);
       if (idx !== -1) this.tealArcana = this.tealArcana.filter((_, i) => i !== idx);
     }
+  }
+
+  // Dynamic Clearance Methods
+  clearAllArcanas() {
+    this.redArcana = [];
+    this.purpleArcana = [];
+    this.tealArcana = [];
+  }
+
+  clearArcanaColor(color: 'red' | 'purple' | 'teal') {
+    if (color === 'red') this.redArcana = [];
+    else if (color === 'purple') this.purpleArcana = [];
+    else if (color === 'teal') this.tealArcana = [];
   }
 }
 

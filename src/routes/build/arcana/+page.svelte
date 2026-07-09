@@ -1,22 +1,26 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { buildState } from '$lib/state.svelte';
 	import ArcanaSelector from '$lib/components/ArcanaSelector.svelte';
 	import arcanaListRaw from '$lib/data/arcanas.json';
-	import { groupArcana } from '$lib/utils/arcana';
+	import { groupArcana, calculateTotalArcanaStats } from '$lib/utils/arcana';
 	import type { Arcana } from '$lib/types/entities';
 
 	const arcanaList = arcanaListRaw as Arcana[];
 
-	const groupedRed = $derived(groupArcana(buildState.redArcana));
-	const groupedPurple = $derived(groupArcana(buildState.purpleArcana));
-	const groupedTeal = $derived(groupArcana(buildState.tealArcana));
+	// Svelte 5 reactive calculations
+	const allSelected = $derived([
+		...buildState.redArcana,
+		...buildState.purpleArcana,
+		...buildState.tealArcana
+	]);
+	const groupedUnique = $derived(groupArcana(allSelected));
+	const accumulatedStats = $derived(calculateTotalArcanaStats(allSelected));
 </script>
 
 <div class="editor-wrapper">
 	<div class="editor-header">
-		<button class="back-btn" onclick={() => goto(resolve('/'))}>← Done</button>
+		<a class="back-btn" href={resolve('/')}>← Done</a>
 		<h1 class="editor-title">Configure Arcana</h1>
 	</div>
 
@@ -24,74 +28,48 @@
 		<ArcanaSelector arcanas={arcanaList} onSelect={(arcana) => buildState.addArcana(arcana)} />
 	</div>
 
+	<!-- HIGHLY COMPACT RESPONSIVE BOTTOM DRAWER -->
 	<div class="lightweight-preview">
-		<div class="preview-info-col">
-			<span class="preview-label">Equipped Arcana:</span>
-			<span class="count-text">
-				{buildState.redArcana.length +
-					buildState.purpleArcana.length +
-					buildState.tealArcana.length} / 30
-			</span>
-		</div>
-
-		<div class="columns-grid">
-			<!-- Red Section -->
-			<div class="column red-col">
-				<div class="col-title">Red ({buildState.redArcana.length}/10)</div>
-				<div class="pills-row">
-					{#each groupedRed as group (group.arcana.id)}
-						<button
-							class="arcana-pill"
-							onclick={() => buildState.removeArcana('red', group.arcana.id)}
-							title="Remove 1"
-						>
-							<img src="/arcanas/{group.arcana.image}" alt="" />
-							<span class="badge">x{group.count}</span>
-						</button>
-					{:else}
-						<span class="empty">Empty</span>
-					{/each}
-				</div>
+		<div class="drawer-row upper-row">
+			<div class="preview-info-col">
+				<span class="preview-label">Equipped Arcana</span>
+				<span class="count-text">{allSelected.length} / 30</span>
 			</div>
 
-			<!-- Purple Section -->
-			<div class="column purple-col">
-				<div class="col-title">Purple ({buildState.purpleArcana.length}/10)</div>
-				<div class="pills-row">
-					{#each groupedPurple as group (group.arcana.id)}
-						<button
-							class="arcana-pill"
-							onclick={() => buildState.removeArcana('purple', group.arcana.id)}
-							title="Remove 1"
-						>
-							<img src="/arcanas/{group.arcana.image}" alt="" />
-							<span class="badge">x{group.count}</span>
-						</button>
-					{:else}
-						<span class="empty">Empty</span>
-					{/each}
-				</div>
-			</div>
-
-			<!-- Teal Section -->
-			<div class="column teal-col">
-				<div class="col-title">Teal ({buildState.tealArcana.length}/10)</div>
-				<div class="pills-row">
-					{#each groupedTeal as group (group.arcana.id)}
-						<button
-							class="arcana-pill"
-							onclick={() => buildState.removeArcana('teal', group.arcana.id)}
-							title="Remove 1"
-						>
-							<img src="/arcanas/{group.arcana.image}" alt="" />
-							<span class="badge">x{group.count}</span>
-						</button>
-					{:else}
-						<span class="empty">Empty</span>
-					{/each}
-				</div>
+			<!-- Compact Dot Row Summary containing category displays -->
+			<div class="compact-gallery-scroll">
+				{#each groupedUnique as group (group.arcana.id)}
+					<button
+						class="compact-pill"
+						onclick={() => buildState.removeArcana(group.arcana.color, group.arcana.id)}
+						title="Remove 1"
+					>
+						<span class="color-dot {group.arcana.color}"></span>
+						<span class="pill-name">{group.arcana.displayName}</span>
+						<span class="pill-badge">x{group.count}</span>
+						<span class="pill-clear">×</span>
+					</button>
+				{:else}
+					<span class="empty-state">No arcanas equipped. Tap items above to configure.</span>
+				{/each}
 			</div>
 		</div>
+
+		{#if accumulatedStats.length > 0}
+			<hr class="drawer-divider" />
+			<!-- Integrated Accumulated Stats block -->
+			<div class="stats-dashboard">
+				<span class="preview-label">Active Stats Bonus</span>
+				<div class="stats-grid">
+					{#each accumulatedStats as stat (stat.key)}
+						<div class="stat-pill">
+							<span class="stat-label">{stat.key}</span>
+							<span class="stat-value">+{stat.value}</span>
+						</div>
+					{/each}
+				</div>
+			</div>
+		{/if}
 	</div>
 </div>
 
@@ -101,6 +79,7 @@
 		flex-direction: column;
 		height: 100vh;
 		background-color: #050505;
+		overflow: hidden;
 	}
 
 	.editor-header {
@@ -108,7 +87,7 @@
 		align-items: center;
 		gap: 1.5rem;
 		background-color: #0b0b0b;
-		padding: 1rem 2rem;
+		padding: 0.85rem 1.25rem;
 		border-bottom: 1px solid #1a1a1a;
 	}
 
@@ -116,12 +95,16 @@
 		background-color: #1a1a1a;
 		border: 1px solid #333;
 		color: #ccc;
-		padding: 0.45rem 1rem;
+		padding: 0.4rem 0.85rem;
 		border-radius: 6px;
 		font-weight: 700;
-		font-size: 0.85rem;
+		font-size: 0.8rem;
 		cursor: pointer;
+		text-decoration: none;
+		display: inline-flex;
+		align-items: center;
 		transition: all 0.15s;
+		outline: none;
 	}
 
 	.back-btn:hover {
@@ -131,7 +114,7 @@
 	}
 
 	.editor-title {
-		font-size: 1.15rem;
+		font-size: 1rem;
 		font-weight: bold;
 		color: #fff;
 		margin: 0;
@@ -140,33 +123,47 @@
 	.editor-main-panel {
 		flex: 1;
 		overflow-y: auto;
-		padding: 2rem;
+		padding: 1rem;
+		box-sizing: border-box;
 	}
 
+	/* Scale-Optimized Compact Bottom Drawer Layout */
 	.lightweight-preview {
 		background-color: #0b0b0b;
 		border-top: 1px solid #1a1a1a;
-		padding: 1.25rem 2rem;
+		padding: 0.85rem 1.25rem;
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: 0.65rem;
+		box-sizing: border-box;
+		max-height: 35vh;
+		overflow-y: auto;
 	}
 
-	@media (min-width: 900px) {
-		.lightweight-preview {
+	.drawer-row {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	@media (min-width: 768px) {
+		.upper-row {
 			flex-direction: row;
-			gap: 3rem;
+			align-items: center;
+			justify-content: space-between;
+			gap: 2rem;
 		}
 	}
 
 	.preview-info-col {
 		display: flex;
-		flex-direction: column;
-		gap: 0.35rem;
+		align-items: baseline;
+		gap: 0.5rem;
+		flex-shrink: 0;
 	}
 
 	.preview-label {
-		font-size: 0.75rem;
+		font-size: 0.65rem;
 		text-transform: uppercase;
 		color: #555;
 		font-weight: bold;
@@ -174,88 +171,122 @@
 	}
 
 	.count-text {
-		font-size: 1.15rem;
-		font-weight: bold;
+		font-size: 1rem;
+		font-weight: 800;
 		color: #fff;
 	}
 
-	.columns-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 1rem;
-		flex: 1;
-	}
-
-	.column {
-		background-color: #121212;
-		border-radius: 8px;
-		padding: 0.5rem;
-		border-left: 3px solid #333;
-	}
-
-	.red-col {
-		border-left-color: #ef4444;
-	}
-	.purple-col {
-		border-left-color: #a855f7;
-	}
-	.teal-col {
-		border-left-color: #14b8a6;
-	}
-
-	.col-title {
-		font-size: 0.65rem;
-		color: #777;
-		font-weight: bold;
-		text-transform: uppercase;
-		margin-bottom: 0.4rem;
-	}
-
-	.pills-row {
+	/* Horizontal sliding list of active arcana dots */
+	.compact-gallery-scroll {
 		display: flex;
-		flex-wrap: wrap;
-		gap: 0.35rem;
+		gap: 0.4rem;
+		overflow-x: auto;
+		scrollbar-width: none;
+		width: 100%;
+		padding-bottom: 0.15rem;
 	}
 
-	.arcana-pill {
-		position: relative;
-		width: 32px;
-		height: 32px;
-		background: #0d0d0d;
-		border: 1px solid #222;
-		border-radius: 4px;
-		cursor: pointer;
-		padding: 0;
-		display: flex;
+	.compact-gallery-scroll::-webkit-scrollbar {
+		display: none;
+	}
+
+	.compact-pill {
+		display: inline-flex;
 		align-items: center;
-		justify-content: center;
+		gap: 0.4rem;
+		background-color: #121212;
+		border: 1px solid #222;
+		border-radius: 20px;
+		padding: 0.25rem 0.6rem;
+		cursor: pointer;
+		flex-shrink: 0;
+		outline: none;
 	}
 
-	.arcana-pill:hover {
+	.compact-pill:hover {
 		border-color: #ef4444;
 	}
 
-	.arcana-pill img {
-		width: 80%;
-		height: 80%;
-		object-fit: contain;
+	.color-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
 	}
 
-	.badge {
-		position: absolute;
-		bottom: -2px;
-		right: -4px;
-		background-color: #000;
-		color: #fff;
-		font-size: 0.55rem;
-		padding: 0px 3px;
-		border-radius: 3px;
-		border: 1px solid #333;
+	.color-dot.red {
+		background-color: #ef4444;
+	}
+	.color-dot.purple {
+		background-color: #a855f7;
+	}
+	.color-dot.teal {
+		background-color: #14b8a6;
+	}
+
+	.pill-name {
+		font-size: 0.7rem;
+		color: #bbb;
+		font-weight: 600;
+	}
+
+	.pill-badge {
+		font-size: 0.7rem;
+		color: #3b82f6;
 		font-weight: bold;
 	}
 
-	.empty {
-		font-size: 0.65rem;
+	.pill-clear {
+		color: #555;
+		font-weight: bold;
+		font-size: 0.75rem;
+		margin-left: 0.15rem;
+	}
+
+	.compact-pill:hover .pill-clear {
+		color: #ef4444;
+	}
+
+	.drawer-divider {
+		border: 0;
+		height: 1px;
+		background: #1a1a1a;
+		margin: 0;
+	}
+
+	/* Integrated Statistics Panel */
+	.stats-dashboard {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+		gap: 0.35rem;
+	}
+
+	.stat-pill {
+		display: flex;
+		justify-content: space-between;
+		background-color: #121212;
+		border: 1px solid #1a1a1a;
+		border-radius: 6px;
+		padding: 0.3rem 0.5rem;
+		font-size: 0.7rem;
+	}
+
+	.stat-label {
+		color: #777;
+	}
+
+	.stat-value {
+		color: #10b981;
+		font-weight: bold;
+	}
+
+	.empty-state {
+		font-size: 0.7rem;
 		color: #444;
 		font-style: italic;
 	}

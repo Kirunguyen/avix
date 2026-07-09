@@ -155,7 +155,7 @@
 		"color": "purple",
 		"stats": {
 			"maxHp": 60,
-			"hp5s": 4.5
+			"heal": 4.5
 		},
 		"displayName": "HP/Heal"
 	},
@@ -188,7 +188,7 @@
 		"color": "purple",
 		"stats": {
 			"maxHp": 45,
-			"hp5s": 5.2,
+			"heal": 5.2,
 			"movementSpeed": 0.4
 		},
 		"displayName": "HP/Heal/MVSP"
