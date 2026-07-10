@@ -29,6 +29,26 @@
 
 	let exportElement = $state<HTMLElement | null>(null);
 
+	// Mobile viewport height fix
+	let vh = $state(0);
+
+	$effect(() => {
+		// Set initial viewport height
+		vh = window.innerHeight * 0.01;
+
+		const handleResize = () => {
+			vh = window.innerHeight * 0.01;
+		};
+
+		window.addEventListener('resize', handleResize);
+		window.addEventListener('orientationchange', handleResize);
+
+		return () => {
+			window.removeEventListener('resize', handleResize);
+			window.removeEventListener('orientationchange', handleResize);
+		};
+	});
+
 	// Defensive runtime image extension replacement
 	function toWebp(path: string): string {
 		if (!path) return '';
@@ -98,7 +118,7 @@
 	});
 </script>
 
-<div class="build-preview-wrapper">
+<div class="build-preview-wrapper" style="height: calc({vh}px * 100);">
 	<!-- READ-ONLY LIVE VISUAL PREVIEW WORKSPACE -->
 	<div class="right-panel-container">
 		<!-- Top Hero Banner -->
@@ -265,7 +285,10 @@
 									{/if}
 								</div>
 							</div>
-							<div class="enchantment-connector" style="background-color: transparent;"></div>
+							<div
+								class="enchantment-connector"
+								style="background-color: {getGroupColor(2)};"
+							></div>
 							<div class="enchantment-slot-wrapper">
 								<div
 									class="card-enchantment-slot category-slot"
@@ -554,7 +577,10 @@
 										{/if}
 									</div>
 								</div>
-								<div class="enchantment-connector" style="background-color: transparent;"></div>
+								<div
+									class="enchantment-connector"
+									style="background-color: {getGroupColor(2)};"
+								></div>
 								<div class="enchantment-slot-wrapper">
 									<div
 										class="card-enchantment-slot category-slot"
@@ -694,6 +720,8 @@
 		display: flex;
 		flex-direction: column;
 		height: 100%;
+		height: 100dvh; /* Fallback for browsers that support dvh */
+		overflow: hidden;
 	}
 
 	.right-panel-container {
@@ -708,6 +736,9 @@
 		position: relative;
 		height: 100%;
 		box-sizing: border-box;
+		overflow-y: auto;
+		overflow-x: hidden;
+		-webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 	}
 
 	/* Responsive tweaks for web viewing */
@@ -716,6 +747,7 @@
 		border-radius: 0px;
 		padding: 1.25rem !important;
 		border-bottom: 1px solid #1a1a1a !important;
+		flex-shrink: 0;
 	}
 
 	.relative-preview-banner .card-build-title {
@@ -725,6 +757,9 @@
 	.relative-preview-summary {
 		padding: 0 !important;
 		gap: 1rem;
+		flex: 1;
+		overflow-y: auto;
+		min-height: 0;
 	}
 
 	.placeholder-hero {
@@ -752,6 +787,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
+		flex-shrink: 0;
 	}
 
 	.card-section-label {
@@ -1324,5 +1360,69 @@
 		letter-spacing: 0.15em;
 		text-transform: uppercase;
 		pointer-events: none;
+	}
+
+	/* Mobile responsive styles */
+	@media (max-width: 768px) {
+		.relative-preview-banner {
+			height: 150px !important;
+			padding: 1rem !important;
+		}
+
+		.relative-preview-banner .card-build-title {
+			font-size: 1.25rem !important;
+		}
+
+		.card-hero-name {
+			font-size: 1rem;
+		}
+
+		.card-build-title {
+			font-size: 1.5rem;
+		}
+
+		.right-panel-container {
+			padding: 0.75rem;
+			gap: 0.75rem;
+		}
+
+		.card-section-label {
+			font-size: 0.6rem;
+		}
+
+		.enchantment-two-lines-grid {
+			width: 60%;
+		}
+
+		.card-talent-subgroup {
+			width: 35%;
+		}
+
+		.vertical-panel-divider {
+			height: 50px;
+		}
+
+		.card-stats-fullwidth-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 480px) {
+		.relative-preview-banner {
+			height: 120px !important;
+			padding: 0.75rem !important;
+		}
+
+		.relative-preview-banner .card-build-title {
+			font-size: 1rem !important;
+		}
+
+		.enchantment-two-lines-grid {
+			width: 55%;
+		}
+
+		.card-talent-subgroup {
+			width: 40%;
+		}
 	}
 </style>
