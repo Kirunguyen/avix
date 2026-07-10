@@ -51,8 +51,8 @@ export interface ArcanaStats {
 export interface Arcana {
 	id: string;
 	name: string;
-	image: string;
 	color: 'red' | 'purple' | 'teal';
+	image: string;
 	stats: ArcanaStats;
 	displayName: string;
 }

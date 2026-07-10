@@ -18,6 +18,11 @@ export class BuildState {
   buildName = $state<string>('');
   authorName = $state<string>('');
 
+  // Symmetrical Enchantment category selections
+  enchantmentMainCat = $state<string>('');
+  enchantmentSubCat1 = $state<string>('');
+  enchantmentSubCat2 = $state<string>('');
+
   selectHero(hero: Hero) {
     this.selectedHero = hero;
   }
