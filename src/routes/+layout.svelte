@@ -5,6 +5,7 @@
 <svelte:head>
 	<title>AVIX — MOBA Build Planner</title>
 	<meta name="theme-color" content="#050505" />
+	<link rel="manifest" href="/manifest.webmanifest" />
 </svelte:head>
 
 <div class="app-theme-base">

@@ -7,6 +7,9 @@ export default defineConfig({
 		sveltekit(),
 		SvelteKitPWA({
 			registerType: 'autoUpdate',
+			devOptions: {
+				enabled: true
+			},
 			manifest: {
 				name: 'AVIX',
 				short_name: 'AVIX',
