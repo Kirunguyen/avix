@@ -18,6 +18,11 @@ export class BuildState {
   buildName = $state<string>('');
   authorName = $state<string>('');
 
+  // Symmetrical Enchantment category selections
+  enchantmentMainCat = $state<string>('');
+  enchantmentSubCat1 = $state<string>('');
+  enchantmentSubCat2 = $state<string>('');
+
   selectHero(hero: Hero) {
     this.selectedHero = hero;
   }
@@ -55,6 +60,14 @@ export class BuildState {
     this.selectedEnchantments[index] = null;
   }
 
+  // Resets both the slots and active category branches
+  clearAllEnchantments() {
+    this.selectedEnchantments = [null, null, null, null, null];
+    this.enchantmentMainCat = '';
+    this.enchantmentSubCat1 = '';
+    this.enchantmentSubCat2 = '';
+  }
+
   selectTalent(talent: Talent) {
     this.selectedTalent = talent;
   }
@@ -79,6 +92,16 @@ export class BuildState {
     } else if (color === 'teal') {
       const idx = this.tealArcana.findIndex((a) => a.id === arcanaId);
       if (idx !== -1) this.tealArcana = this.tealArcana.filter((_, i) => i !== idx);
+    }
+  }
+
+  removeArcanaIndex(color: 'red' | 'purple' | 'teal', index: number) {
+    if (color === 'red') {
+      this.redArcana = this.redArcana.filter((_, i) => i !== index);
+    } else if (color === 'purple') {
+      this.purpleArcana = this.purpleArcana.filter((_, i) => i !== index);
+    } else if (color === 'teal') {
+      this.tealArcana = this.tealArcana.filter((_, i) => i !== index);
     }
   }
 

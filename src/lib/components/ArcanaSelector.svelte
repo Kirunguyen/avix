@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Arcana } from '../types/entities';
 	import { buildState } from '$lib/state.svelte';
+	import ArcanaSection from '../arcana/ArcanaSection.svelte';
 
 	interface Props {
 		arcanas: Arcana[];
@@ -9,320 +10,212 @@
 
 	let { arcanas, onSelect }: Props = $props();
 
-	// Active configuration states
-	let activeColor = $state<'all' | 'red' | 'purple' | 'teal'>('all');
-	let filterMenuOpen = $state<boolean>(false);
-	let actionMenuOpen = $state<boolean>(false);
-
-	// Custom color options metadata
-	const colors = [
-		{ id: 'all', display: 'All Colors', color: '#3b82f6' },
-		{ id: 'red', display: 'Red Arcanas', color: '#ef4444' },
-		{ id: 'purple', display: 'Purple Arcanas', color: '#a855f7' },
-		{ id: 'teal', display: 'Teal Arcanas', color: '#14b8a6' }
-	] as const;
-
-	const currentColorObj = $derived(colors.find((c) => c.id === activeColor) || colors[0]);
-
-	const filteredArcanas = $derived(
-		activeColor === 'all' ? arcanas : arcanas.filter((a) => a.color === activeColor)
-	);
-
-	function selectColor(colorId: 'all' | 'red' | 'purple' | 'teal') {
-		activeColor = colorId;
-		filterMenuOpen = false;
+	// Defensive runtime image extension replacement helper
+	function toWebp(path: string): string {
+		if (!path) return '';
+		return path.replace(/\.png$/i, '.webp').replace(/\.jpg$/i, '.webp');
 	}
 
-	function handleAction(type: 'clear-all' | 'clear-red' | 'clear-purple' | 'clear-teal') {
-		if (type === 'clear-all') {
-			buildState.redArcana = [];
-			buildState.purpleArcana = [];
-			buildState.tealArcana = [];
+	// Helper to count equipped arcanas of a specific type
+	function getEquippedCount(arcanaId: string, color: 'red' | 'purple' | 'teal'): number {
+		if (color === 'red') {
+			return buildState.redArcana.filter((a) => a.id === arcanaId).length;
+		} else if (color === 'purple') {
+			return buildState.purpleArcana.filter((a) => a.id === arcanaId).length;
 		} else {
-			const color = type.split('-')[1] as 'red' | 'purple' | 'teal';
-			buildState.clearArcanaColor(color);
+			return buildState.tealArcana.filter((a) => a.id === arcanaId).length;
 		}
-		actionMenuOpen = false;
 	}
 </script>
 
-<div class="arcana-selector-wrapper">
-	<!-- Twin Menu Filter Row -->
-	<div class="filters-bar">
-		<!-- Dropdown 1: Active Color Filters -->
-		<div class="select-dropdown-container">
-			<button
-				class="dropdown-trigger"
-				onclick={() => {
-					filterMenuOpen = !filterMenuOpen;
-					actionMenuOpen = false;
-				}}
-				class:active={filterMenuOpen}
-			>
-				<div class="trigger-label">
-					<span class="color-indicator" style="background-color: {currentColorObj.color}"></span>
-					<span>{currentColorObj.display}</span>
-				</div>
-				<span class="chevron">{filterMenuOpen ? '▲' : '▼'}</span>
-			</button>
-
-			{#if filterMenuOpen}
-				<div class="dropdown-menu">
-					{#each colors as c (c.id)}
-						<button
-							class="menu-item"
-							class:selected={activeColor === c.id}
-							onclick={() => selectColor(c.id)}
-						>
-							<span class="color-indicator" style="background-color: {c.color}"></span>
-							<span>{c.display}</span>
-						</button>
-					{/each}
-				</div>
-			{/if}
-		</div>
-
-		<!-- Dropdown 2: Fast Clearance Actions -->
-		<div class="select-dropdown-container">
-			<button
-				class="dropdown-trigger action-trigger"
-				onclick={() => {
-					actionMenuOpen = !actionMenuOpen;
-					filterMenuOpen = false;
-				}}
-				class:active={actionMenuOpen}
-			>
-				<span>🧹 Clear Options</span>
-				<span class="chevron">{actionMenuOpen ? '▲' : '▼'}</span>
-			</button>
-
-			{#if actionMenuOpen}
-				<div class="dropdown-menu">
-					<button class="menu-item text-danger" onclick={() => handleAction('clear-all')}>
-						<span>[X] Clear All Arcanas</span>
-					</button>
-					<button class="menu-item" onclick={() => handleAction('clear-red')}>
-						<span class="color-indicator" style="background-color: #ef4444"></span>
-						<span>Clear Red Arcanas</span>
-					</button>
-					<button class="menu-item" onclick={() => handleAction('clear-purple')}>
-						<span class="color-indicator" style="background-color: #a855f7"></span>
-						<span>Clear Purple Arcanas</span>
-					</button>
-					<button class="menu-item" onclick={() => handleAction('clear-teal')}>
-						<span class="color-indicator" style="background-color: #14b8a6"></span>
-						<span>Clear Teal Arcanas</span>
-					</button>
-				</div>
-			{/if}
-		</div>
+<div class="arcana-split-workspace">
+	<!-- Part 1: Symmetrical Vertical Snake Columns (60% width) -->
+	<div class="pyramid-map-panel flex-column-blocks">
+		<ArcanaSection
+			color="red"
+			equipped={buildState.redArcana}
+			onRemove={() => (buildState.redArcana = buildState.redArcana.slice(0, -1))}
+		/>
+		<ArcanaSection
+			color="purple"
+			equipped={buildState.purpleArcana}
+			onRemove={() => (buildState.purpleArcana = buildState.purpleArcana.slice(0, -1))}
+		/>
+		<ArcanaSection
+			color="teal"
+			equipped={buildState.tealArcana}
+			onRemove={() => (buildState.tealArcana = buildState.tealArcana.slice(0, -1))}
+		/>
 	</div>
 
-	<!-- Arcana Grid Catalog -->
-	<div class="icon-grid">
-		{#each filteredArcanas as arcana (arcana.id)}
-			<button
-				class="arcana-card {arcana.color}"
-				onclick={() => onSelect(arcana)}
-				title={arcana.name}
-			>
-				<img src="/arcanas/{arcana.image}" alt={arcana.name} loading="lazy" />
-				<span class="arcana-name">{arcana.name}</span>
-				<span class="arcana-displayName">{arcana.displayName}</span>
-			</button>
-		{/each}
+	<!-- Part 2: Selection Catalog Panel with Dynamic Count badges (40% width) -->
+	<div class="selections-catalog-panel">
+		<span class="panel-section-label">Active Selections</span>
+		<div class="catalog-scroll-view">
+			{#each arcanas as arcana (arcana.id)}
+				<button
+					class="arcana-choice-card {arcana.color}"
+					onclick={() => onSelect(arcana)}
+					title={arcana.name}
+				>
+					<div class="arcana-img-container">
+						<img src="/arcanas/{toWebp(arcana.image)}" alt={arcana.name} loading="lazy" />
+						{#if getEquippedCount(arcana.id, arcana.color) > 0}
+							<span class="equipped-badge">x{getEquippedCount(arcana.id, arcana.color)}</span>
+						{/if}
+					</div>
+					<div class="arcana-meta">
+						<span class="arcana-choice-name">{arcana.name}</span>
+						<span class="arcana-choice-displayName">{arcana.displayName}</span>
+					</div>
+				</button>
+			{:else}
+				<div class="empty-state">No matching arcanas.</div>
+			{/each}
+		</div>
 	</div>
 </div>
 
 <style>
-	.arcana-selector-wrapper {
+	.arcana-split-workspace {
+		display: grid;
+		grid-template-columns: 5.8fr 4.2fr;
+		gap: 1.25rem;
+		height: 100%;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.panel-section-label {
+		font-size: 0.65rem;
+		text-transform: uppercase;
+		color: #555;
+		font-weight: 800;
+		letter-spacing: 0.1em;
+		margin-bottom: 0.5rem;
+		display: block;
+	}
+
+	/* Part 1: Symmetrical Vertical Snake columns container */
+	.pyramid-map-panel.flex-column-blocks {
+		background-color: #0c0d0d;
+		border: 1px solid #1a1a1a;
+		border-radius: 12px;
+		padding: 1rem;
 		display: flex;
 		flex-direction: column;
-		gap: 1.25rem;
+		gap: 1rem;
+		justify-content: space-between;
+		box-sizing: border-box;
+		height: 100%;
 	}
 
-	/* Double Dropdown Layout Row */
-	.filters-bar {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 0.5rem;
-		background-color: #0b0b0b;
-		border: 1px solid #1f1f1f;
+	/* Part 2: Selection Catalog Panel */
+	.selections-catalog-panel {
+		background-color: #0c0d0d;
+		border: 1px solid #1a1a1a;
 		border-radius: 12px;
-		padding: 0.75rem;
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		box-sizing: border-box;
+		overflow: hidden;
 	}
 
-	@media (min-width: 600px) {
-		.filters-bar {
-			grid-template-columns: 1.2fr 0.8fr;
-			gap: 1rem;
-		}
+	.catalog-scroll-view {
+		flex: 1;
+		overflow-y: auto;
+		margin-top: 0.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
 	}
 
-	.select-dropdown-container {
-		position: relative;
-		width: 100%;
-	}
-
-	.dropdown-trigger {
-		width: 100%;
+	.arcana-choice-card {
 		background-color: #121212;
 		border: 1px solid #222;
 		border-radius: 8px;
-		color: #e2e8f0;
-		padding: 0.55rem 0.85rem;
-		font-size: 0.8rem;
-		font-weight: 600;
+		padding: 0.35rem 0.6rem;
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
 		cursor: pointer;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		outline: none;
-		box-sizing: border-box;
-	}
-
-	.dropdown-trigger:hover,
-	.dropdown-trigger.active {
-		border-color: #2563eb;
-		background-color: #141414;
-	}
-
-	.action-trigger:hover,
-	.action-trigger.active {
-		border-color: #ef4444;
-	}
-
-	.trigger-label {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-	}
-
-	.color-indicator {
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		display: inline-block;
-	}
-
-	.chevron {
-		font-size: 0.6rem;
-		color: #555;
-	}
-
-	/* Options Menu */
-	.dropdown-menu {
-		position: absolute;
-		top: 100%;
-		left: 0;
-		right: 0;
-		margin-top: 0.25rem;
-		background-color: #0d0d0d;
-		border: 1px solid #333;
-		border-radius: 8px;
-		box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-		z-index: 100;
-		padding: 0.25rem;
-	}
-
-	.menu-item {
-		width: 100%;
-		background: none;
-		border: none;
-		border-radius: 6px;
-		color: #94a3b8;
-		padding: 0.45rem 0.75rem;
-		cursor: pointer;
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-size: 0.75rem;
-		font-weight: 600;
+		transition: all 0.12s ease-in-out;
 		text-align: left;
-		transition: all 0.15s;
-		outline: none;
 	}
 
-	.menu-item:hover {
-		background-color: #1e293b;
-		color: #fff;
+	.arcana-choice-card:hover {
+		background-color: #161616;
 	}
 
-	.menu-item.selected {
-		background-color: rgba(37, 99, 235, 0.15);
-		color: #3b82f6;
-	}
-
-	.text-danger {
-		color: #f87171 !important;
-	}
-
-	.text-danger:hover {
-		background-color: #450a0a !important;
-		color: #fff !important;
-	}
-
-	/* Catalog Grid Layout */
-	.icon-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-		gap: 0.5rem;
-		padding: 0.25rem;
-	}
-
-	.arcana-card {
-		background: #141414;
-		border: 1px solid #222;
-		border-radius: 8px;
-		padding: 0.4rem 0.2rem;
-		cursor: pointer;
-		transition: all 0.1s;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: space-between;
-		min-height: 96px;
-		box-sizing: border-box;
-	}
-
-	.arcana-card:hover {
-		transform: translateY(-1px);
-	}
-
-	.arcana-card.red:hover {
+	.arcana-choice-card.red:hover {
 		border-color: #ef4444;
 	}
-	.arcana-card.purple:hover {
+	.arcana-choice-card.purple:hover {
 		border-color: #a855f7;
 	}
-	.arcana-card.teal:hover {
+	.arcana-choice-card.teal:hover {
 		border-color: #14b8a6;
 	}
 
-	.arcana-card img {
+	.arcana-img-container {
+		position: relative;
 		width: 32px;
 		height: 32px;
+		flex-shrink: 0;
+	}
+
+	.arcana-img-container img {
+		width: 100%;
+		height: 100%;
 		object-fit: contain;
 	}
 
-	.arcana-name {
-		font-size: 0.65rem;
-		color: #eee;
+	/* Dynamic equipped counter badge */
+	.equipped-badge {
+		position: absolute;
+		bottom: -2px;
+		right: -4px;
+		background-color: #2563eb;
+		color: #fff;
+		font-size: 0.55rem;
+		padding: 0px 3px;
+		border-radius: 3px;
+		border: 1px solid #000;
+		font-weight: bold;
+	}
+
+	.arcana-meta {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+	}
+
+	.arcana-choice-name {
+		font-size: 0.75rem;
 		font-weight: 700;
-		text-align: center;
+		color: #fff;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		width: 100%;
 	}
 
-	.arcana-displayName {
-		font-size: 0.55rem;
-		color: #666;
-		text-align: center;
+	.arcana-choice-displayName {
+		font-size: 0.6rem;
+		color: #64748b;
+		margin-top: 0.1rem;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		width: 100%;
+	}
+
+	.empty-state {
+		font-size: 0.75rem;
+		color: #444;
+		font-style: italic;
+		text-align: center;
+		margin-top: 4rem;
 	}
 </style>

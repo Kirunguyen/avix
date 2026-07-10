@@ -1,20 +1,18 @@
 <script lang="ts">
 	import { buildState } from '$lib/state.svelte';
 	import { groupArcana, calculateTotalArcanaStats } from '../utils/arcana';
-
-	// Import Vite-managed category assets
+	import { toPng } from 'html-to-image';
 	import afataIcon from '$lib/assets/enchantments/Afata.webp';
 	import humanIcon from '$lib/assets/enchantments/League-Of-Humans.webp';
 	import lokheimIcon from '$lib/assets/enchantments/Lokheim.webp';
 	import vedaIcon from '$lib/assets/enchantments/Veda.webp';
-
 	interface Props {
 		downloadTrigger?: () => Promise<void>;
 	}
 
 	let { downloadTrigger = $bindable() }: Props = $props();
 
-	// Derived calculations directly from global state
+	// Read-only calculations directly from global state
 	const allSelectedArcanas = $derived([
 		...buildState.redArcana,
 		...buildState.purpleArcana,
@@ -31,7 +29,33 @@
 
 	let exportElement = $state<HTMLElement | null>(null);
 
-	// Category configuration lookup helper
+	// Mobile viewport height fix
+	let vh = $state(0);
+
+	$effect(() => {
+		// Set initial viewport height
+		vh = window.innerHeight * 0.01;
+
+		const handleResize = () => {
+			vh = window.innerHeight * 0.01;
+		};
+
+		window.addEventListener('resize', handleResize);
+		window.addEventListener('orientationchange', handleResize);
+
+		return () => {
+			window.removeEventListener('resize', handleResize);
+			window.removeEventListener('orientationchange', handleResize);
+		};
+	});
+
+	// Defensive runtime image extension replacement
+	function toWebp(path: string): string {
+		if (!path) return '';
+		return path.replace(/\.png$/i, '.webp').replace(/\.jpg$/i, '.webp');
+	}
+
+	// Category configuration lookup helper using static local paths
 	function getCategoryMeta(category?: string) {
 		if (!category) return { icon: '', color: '#252525' };
 		switch (category) {
@@ -48,17 +72,25 @@
 		}
 	}
 
-	// Defer browser-only dynamic import to prevent SvelteKit SSR build/hydration freeze
+	// Get the color for a group of enchantment slots
+	function getGroupColor(groupIndex: number): string {
+		const enchantmentIndex = groupIndex === 0 ? 2 : groupIndex === 1 ? 3 : 4;
+		const enchantment = buildState.selectedEnchantments[enchantmentIndex];
+		if (enchantment?.category) {
+			return getCategoryMeta(enchantment.category).color;
+		}
+		return '#333';
+	}
+
 	async function downloadBuildCard() {
 		if (!exportElement) return;
 
 		try {
-			const { toPng } = await import('html-to-image');
 			await new Promise((resolve) => setTimeout(resolve, 150));
-
+			// Exposes high-fidelity 1024 x 1024 px PNG card
 			const dataUrl = await toPng(exportElement, {
-				width: 1028,
-				height: 1028,
+				width: 1024,
+				height: 1024,
 				style: {
 					transform: 'scale(1)',
 					left: '0',
@@ -86,7 +118,7 @@
 	});
 </script>
 
-<div class="build-preview-wrapper">
+<div class="build-preview-wrapper" style="height: calc({vh}px * 100);">
 	<!-- READ-ONLY LIVE VISUAL PREVIEW WORKSPACE -->
 	<div class="right-panel-container">
 		<!-- Top Hero Banner -->
@@ -94,8 +126,9 @@
 			{#if buildState.selectedHero}
 				<div
 					class="banner-background"
-					style="background-image: linear-gradient(to right, rgba(13, 13, 13, 1) 15%, rgba(13, 13, 13, 0.4) 60%, rgba(13, 13, 13, 0) 100%), url('/heroes/splashes/{buildState
-						.selectedHero.image}');"
+					style="background-image: linear-gradient(to right, rgba(13, 13, 13, 1) 15%, rgba(13, 13, 13, 0.4) 60%, rgba(13, 13, 13, 0) 100%), url('/heroes/splashes/{toWebp(
+						buildState.selectedHero.image
+					)}');"
 				></div>
 				<div class="banner-text-details">
 					<span class="card-hero-name">{buildState.selectedHero.name}</span>
@@ -114,14 +147,17 @@
 
 		<!-- Bottom Details Container -->
 		<div class="export-bottom-summary relative-preview-summary">
-			<!-- Segment 1: Equipment Grid Row (Centered and evenly spaced across full width) -->
+			<!-- Segment 1: Equipment Grid Row -->
 			<div class="card-row-section">
 				<div class="card-section-label">Equipment Build Path</div>
 				<div class="card-equipment-row">
-					{#each buildState.armory as item, idx (item ? `preview-item-${item.id}-${idx}` : `preview-empty-item-${idx}`)}
-						<div class="card-item-slot">
+					{#each buildState.armory as item, idx (item ? `preview-${item.id}-${idx}` : `preview-empty-${idx}`)}
+						<div
+							class="card-item-slot"
+							style="width: {90 / buildState.armoryCapacity}%; aspect-ratio: 1;"
+						>
 							{#if item}
-								<img src="/items/{item.image}" alt={item.name} />
+								<img src="/items/{toWebp(item.image)}" alt={item.name} />
 							{:else}
 								<div class="card-item-empty"></div>
 							{/if}
@@ -130,127 +166,182 @@
 				</div>
 			</div>
 
-			<!-- Segment 2: Runes & Spell (Rebalanced 2-line structure with category indicators) -->
+			<!-- Segment 2: Runes & Spell (Enchantment & Talent unified row) -->
 			<div class="card-row-section">
-				<div class="card-section-label">Enchantments & Active Spell</div>
+				<div class="card-section-label">Enchantment & Talent</div>
 				<div class="card-runes-talent-row">
-					<!-- Left: Two-line Symmetrical Enchantment Grid -->
 					<div class="enchantment-two-lines-grid">
-						<!-- Row 1: Slots 1, 2, 3, 4 -->
+						<!-- Row 1: Slots 1, 2, 3, 4 (Group 1) -->
 						<div class="enchantment-row">
-							<!-- Slot 1 (Category mapped to Enchantment 2/Slot 4) -->
-							<div
-								class="card-enchantment-slot category-slot"
-								style="border-color: {getCategoryMeta(buildState.selectedEnchantments[2]?.category)
-									.color};"
-							>
-								{#if buildState.selectedEnchantments[2]}
-									<img
-										src={getCategoryMeta(buildState.selectedEnchantments[2]?.category).icon}
-										alt=""
-										class="cat-img"
-									/>
-								{/if}
+							<div class="enchantment-slot-wrapper">
+								<div
+									class="card-enchantment-slot category-slot"
+									style="border-color: {getCategoryMeta(
+										buildState.selectedEnchantments[2]?.category
+									).color};"
+								>
+									{#if buildState.selectedEnchantments[2]}
+										<img
+											src={getCategoryMeta(buildState.selectedEnchantments[2]?.category).icon}
+											alt=""
+											class="cat-img"
+										/>
+									{/if}
+								</div>
 							</div>
-							<!-- Slot 2 (Enchantment 0) -->
 							<div
-								class="card-enchantment-slot"
-								style="border-color: {getCategoryMeta(buildState.selectedEnchantments[0]?.category)
-									.color};"
-							>
-								{#if buildState.selectedEnchantments[0]}
-									<img src="/enchantments/{buildState.selectedEnchantments[0].image}" alt="" />
-								{/if}
+								class="enchantment-connector"
+								style="background-color: {getGroupColor(0)};"
+							></div>
+							<div class="enchantment-slot-wrapper">
+								<div
+									class="card-enchantment-slot"
+									style="border-color: {getCategoryMeta(
+										buildState.selectedEnchantments[0]?.category
+									).color};"
+								>
+									{#if buildState.selectedEnchantments[0]}
+										<img
+											src="/enchantments/{toWebp(buildState.selectedEnchantments[0].image)}"
+											alt=""
+										/>
+									{/if}
+								</div>
 							</div>
-							<!-- Slot 3 (Enchantment 1) -->
 							<div
-								class="card-enchantment-slot"
-								style="border-color: {getCategoryMeta(buildState.selectedEnchantments[1]?.category)
-									.color};"
-							>
-								{#if buildState.selectedEnchantments[1]}
-									<img src="/enchantments/{buildState.selectedEnchantments[1].image}" alt="" />
-								{/if}
+								class="enchantment-connector"
+								style="background-color: {getGroupColor(0)};"
+							></div>
+							<div class="enchantment-slot-wrapper">
+								<div
+									class="card-enchantment-slot"
+									style="border-color: {getCategoryMeta(
+										buildState.selectedEnchantments[1]?.category
+									).color};"
+								>
+									{#if buildState.selectedEnchantments[1]}
+										<img
+											src="/enchantments/{toWebp(buildState.selectedEnchantments[1].image)}"
+											alt=""
+										/>
+									{/if}
+								</div>
 							</div>
-							<!-- Slot 4 (Enchantment 2) -->
 							<div
-								class="card-enchantment-slot"
-								style="border-color: {getCategoryMeta(buildState.selectedEnchantments[2]?.category)
-									.color};"
-							>
-								{#if buildState.selectedEnchantments[2]}
-									<img src="/enchantments/{buildState.selectedEnchantments[2].image}" alt="" />
-								{/if}
+								class="enchantment-connector"
+								style="background-color: {getGroupColor(0)};"
+							></div>
+							<div class="enchantment-slot-wrapper">
+								<div
+									class="card-enchantment-slot"
+									style="border-color: {getCategoryMeta(
+										buildState.selectedEnchantments[2]?.category
+									).color};"
+								>
+									{#if buildState.selectedEnchantments[2]}
+										<img
+											src="/enchantments/{toWebp(buildState.selectedEnchantments[2].image)}"
+											alt=""
+										/>
+									{/if}
+								</div>
 							</div>
 						</div>
 
-						<!-- Row 2: Slots 5, 6, 7, 8 -->
+						<!-- Row 2: Slots 5-6 (Group 2), 7-8 (Group 3) -->
 						<div class="enchantment-row">
-							<!-- Slot 5 (Category mapped to Enchantment 3/Slot 6) -->
-							<div
-								class="card-enchantment-slot category-slot"
-								style="border-color: {getCategoryMeta(buildState.selectedEnchantments[3]?.category)
-									.color};"
-							>
-								{#if buildState.selectedEnchantments[3]}
-									<img
-										src={getCategoryMeta(buildState.selectedEnchantments[3]?.category).icon}
-										alt=""
-										class="cat-img"
-									/>
-								{/if}
+							<div class="enchantment-slot-wrapper">
+								<div
+									class="card-enchantment-slot category-slot"
+									style="border-color: {getCategoryMeta(
+										buildState.selectedEnchantments[3]?.category
+									).color};"
+								>
+									{#if buildState.selectedEnchantments[3]}
+										<img
+											src={getCategoryMeta(buildState.selectedEnchantments[3]?.category).icon}
+											alt=""
+											class="cat-img"
+										/>
+									{/if}
+								</div>
 							</div>
-							<!-- Slot 6 (Enchantment 3) -->
 							<div
-								class="card-enchantment-slot"
-								style="border-color: {getCategoryMeta(buildState.selectedEnchantments[3]?.category)
-									.color};"
-							>
-								{#if buildState.selectedEnchantments[3]}
-									<img src="/enchantments/{buildState.selectedEnchantments[3].image}" alt="" />
-								{/if}
+								class="enchantment-connector"
+								style="background-color: {getGroupColor(1)};"
+							></div>
+							<div class="enchantment-slot-wrapper">
+								<div
+									class="card-enchantment-slot"
+									style="border-color: {getCategoryMeta(
+										buildState.selectedEnchantments[3]?.category
+									).color};"
+								>
+									{#if buildState.selectedEnchantments[3]}
+										<img
+											src="/enchantments/{toWebp(buildState.selectedEnchantments[3].image)}"
+											alt=""
+										/>
+									{/if}
+								</div>
 							</div>
-							<!-- Slot 7 (Category mapped to Enchantment 4/Slot 8) -->
-							<div
-								class="card-enchantment-slot category-slot"
-								style="border-color: {getCategoryMeta(buildState.selectedEnchantments[4]?.category)
-									.color};"
-							>
-								{#if buildState.selectedEnchantments[4]}
-									<img
-										src={getCategoryMeta(buildState.selectedEnchantments[4]?.category).icon}
-										alt=""
-										class="cat-img"
-									/>
-								{/if}
+							<div class="enchantment-connector" style="background-color: transparent;"></div>
+							<div class="enchantment-slot-wrapper">
+								<div
+									class="card-enchantment-slot category-slot"
+									style="border-color: {getCategoryMeta(
+										buildState.selectedEnchantments[4]?.category
+									).color};"
+								>
+									{#if buildState.selectedEnchantments[4]}
+										<img
+											src={getCategoryMeta(buildState.selectedEnchantments[4]?.category).icon}
+											alt=""
+											class="cat-img"
+										/>
+									{/if}
+								</div>
 							</div>
-							<!-- Slot 8 (Enchantment 4) -->
 							<div
-								class="card-enchantment-slot"
-								style="border-color: {getCategoryMeta(buildState.selectedEnchantments[4]?.category)
-									.color};"
-							>
-								{#if buildState.selectedEnchantments[4]}
-									<img src="/enchantments/{buildState.selectedEnchantments[4].image}" alt="" />
-								{/if}
+								class="enchantment-connector"
+								style="background-color: {getGroupColor(2)};"
+							></div>
+							<div class="enchantment-slot-wrapper">
+								<div
+									class="card-enchantment-slot"
+									style="border-color: {getCategoryMeta(
+										buildState.selectedEnchantments[4]?.category
+									).color};"
+								>
+									{#if buildState.selectedEnchantments[4]}
+										<img
+											src="/enchantments/{toWebp(buildState.selectedEnchantments[4].image)}"
+											alt=""
+										/>
+									{/if}
+								</div>
 							</div>
 						</div>
 					</div>
 
 					<div class="vertical-panel-divider"></div>
 
-					<!-- Right: Vertical Talent Stack -->
-					<div class="card-talent-column">
-						<div class="card-talent-slot">
+					<div class="card-talent-subgroup">
+						<div class="card-talent-column">
+							<div class="card-talent-slot">
+								{#if buildState.selectedTalent}
+									<img
+										src="/talents/{toWebp(buildState.selectedTalent.image)}"
+										alt={buildState.selectedTalent.name}
+									/>
+								{:else}
+									<div class="card-talent-empty"></div>
+								{/if}
+							</div>
 							{#if buildState.selectedTalent}
-								<img src="/talents/{buildState.selectedTalent.image}" alt="" />
-							{:else}
-								<div class="card-talent-empty"></div>
+								<span class="card-talent-name">{buildState.selectedTalent.name}</span>
 							{/if}
 						</div>
-						{#if buildState.selectedTalent}
-							<span class="card-talent-name">{buildState.selectedTalent.name}</span>
-						{/if}
 					</div>
 				</div>
 			</div>
@@ -263,7 +354,7 @@
 						<div class="export-arcana-icon-grid">
 							{#each uniqueArcanaGroups as group (group.arcana.id)}
 								<div class="icon-mode-card {group.arcana.color}">
-									<img src="/arcanas/{group.arcana.image}" alt="" />
+									<img src="/arcanas/{toWebp(group.arcana.image)}" alt="" />
 									<div class="icon-card-text">
 										<span class="arcana-card-name">{group.arcana.displayName}</span>
 										<span class="arcana-card-count">×{group.count}</span>
@@ -322,15 +413,16 @@
 		</div>
 	</div>
 
-	<!-- STATIC 1028 x 1028 PIXEL CARD CANVAS FOR OFFSCREEN RENDERS -->
+	<!-- STATIC 1024 x 1024 PIXEL CARD CANVAS FOR OFFSCREEN RENDERS (PIXEL PERFECT 1:1) -->
 	<div class="export-sandbox-container">
 		<div class="export-card-canvas" bind:this={exportElement}>
 			<!-- Top Hero Banner (~30%) -->
 			<div class="export-top-banner">
 				<div
 					class="banner-background"
-					style="background-image: linear-gradient(to right, rgba(13, 13, 13, 1) 15%, rgba(13, 13, 13, 0.4) 60%, rgba(13, 13, 13, 0) 100%), url('/heroes/splashes/{buildState
-						.selectedHero?.image || ''}');"
+					style="background-image: linear-gradient(to right, rgba(13, 13, 13, 1) 15%, rgba(13, 13, 13, 0.4) 60%, rgba(13, 13, 13, 0) 100%), url('/heroes/splashes/{toWebp(
+						buildState.selectedHero?.image || ''
+					)}');"
 				></div>
 				<div class="banner-text-details">
 					<span class="card-hero-name">{buildState.selectedHero?.name || 'Veda Champion'}</span>
@@ -348,10 +440,13 @@
 				<div class="card-row-section">
 					<div class="card-section-label">Equipment Build Path</div>
 					<div class="card-equipment-row">
-						{#each buildState.armory as item, idx (item ? `export-item-${item.id}-${idx}` : `export-empty-item-${idx}`)}
-							<div class="card-item-slot">
+						{#each buildState.armory as item, idx (item ? `export-${item.id}-${idx}` : `export-empty-${idx}`)}
+							<div
+								class="card-item-slot"
+								style="width: {90 / buildState.armoryCapacity}%; aspect-ratio: 1;"
+							>
 								{#if item}
-									<img src="/items/{item.image}" alt={item.name} />
+									<img src="/items/{toWebp(item.image)}" alt={item.name} />
 								{:else}
 									<div class="card-item-empty"></div>
 								{/if}
@@ -362,123 +457,177 @@
 
 				<!-- Segment 2: Runes & Spell (Enchantment + Talent scaled-up row) -->
 				<div class="card-row-section">
-					<div class="card-section-label">Enchantments & Active Spell</div>
+					<div class="card-section-label">Enchantment & Talent</div>
 					<div class="card-runes-talent-row">
-						<!-- Symmetrical Enchantment Grid -->
 						<div class="enchantment-two-lines-grid">
+							<!-- Row 1: Slots 1, 2, 3, 4 (Group 1) -->
 							<div class="enchantment-row">
-								<div
-									class="card-enchantment-slot category-slot"
-									style="border-color: {getCategoryMeta(
-										buildState.selectedEnchantments[2]?.category
-									).color};"
-								>
-									{#if buildState.selectedEnchantments[2]}
-										<img
-											src={getCategoryMeta(buildState.selectedEnchantments[2]?.category).icon}
-											alt=""
-											class="cat-img"
-										/>
-									{/if}
+								<div class="enchantment-slot-wrapper">
+									<div
+										class="card-enchantment-slot category-slot"
+										style="border-color: {getCategoryMeta(
+											buildState.selectedEnchantments[2]?.category
+										).color};"
+									>
+										{#if buildState.selectedEnchantments[2]}
+											<img
+												src={getCategoryMeta(buildState.selectedEnchantments[2]?.category).icon}
+												alt=""
+												class="cat-img"
+											/>
+										{/if}
+									</div>
 								</div>
 								<div
-									class="card-enchantment-slot"
-									style="border-color: {getCategoryMeta(
-										buildState.selectedEnchantments[0]?.category
-									).color};"
-								>
-									{#if buildState.selectedEnchantments[0]}
-										<img src="/enchantments/{buildState.selectedEnchantments[0].image}" alt="" />
-									{/if}
+									class="enchantment-connector"
+									style="background-color: {getGroupColor(0)};"
+								></div>
+								<div class="enchantment-slot-wrapper">
+									<div
+										class="card-enchantment-slot"
+										style="border-color: {getCategoryMeta(
+											buildState.selectedEnchantments[0]?.category
+										).color};"
+									>
+										{#if buildState.selectedEnchantments[0]}
+											<img
+												src="/enchantments/{toWebp(buildState.selectedEnchantments[0].image)}"
+												alt=""
+											/>
+										{/if}
+									</div>
 								</div>
 								<div
-									class="card-enchantment-slot"
-									style="border-color: {getCategoryMeta(
-										buildState.selectedEnchantments[1]?.category
-									).color};"
-								>
-									{#if buildState.selectedEnchantments[1]}
-										<img src="/enchantments/{buildState.selectedEnchantments[1].image}" alt="" />
-									{/if}
+									class="enchantment-connector"
+									style="background-color: {getGroupColor(0)};"
+								></div>
+								<div class="enchantment-slot-wrapper">
+									<div
+										class="card-enchantment-slot"
+										style="border-color: {getCategoryMeta(
+											buildState.selectedEnchantments[1]?.category
+										).color};"
+									>
+										{#if buildState.selectedEnchantments[1]}
+											<img
+												src="/enchantments/{toWebp(buildState.selectedEnchantments[1].image)}"
+												alt=""
+											/>
+										{/if}
+									</div>
 								</div>
 								<div
-									class="card-enchantment-slot"
-									style="border-color: {getCategoryMeta(
-										buildState.selectedEnchantments[2]?.category
-									).color};"
-								>
-									{#if buildState.selectedEnchantments[2]}
-										<img src="/enchantments/{buildState.selectedEnchantments[2].image}" alt="" />
-									{/if}
+									class="enchantment-connector"
+									style="background-color: {getGroupColor(0)};"
+								></div>
+								<div class="enchantment-slot-wrapper">
+									<div
+										class="card-enchantment-slot"
+										style="border-color: {getCategoryMeta(
+											buildState.selectedEnchantments[2]?.category
+										).color};"
+									>
+										{#if buildState.selectedEnchantments[2]}
+											<img
+												src="/enchantments/{toWebp(buildState.selectedEnchantments[2].image)}"
+												alt=""
+											/>
+										{/if}
+									</div>
 								</div>
 							</div>
 
+							<!-- Row 2: Slots 5-6 (Group 2), 7-8 (Group 3) -->
 							<div class="enchantment-row">
-								<div
-									class="card-enchantment-slot category-slot"
-									style="border-color: {getCategoryMeta(
-										buildState.selectedEnchantments[3]?.category
-									).color};"
-								>
-									{#if buildState.selectedEnchantments[3]}
-										<img
-											src={getCategoryMeta(buildState.selectedEnchantments[3]?.category).icon}
-											alt=""
-											class="cat-img"
-										/>
-									{/if}
+								<div class="enchantment-slot-wrapper">
+									<div
+										class="card-enchantment-slot category-slot"
+										style="border-color: {getCategoryMeta(
+											buildState.selectedEnchantments[3]?.category
+										).color};"
+									>
+										{#if buildState.selectedEnchantments[3]}
+											<img
+												src={getCategoryMeta(buildState.selectedEnchantments[3]?.category).icon}
+												alt=""
+												class="cat-img"
+											/>
+										{/if}
+									</div>
 								</div>
 								<div
-									class="card-enchantment-slot"
-									style="border-color: {getCategoryMeta(
-										buildState.selectedEnchantments[3]?.category
-									).color};"
-								>
-									{#if buildState.selectedEnchantments[3]}
-										<img src="/enchantments/{buildState.selectedEnchantments[3].image}" alt="" />
-									{/if}
+									class="enchantment-connector"
+									style="background-color: {getGroupColor(1)};"
+								></div>
+								<div class="enchantment-slot-wrapper">
+									<div
+										class="card-enchantment-slot"
+										style="border-color: {getCategoryMeta(
+											buildState.selectedEnchantments[3]?.category
+										).color};"
+									>
+										{#if buildState.selectedEnchantments[3]}
+											<img
+												src="/enchantments/{toWebp(buildState.selectedEnchantments[3].image)}"
+												alt=""
+											/>
+										{/if}
+									</div>
+								</div>
+								<div class="enchantment-connector" style="background-color: transparent;"></div>
+								<div class="enchantment-slot-wrapper">
+									<div
+										class="card-enchantment-slot category-slot"
+										style="border-color: {getCategoryMeta(
+											buildState.selectedEnchantments[4]?.category
+										).color};"
+									>
+										{#if buildState.selectedEnchantments[4]}
+											<img
+												src={getCategoryMeta(buildState.selectedEnchantments[4]?.category).icon}
+												alt=""
+												class="cat-img"
+											/>
+										{/if}
+									</div>
 								</div>
 								<div
-									class="card-enchantment-slot"
-									style="border-color: {getCategoryMeta(
-										buildState.selectedEnchantments[4]?.category
-									).color};"
-								>
-									{#if buildState.selectedEnchantments[4]}
-										<img
-											src={getCategoryMeta(buildState.selectedEnchantments[4]?.category).icon}
-											alt=""
-											class="cat-img"
-										/>
-									{/if}
-								</div>
-								<div
-									class="card-enchantment-slot"
-									style="border-color: {getCategoryMeta(
-										buildState.selectedEnchantments[4]?.category
-									).color};"
-								>
-									{#if buildState.selectedEnchantments[4]}
-										<img src="/enchantments/{buildState.selectedEnchantments[4].image}" alt="" />
-									{/if}
+									class="enchantment-connector"
+									style="background-color: {getGroupColor(2)};"
+								></div>
+								<div class="enchantment-slot-wrapper">
+									<div
+										class="card-enchantment-slot"
+										style="border-color: {getCategoryMeta(
+											buildState.selectedEnchantments[4]?.category
+										).color};"
+									>
+										{#if buildState.selectedEnchantments[4]}
+											<img
+												src="/enchantments/{toWebp(buildState.selectedEnchantments[4].image)}"
+												alt=""
+											/>
+										{/if}
+									</div>
 								</div>
 							</div>
 						</div>
 
 						<div class="vertical-panel-divider"></div>
 
-						<!-- Vertical Talent Stack -->
-						<div class="card-talent-column">
-							<div class="card-talent-slot">
+						<div class="card-talent-subgroup">
+							<div class="card-talent-column">
+								<div class="card-talent-slot">
+									{#if buildState.selectedTalent}
+										<img src="/talents/{toWebp(buildState.selectedTalent.image)}" alt="" />
+									{:else}
+										<div class="card-talent-empty"></div>
+									{/if}
+								</div>
 								{#if buildState.selectedTalent}
-									<img src="/talents/{buildState.selectedTalent.image}" alt="" />
-								{:else}
-									<div class="card-talent-empty"></div>
+									<span class="card-talent-name">{buildState.selectedTalent.name}</span>
 								{/if}
 							</div>
-							{#if buildState.selectedTalent}
-								<span class="card-talent-name">{buildState.selectedTalent.name}</span>
-							{/if}
 						</div>
 					</div>
 				</div>
@@ -492,7 +641,7 @@
 							<div class="export-arcana-icon-grid">
 								{#each uniqueArcanaGroups as group (group.arcana.id)}
 									<div class="icon-mode-card {group.arcana.color}">
-										<img src="/arcanas/{group.arcana.image}" alt="" />
+										<img src="/arcanas/{toWebp(group.arcana.image)}" alt="" />
 										<div class="icon-card-text">
 											<span class="arcana-card-name">{group.arcana.displayName}</span>
 											<span class="arcana-card-count">×{group.count}</span>
@@ -565,28 +714,34 @@
 		display: flex;
 		flex-direction: column;
 		height: 100%;
+		height: 100dvh; /* Fallback for browsers that support dvh */
+		overflow: hidden;
 	}
 
 	.right-panel-container {
 		background-color: #111;
-		border: 1px solid #222;
-		border-radius: 12px;
-		padding: 1.25rem;
+		border: none;
+		border-radius: 0px;
+		padding: 1rem;
 		color: #fff;
 		display: flex;
 		flex-direction: column;
-		gap: 1.25rem;
+		gap: 1rem;
 		position: relative;
 		height: 100%;
 		box-sizing: border-box;
+		overflow-y: auto;
+		overflow-x: hidden;
+		-webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 	}
 
 	/* Responsive tweaks for web viewing */
 	.relative-preview-banner {
 		height: 200px !important;
-		border-radius: 8px;
+		border-radius: 0px;
 		padding: 1.25rem !important;
 		border-bottom: 1px solid #1a1a1a !important;
+		flex-shrink: 0;
 	}
 
 	.relative-preview-banner .card-build-title {
@@ -596,6 +751,9 @@
 	.relative-preview-summary {
 		padding: 0 !important;
 		gap: 1rem;
+		flex: 1;
+		overflow-y: auto;
+		min-height: 0;
 	}
 
 	.placeholder-hero {
@@ -618,44 +776,63 @@
 		justify-content: center;
 	}
 
-	/* Symmetrical Spaced-Between Horizontal Row for Equipment */
-	.card-equipment-row {
+	/* Standard layout card bindings */
+	.card-row-section {
 		display: flex;
-		justify-content: space-between; /* Spreads slots equally across the card width */
-		gap: 0.25rem;
-		width: 100%;
-		flex-wrap: nowrap;
-		box-sizing: border-box;
+		flex-direction: column;
+		gap: 0.5rem;
+		flex-shrink: 0;
 	}
 
-	/* Symmetrical squares without rounded corners, displaying full covers */
-	.relative-preview-summary .card-item-slot {
-		flex: 1;
-		max-width: 48px;
-		aspect-ratio: 1;
+	.card-section-label {
+		font-size: 0.7rem;
+		font-weight: 800;
+		text-transform: uppercase;
+		color: #64748b;
+		letter-spacing: 0.1em;
+	}
+
+	/* Proportional spaced equipment row */
+	.card-equipment-row {
+		display: flex;
+		justify-content: space-between;
+		gap: 0.25rem;
+		width: 100%;
+	}
+
+	.card-item-slot {
 		background: #181818;
 		border: 1px solid #333;
-		border-radius: 0px; /* Sharp squares */
+		border-radius: 6px;
 		overflow: hidden;
+		box-sizing: border-box;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		box-sizing: border-box;
+		min-width: 0;
 	}
 
-	.relative-preview-summary .card-item-slot img {
+	.card-item-slot img {
 		width: 100%;
 		height: 100%;
-		object-fit: cover; /* Fill the square cleanly */
+		object-fit: cover;
 	}
 
-	/* Symmetrical 2-Line Enchantment Grid System */
+	.card-item-empty {
+		width: 100%;
+		height: 100%;
+		background: #141414;
+		border: 1px dashed #333;
+		border-radius: inherit;
+	}
+
+	/* Symmetrical 2-Line Enchantment Grid System with Connectors */
 	.card-runes-talent-row {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
-		gap: 1rem;
+		gap: 0.5rem;
 		box-sizing: border-box;
 	}
 
@@ -663,16 +840,32 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.35rem;
+		width: 65%;
 	}
 
 	.enchantment-row {
 		display: flex;
-		gap: 0.35rem;
+		align-items: center;
+		width: 100%;
+	}
+
+	.enchantment-slot-wrapper {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+	}
+
+	.enchantment-connector {
+		height: 2px;
+		flex: 0.3;
+		min-width: 8px;
+		background-color: #333;
+		border-radius: 1px;
 	}
 
 	.card-enchantment-slot {
-		width: 44px;
-		height: 44px;
+		width: 85%;
+		aspect-ratio: 1;
 		background: #181818;
 		border-radius: 50%;
 		border: 2px solid #333;
@@ -682,6 +875,7 @@
 		justify-content: center;
 		box-sizing: border-box;
 		flex-shrink: 0;
+		min-width: 28px;
 	}
 
 	.card-enchantment-slot.category-slot {
@@ -711,52 +905,60 @@
 
 	.vertical-panel-divider {
 		width: 2px;
-		height: 80px;
+		height: 70px;
 		background-color: #334155;
-		align-self: center;
+		flex-shrink: 0;
 	}
 
-	/* Talent display vertical block sizing */
+	/* Talent display - enlarged to match enchantment section height */
+	.card-talent-subgroup {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 30%;
+		height: 100%;
+	}
+
 	.card-talent-column {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		gap: 0.35rem;
+		gap: 0.25rem;
+		width: 100%;
+		height: 100%;
 		flex-shrink: 0;
-		width: 80px;
 	}
 
 	.card-talent-slot {
-		width: 60px;
-		height: 60px;
-		background: #181818;
-		border: 1px solid #333; /* Removed golden border as requested */
-		border-radius: 10px;
+		width: 100%;
+		max-width: 100%;
+		aspect-ratio: 1;
 		overflow: hidden;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		box-sizing: border-box;
+		flex-grow: 1;
 	}
 
 	.card-talent-slot img {
-		width: 90%;
-		height: 90%;
+		width: 75%;
+		height: 75%;
 		object-fit: contain;
 	}
 
 	.card-talent-empty {
 		width: 100%;
 		height: 100%;
-		background: #121212;
+		background: transparent;
 		border: 1px dashed #444;
-		border-radius: 10px;
+		border-radius: 8px;
 	}
 
 	.card-talent-name {
-		font-size: 0.6rem;
-		color: #888;
+		font-size: 0.65rem;
+		color: #94a3b8;
 		text-align: center;
 		font-weight: 700;
 		white-space: nowrap;
@@ -765,12 +967,12 @@
 		width: 100%;
 	}
 
-	/* Export Canvas High-Res sizing (Auto-scaled down symmetrically) */
+	/* Export Canvas High-Res sizing */
 	.export-bottom-summary .card-item-slot {
-		flex: 1;
+		width: 15%;
 		max-width: 90px;
 		aspect-ratio: 1;
-		border-radius: 0px; /* Sharp squares on exported PNG */
+		border-radius: 10px;
 		background: #181818;
 		border: 2px solid #333;
 		overflow: hidden;
@@ -789,36 +991,63 @@
 
 	.export-bottom-summary .enchantment-two-lines-grid {
 		gap: 0.65rem;
+		width: 65%;
 	}
 
 	.export-bottom-summary .enchantment-row {
-		gap: 0.65rem;
+		gap: 0;
+	}
+
+	.export-bottom-summary .enchantment-connector {
+		height: 3px;
+		flex: 0.3;
+		min-width: 10px;
+		border-radius: 1.5px;
 	}
 
 	.export-bottom-summary .card-enchantment-slot {
-		width: 76px;
-		height: 76px;
+		width: 85%;
+		max-width: 76px;
+		min-width: 54px;
+		aspect-ratio: 1;
 		border-width: 3px;
+		flex-shrink: 0;
 	}
 
-	.export-bottom-summary .vertical-panel-divider {
-		height: 140px;
+	.export-bottom-summary .card-talent-subgroup {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 30%;
+		height: 100%;
 	}
 
 	.export-bottom-summary .card-talent-column {
-		width: 140px;
+		width: 100%;
 		gap: 0.5rem;
+		flex-shrink: 0;
+		height: 100%;
+		justify-content: center;
 	}
 
 	.export-bottom-summary .card-talent-slot {
-		width: 110px;
-		height: 110px;
-		border-radius: 16px;
+		width: 100%;
+		max-width: 140px;
+		aspect-ratio: 1;
+		flex-shrink: 0;
+		flex-grow: 1;
 	}
 
 	.export-bottom-summary .card-talent-name {
-		font-size: 0.9rem;
+		font-size: 1rem;
 		color: #bbb;
+		margin-top: 0.5rem;
+	}
+
+	.export-bottom-summary .vertical-panel-divider {
+		height: 180px;
+		flex-shrink: 0;
+		align-self: center;
 	}
 
 	.card-item-empty {
@@ -1019,19 +1248,21 @@
 		width: 100%;
 	}
 
-	/* ABSOLUTE OFFSCREEN CANVAS */
+	/* Headless rendering card canvas */
 	.export-sandbox-container {
-		position: absolute;
-		left: -9999px;
-		top: -9999px;
-		width: 1028px;
-		height: 1028px;
-		overflow: hidden;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 1024px;
+		height: 1024px;
+		z-index: -1000;
+		pointer-events: none;
+		opacity: 0;
 	}
 
 	.export-card-canvas {
-		width: 1028px;
-		height: 1028px;
+		width: 1024px;
+		height: 1024px;
 		background-color: #0d0d0d;
 		box-sizing: border-box;
 		display: flex;
@@ -1119,5 +1350,139 @@
 		letter-spacing: 0.15em;
 		text-transform: uppercase;
 		pointer-events: none;
+	}
+
+	/* Mobile responsive styles */
+	@media (max-width: 1024px) {
+		.relative-preview-banner {
+			height: 5.5rem !important;
+			padding: 1rem !important;
+		}
+
+		.relative-preview-banner .card-build-title {
+			font-size: 1.25rem !important;
+		}
+
+		.card-hero-name {
+			font-size: 1rem;
+		}
+
+		.card-build-title {
+			font-size: 1.5rem;
+		}
+
+		.right-panel-container {
+			padding: 0.75rem;
+			gap: 0.75rem;
+		}
+
+		.card-section-label {
+			font-size: 0.6rem;
+		}
+
+		.enchantment-two-lines-grid {
+			width: 60%;
+		}
+
+		.card-talent-subgroup {
+			width: 35%;
+		}
+
+		.vertical-panel-divider {
+			height: 50px;
+		}
+
+		.card-stats-fullwidth-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 480px) {
+		.relative-preview-banner {
+			height: 120px !important;
+			padding: 0.75rem !important;
+		}
+
+		.relative-preview-banner .card-build-title {
+			font-size: 1rem !important;
+		}
+
+		.enchantment-two-lines-grid {
+			width: 55%;
+		}
+
+		.card-talent-subgroup {
+			width: 40%;
+		}
+	}
+
+	/* ==========================================================================
+	   EXPORT CANVAS HIGH-RES TYPOGRAPHY SCALE OVERRIDES (Isolated to PNG)
+	   ========================================================================== */
+
+	.export-card-canvas .card-hero-name {
+		font-size: 2.25rem !important;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+	}
+
+	.export-card-canvas .card-build-title {
+		font-size: 3.85rem !important;
+		font-weight: 900;
+		line-height: 1.1;
+		text-shadow: 0 4px 16px rgba(0, 0, 0, 0.95);
+	}
+
+	.export-card-canvas .card-author-stamp {
+		font-size: 1.5rem !important;
+		font-weight: 700;
+		color: #94a3b8;
+	}
+
+	.export-card-canvas .card-section-label {
+		font-size: 1.35rem !important;
+		font-weight: 800;
+		color: #64748b;
+		letter-spacing: 0.12em;
+	}
+
+	.export-bottom-summary .column-header-title {
+		font-size: 1.35rem !important;
+		font-weight: 800;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		margin-bottom: 0.5rem;
+	}
+
+	.export-bottom-summary .arcana-card-name {
+		font-size: 1.15rem !important;
+		font-weight: 700;
+		color: #f1f5f9;
+	}
+
+	.export-bottom-summary .arcana-card-count {
+		font-size: 1.35rem !important;
+		font-weight: 800;
+		color: #3b82f6;
+	}
+
+	.export-bottom-summary .stat-name {
+		font-size: 1.15rem !important;
+		color: #94a3b8;
+		font-weight: 500;
+	}
+
+	.export-bottom-summary .stat-number {
+		font-size: 1.35rem !important;
+		color: #10b981;
+		font-weight: 700;
+	}
+
+	.export-card-canvas .export-footer-watermark {
+		font-size: 1.15rem !important;
+		color: #334155;
+		font-weight: 800;
+		letter-spacing: 0.22em;
+		bottom: 1.25rem !important;
 	}
 </style>

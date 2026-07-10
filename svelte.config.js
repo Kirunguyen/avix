@@ -8,7 +8,10 @@ const config = {
 		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
 		adapter: adapter({
 			fallback: '404.html'
-		})
+		}),
+		serviceWorker: {
+			register: false
+		}
 	},
 	vitePlugin: {
 		dynamicCompileOptions: ({ filename }) =>
