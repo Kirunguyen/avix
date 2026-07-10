@@ -19,7 +19,7 @@
 </script>
 
 <div class="dashboard-grid">
-	<!-- Left Side: Build Navigator (30%) -->
+	<!-- Left Side: Build Navigator (32% width) -->
 	<div class="navigator-panel">
 		<div class="brand-header">
 			<span class="brand-title">AVIX</span>
@@ -28,7 +28,7 @@
 
 		<div class="nav-cards-list">
 			<!-- Hero Card -->
-			<a class="nav-card hero-card" href={resolve('/build/hero')}>
+			<a class="nav-card" href={resolve('/build/hero')}>
 				<div class="card-meta">
 					<span class="card-category">Hero</span>
 					<span class="card-value"
@@ -55,8 +55,13 @@
 				<div class="mini-icon-row">
 					{#each buildState.armory
 						.filter(Boolean)
-						.slice(0, 4) as item, idx (item ? `${idx}-${item.id}` : idx)}
-						<img src="/items/{item?.image}" alt="" class="mini-img" />
+						.slice(0, 4) as item, idx (item ? `equipment-${item.id}-${idx}` : `equipment-empty-${idx}`)}
+						<!-- Dynamic WebP Translation -->
+						<img
+							src="/items/{item?.image.replace(/\.png$/i, '.webp').replace(/\.jpg$/i, '.webp')}"
+							alt=""
+							class="mini-img"
+						/>
 					{/each}
 				</div>
 			</a>
@@ -69,7 +74,11 @@
 				</div>
 				<div class="mini-icon-row circle-row">
 					{#each buildState.selectedEnchantments.filter(Boolean).slice(0, 3) as ench (ench?.id)}
-						<img src="/enchantments/{ench?.image}" alt="" class="mini-img circular-img" />
+						<img
+							src="/enchantments/{ench?.image.replace(/\.png$/i, '.webp')}"
+							alt=""
+							class="mini-img circular-img"
+						/>
 					{/each}
 				</div>
 			</a>
@@ -85,7 +94,7 @@
 				{#if buildState.selectedTalent}
 					<img
 						class="card-icon square-icon"
-						src="/talents/{buildState.selectedTalent.image}"
+						src="/talents/{buildState.selectedTalent.image.replace(/\.png$/i, '.webp')}"
 						alt=""
 					/>
 				{:else}
@@ -137,7 +146,7 @@
 		</div>
 	</div>
 
-	<!-- Right Side: Live preview frame (70%) -->
+	<!-- Right Side: Live Preview Panel (68% width) -->
 	<div class="preview-panel">
 		<BuildPreview bind:downloadTrigger />
 	</div>
@@ -146,58 +155,51 @@
 <style>
 	.dashboard-grid {
 		display: grid;
-		grid-template-columns: 1fr;
-		gap: 1.5rem;
-		padding: 1rem;
-		max-width: 1400px;
-		margin: 0 auto;
+		grid-template-columns: 32vw 68vw;
+		height: 100vh;
+		width: 100vw;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
 		box-sizing: border-box;
-	}
-
-	@media (min-width: 1024px) {
-		.dashboard-grid {
-			grid-template-columns: 3fr 7fr;
-			height: 100vh;
-			gap: 2rem;
-			padding: 2rem;
-			overflow: hidden;
-		}
-
-		.navigator-panel,
-		.preview-panel {
-			height: calc(100vh - 4rem);
-			overflow-y: auto;
-		}
 	}
 
 	.navigator-panel {
 		background-color: #0b0b0b;
-		border: 1px solid #1f1f1f;
-		border-radius: 14px;
-		padding: 1.5rem;
+		border-right: 1px solid #1a1a1a;
+		height: 100vh;
+		overflow-y: auto;
+		padding: 1.25rem 1rem;
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: 0.75rem;
+		box-sizing: border-box;
+	}
+
+	.preview-panel {
+		height: 100vh;
+		overflow-y: auto;
+		background-color: #050505;
 		box-sizing: border-box;
 	}
 
 	.brand-header {
 		display: flex;
 		flex-direction: column;
-		border-bottom: 1px solid #222;
+		border-bottom: 1px solid #1f1f1f;
 		padding-bottom: 0.5rem;
 	}
 
 	.brand-title {
-		font-size: 1.85rem;
+		font-size: 1.75rem;
 		font-weight: 900;
 		color: #fff;
 		letter-spacing: 0.1em;
 	}
 
 	.brand-subtitle {
-		font-size: 0.75rem;
-		color: #555;
+		font-size: 0.7rem;
+		color: #444;
 		font-weight: bold;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
@@ -206,22 +208,22 @@
 	.nav-cards-list {
 		display: flex;
 		flex-direction: column;
-		gap: 0.65rem;
+		gap: 0.5rem;
 	}
 
 	.nav-card {
 		background-color: #121212;
 		border: 1px solid #222;
-		border-radius: 10px;
-		padding: 0.85rem;
+		border-radius: 8px;
+		padding: 0.75rem;
 		cursor: pointer;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		text-align: left;
 		transition:
-			border-color 0.15s,
-			background-color 0.15s;
+			border-color 0.12s,
+			background-color 0.12s;
 		box-sizing: border-box;
 		text-decoration: none;
 		outline: none;
@@ -229,32 +231,32 @@
 
 	.nav-card:hover {
 		border-color: #3b82f6;
-		background-color: #161616;
+		background-color: #151515;
 	}
 
 	.card-meta {
 		display: flex;
 		flex-direction: column;
-		gap: 0.15rem;
+		gap: 0.1rem;
 	}
 
 	.card-category {
-		font-size: 0.65rem;
+		font-size: 0.6rem;
 		text-transform: uppercase;
-		color: #64748b;
+		color: #555;
 		font-weight: 800;
 		letter-spacing: 0.05em;
 	}
 
 	.card-value {
-		font-size: 0.95rem;
-		color: #f8fafc;
+		font-size: 0.85rem;
+		color: #f1f5f9;
 		font-weight: 700;
 	}
 
 	.card-icon {
-		width: 38px;
-		height: 38px;
+		width: 34px;
+		height: 34px;
 		object-fit: cover;
 		border: 1px solid #333;
 	}
@@ -264,19 +266,19 @@
 	}
 
 	.square-icon {
-		border-radius: 8px;
+		border-radius: 6px;
 		border-color: #eab308;
 	}
 
 	.card-icon-placeholder {
-		width: 38px;
-		height: 38px;
-		background-color: #1f1f1f;
+		width: 34px;
+		height: 34px;
+		background-color: #1a1a1a;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		color: #444;
-		font-size: 1.1rem;
+		font-size: 1rem;
 		font-weight: bold;
 	}
 
@@ -285,20 +287,20 @@
 	}
 
 	.square-placeholder {
-		border-radius: 8px;
+		border-radius: 6px;
 	}
 
 	.mini-icon-row {
 		display: flex;
-		gap: 0.25rem;
+		gap: 0.2rem;
 	}
 
 	.mini-img {
-		width: 24px;
-		height: 24px;
+		width: 22px;
+		height: 22px;
 		object-fit: cover;
 		border-radius: 4px;
-		background-color: #0d0d0d;
+		background-color: #090909;
 		border: 1px solid #333;
 	}
 
@@ -308,15 +310,15 @@
 
 	.arcana-colors-pills {
 		display: flex;
-		gap: 0.25rem;
+		gap: 0.2rem;
 	}
 
 	.color-pill {
-		font-size: 0.65rem;
+		font-size: 0.6rem;
 		font-weight: bold;
 		color: #fff;
-		padding: 0.1rem 0.45rem;
-		border-radius: 4px;
+		padding: 0.1rem 0.35rem;
+		border-radius: 3px;
 	}
 
 	.red-pill {
@@ -329,41 +331,40 @@
 		background-color: #14b8a6;
 	}
 
-	/* Custom inputs block styling */
 	.meta-customization-box {
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
+		gap: 0.4rem;
 		background-color: #121212;
 		border: 1px solid #222;
-		border-radius: 10px;
-		padding: 0.75rem;
+		border-radius: 8px;
+		padding: 0.65rem;
 		box-sizing: border-box;
 	}
 
 	.input-element {
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
+		gap: 0.15rem;
 	}
 
 	.input-element label {
-		font-size: 0.65rem;
+		font-size: 0.6rem;
 		text-transform: uppercase;
-		color: #64748b;
+		color: #555;
 		font-weight: 800;
 		letter-spacing: 0.05em;
 	}
 
 	.input-element input {
 		background-color: #0d0d0d;
-		border: 1px solid #2a2a2a;
-		border-radius: 6px;
+		border: 1px solid #252525;
+		border-radius: 5px;
 		color: #fff;
-		padding: 0.45rem 0.6rem;
-		font-size: 0.8rem;
+		padding: 0.4rem 0.5rem;
+		font-size: 0.75rem;
 		outline: none;
-		transition: border-color 0.15s;
+		transition: border-color 0.12s;
 	}
 
 	.input-element input:focus {
@@ -374,15 +375,15 @@
 		background-color: #2563eb;
 		color: #fff;
 		border: none;
-		border-radius: 8px;
-		padding: 0.75rem;
-		font-size: 0.85rem;
+		border-radius: 6px;
+		padding: 0.65rem;
+		font-size: 0.8rem;
 		font-weight: bold;
 		cursor: pointer;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		transition: background-color 0.15s;
+		transition: background-color 0.12s;
 	}
 
 	.export-nav-action:hover {
