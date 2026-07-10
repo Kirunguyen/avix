@@ -285,10 +285,7 @@
 									{/if}
 								</div>
 							</div>
-							<div
-								class="enchantment-connector"
-								style="background-color: {getGroupColor(2)};"
-							></div>
+							<div class="enchantment-connector" style="background-color: transparent;"></div>
 							<div class="enchantment-slot-wrapper">
 								<div
 									class="card-enchantment-slot category-slot"
@@ -940,9 +937,6 @@
 		width: 100%;
 		max-width: 100%;
 		aspect-ratio: 1;
-		background: #181818;
-		border: 1px solid #333;
-		border-radius: 8px;
 		overflow: hidden;
 		display: flex;
 		align-items: center;
@@ -952,15 +946,15 @@
 	}
 
 	.card-talent-slot img {
-		width: 90%;
-		height: 90%;
+		width: 75%;
+		height: 75%;
 		object-fit: contain;
 	}
 
 	.card-talent-empty {
 		width: 100%;
 		height: 100%;
-		background: #121212;
+		background: transparent;
 		border: 1px dashed #444;
 		border-radius: 8px;
 	}
@@ -1043,7 +1037,6 @@
 		width: 100%;
 		max-width: 140px;
 		aspect-ratio: 1;
-		border-radius: 16px;
 		flex-shrink: 0;
 		flex-grow: 1;
 	}
@@ -1363,9 +1356,9 @@
 	}
 
 	/* Mobile responsive styles */
-	@media (max-width: 768px) {
+	@media (max-width: 1024px) {
 		.relative-preview-banner {
-			height: 150px !important;
+			height: 5rem !important;
 			padding: 1rem !important;
 		}
 
