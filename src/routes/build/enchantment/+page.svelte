@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import { buildState } from '$lib/state.svelte';
 	import EnchantmentSelector from '$lib/components/EnchantmentSelector.svelte';
 	import enchantmentListRaw from '$lib/data/enchantments.json';
 	import type { Enchantment } from '$lib/types/entities';
@@ -8,13 +9,17 @@
 </script>
 
 <div class="editor-wrapper">
-	<!-- Sticky Editor Header -->
 	<div class="editor-header">
 		<a class="back-btn" href={resolve('/')}>← Done</a>
 		<h1 class="editor-title">Configure Enchantments</h1>
+
+		<!-- Fast clear actions button nested inside header -->
+		<button class="clear-action-btn" onclick={() => buildState.clearAllEnchantments()}>
+			<span>🧹 Clear All</span>
+		</button>
 	</div>
 
-	<!-- Full-bleed horizontal split editor body -->
+	<!-- Main horizontal split viewport -->
 	<div class="editor-body">
 		<EnchantmentSelector enchantments={enchantmentList} />
 	</div>
@@ -68,6 +73,26 @@
 		font-weight: bold;
 		color: #fff;
 		margin: 0 0 0 1.25rem;
+	}
+
+	/* Fast clear header button styles */
+	.clear-action-btn {
+		background-color: #121212;
+		border: 1px solid #ef4444;
+		color: #f87171;
+		padding: 0.35rem 0.75rem;
+		border-radius: 6px;
+		font-size: 0.75rem;
+		font-weight: bold;
+		cursor: pointer;
+		outline: none;
+		margin-left: auto; /* align right */
+		transition: all 0.15s;
+	}
+
+	.clear-action-btn:hover {
+		background-color: #450a0a;
+		color: #fff;
 	}
 
 	/* Full-screen horizontal split body */

@@ -148,191 +148,185 @@
 
 	function handleEnchantmentSelect(ench: Enchantment) {
 		if (currentStep === 2) {
-			buildState.selectedEnchantments[0] = ench;
+			buildState.selectedEnchantments[0] = { ...ench };
 		} else if (currentStep === 3) {
-			buildState.selectedEnchantments[1] = ench;
+			buildState.selectedEnchantments[1] = { ...ench };
 		} else if (currentStep === 4) {
-			buildState.selectedEnchantments[2] = ench;
+			buildState.selectedEnchantments[2] = { ...ench };
 		} else if (currentStep === 6) {
-			buildState.selectedEnchantments[3] = ench;
+			buildState.selectedEnchantments[3] = { ...ench };
 		} else if (currentStep === 8) {
-			buildState.selectedEnchantments[4] = ench;
+			buildState.selectedEnchantments[4] = { ...ench };
 		}
 		currentStep = getNextUnfilledStep();
 	}
 </script>
 
 <div class="enchantment-split-workspace">
-	<!-- Part 1: Interactive 8-Step Symmetrical Map (60% width) -->
+	<!-- Part 1: Symmetrical Vertical Alignment (Centered inside the Panel) -->
 	<div class="interactive-map-panel">
 		<span class="panel-section-label">Enchantment Build Map</span>
 
-		<!-- Row 1: Core Branch (1-2-3-4) -->
-		<div class="map-row-container">
-			<div
-				class="connector-line"
-				style="background-color: {getCategoryMeta(buildState.enchantmentMainCat).color}"
-			></div>
-			<div class="nodes-row">
-				<!-- Step 1: Main Category Node -->
-				<button
-					class="node-circle"
-					class:active={currentStep === 1}
-					onclick={() => (currentStep = 1)}
-					style="border-color: {getCategoryMeta(buildState.enchantmentMainCat).color}"
-				>
-					{#if buildState.enchantmentMainCat}
-						<img
-							src={getCategoryMeta(buildState.enchantmentMainCat).icon}
-							alt=""
-							class="cat-node-img"
-						/>
-					{:else}
-						<span class="slot-idx">1</span>
-					{/if}
-				</button>
-
-				<!-- Step 2: Main Cat Level 1 -->
-				<button
-					class="node-circle"
-					class:active={currentStep === 2}
-					onclick={() => (currentStep = 2)}
-					style="border-color: {getCategoryMeta(buildState.enchantmentMainCat).color}"
-				>
-					{#if buildState.selectedEnchantments[0]}
-						<img src="/enchantments/{buildState.selectedEnchantments[0].image}" alt="" />
-					{:else}
-						<span class="slot-idx">2</span>
-					{/if}
-				</button>
-
-				<!-- Step 3: Main Cat Level 2 -->
-				<button
-					class="node-circle"
-					class:active={currentStep === 3}
-					onclick={() => (currentStep = 3)}
-					style="border-color: {getCategoryMeta(buildState.enchantmentMainCat).color}"
-				>
-					{#if buildState.selectedEnchantments[1]}
-						<img src="/enchantments/{buildState.selectedEnchantments[1].image}" alt="" />
-					{:else}
-						<span class="slot-idx">3</span>
-					{/if}
-				</button>
-
-				<!-- Step 4: Main Cat Level 3 (Core Rune) -->
-				<button
-					class="node-circle core-circle"
-					class:active={currentStep === 4}
-					onclick={() => (currentStep = 4)}
-					style="border-color: {getCategoryMeta(buildState.enchantmentMainCat).color}"
-				>
-					{#if buildState.selectedEnchantments[2]}
-						<img src="/enchantments/{buildState.selectedEnchantments[2].image}" alt="" />
-					{:else}
-						<span class="slot-idx">4</span>
-					{/if}
-				</button>
-			</div>
-		</div>
-
-		<!-- Row 2: Sub-Branches (5-6) and (7-8) -->
-		<div class="map-row-container flex-column">
-			<!-- Sub Branch 1 Connection -->
-			<div class="sub-branch-group">
+		<div class="map-centered-aligner">
+			<!-- Row 1: Core Branch (1-2-3-4) -->
+			<div class="map-row-container">
 				<div
-					class="connector-line half-line"
-					style="background-color: {getCategoryMeta(buildState.enchantmentSubCat1).color}"
+					class="connector-line"
+					style="background-color: {getCategoryMeta(buildState.enchantmentMainCat).color}"
 				></div>
 				<div class="nodes-row">
-					<!-- Step 5: Sub Cat 1 Category Node -->
 					<button
 						class="node-circle"
-						class:active={currentStep === 5}
-						onclick={() => (currentStep = 5)}
-						style="border-color: {getCategoryMeta(buildState.enchantmentSubCat1).color}"
+						class:active={currentStep === 1}
+						onclick={() => (currentStep = 1)}
+						style="border-color: {getCategoryMeta(buildState.enchantmentMainCat).color}"
 					>
-						{#if buildState.enchantmentSubCat1}
+						{#if buildState.enchantmentMainCat}
 							<img
-								src={getCategoryMeta(buildState.enchantmentSubCat1).icon}
+								src={getCategoryMeta(buildState.enchantmentMainCat).icon}
 								alt=""
 								class="cat-node-img"
 							/>
 						{:else}
-							<span class="slot-idx">5</span>
+							<span class="slot-idx">1</span>
 						{/if}
 					</button>
 
-					<!-- Step 6: Sub Cat 1 Level 1 -->
 					<button
 						class="node-circle"
-						class:active={currentStep === 6}
-						onclick={() => (currentStep = 6)}
-						style="border-color: {getCategoryMeta(buildState.enchantmentSubCat1).color}"
+						class:active={currentStep === 2}
+						onclick={() => (currentStep = 2)}
+						style="border-color: {getCategoryMeta(buildState.enchantmentMainCat).color}"
 					>
-						{#if buildState.selectedEnchantments[3]}
-							<img src="/enchantments/{buildState.selectedEnchantments[3].image}" alt="" />
+						{#if buildState.selectedEnchantments[0]}
+							<img src="/enchantments/{buildState.selectedEnchantments[0].image}" alt="" />
 						{:else}
-							<span class="slot-idx">6</span>
+							<span class="slot-idx">2</span>
+						{/if}
+					</button>
+
+					<button
+						class="node-circle"
+						class:active={currentStep === 3}
+						onclick={() => (currentStep = 3)}
+						style="border-color: {getCategoryMeta(buildState.enchantmentMainCat).color}"
+					>
+						{#if buildState.selectedEnchantments[1]}
+							<img src="/enchantments/{buildState.selectedEnchantments[1].image}" alt="" />
+						{:else}
+							<span class="slot-idx">3</span>
+						{/if}
+					</button>
+
+					<button
+						class="node-circle core-circle"
+						class:active={currentStep === 4}
+						onclick={() => (currentStep = 4)}
+						style="border-color: {getCategoryMeta(buildState.enchantmentMainCat).color}"
+					>
+						{#if buildState.selectedEnchantments[2]}
+							<img src="/enchantments/{buildState.selectedEnchantments[2].image}" alt="" />
+						{:else}
+							<span class="slot-idx">4</span>
 						{/if}
 					</button>
 				</div>
 			</div>
 
-			<!-- Sub Branch 2 Connection -->
-			<div class="sub-branch-group">
-				<div
-					class="connector-line half-line right-align"
-					style="background-color: {getCategoryMeta(buildState.enchantmentSubCat2).color}"
-				></div>
-				<div class="nodes-row justify-end">
-					<!-- Step 7: Sub Cat 2 Category Node -->
-					<button
-						class="node-circle"
-						class:active={currentStep === 7}
-						onclick={() => (currentStep = 7)}
-						style="border-color: {getCategoryMeta(buildState.enchantmentSubCat2).color}"
-					>
-						{#if buildState.enchantmentSubCat2}
-							<img
-								src={getCategoryMeta(buildState.enchantmentSubCat2).icon}
-								alt=""
-								class="cat-node-img"
-							/>
-						{:else}
-							<span class="slot-idx">7</span>
-						{/if}
-					</button>
+			<!-- Row 2: Sub-Branches (5-6) and (7-8) -->
+			<div class="map-row-container flex-column">
+				<div class="sub-branch-group">
+					<div
+						class="connector-line half-line"
+						style="background-color: {getCategoryMeta(buildState.enchantmentSubCat1).color}"
+					></div>
+					<div class="nodes-row">
+						<button
+							class="node-circle"
+							class:active={currentStep === 5}
+							onclick={() => (currentStep = 5)}
+							style="border-color: {getCategoryMeta(buildState.enchantmentSubCat1).color}"
+						>
+							{#if buildState.enchantmentSubCat1}
+								<img
+									src={getCategoryMeta(buildState.enchantmentSubCat1).icon}
+									alt=""
+									class="cat-node-img"
+								/>
+							{:else}
+								<span class="slot-idx">5</span>
+							{/if}
+						</button>
 
-					<!-- Step 8: Sub Cat 2 Level 1 or Level 2 -->
-					<button
-						class="node-circle"
-						class:active={currentStep === 8}
-						onclick={() => (currentStep = 8)}
-						style="border-color: {getCategoryMeta(buildState.enchantmentSubCat2).color}"
-					>
-						{#if buildState.selectedEnchantments[4]}
-							<img src="/enchantments/{buildState.selectedEnchantments[4].image}" alt="" />
-						{:else}
-							<span class="slot-idx">8</span>
-						{/if}
-					</button>
+						<button
+							class="node-circle"
+							class:active={currentStep === 6}
+							onclick={() => (currentStep = 6)}
+							style="border-color: {getCategoryMeta(buildState.enchantmentSubCat1).color}"
+						>
+							{#if buildState.selectedEnchantments[3]}
+								<img src="/enchantments/{buildState.selectedEnchantments[3].image}" alt="" />
+							{/if}
+						</button>
+					</div>
+				</div>
+
+				<div class="sub-branch-group">
+					<div
+						class="connector-line half-line right-align"
+						style="background-color: {getCategoryMeta(buildState.enchantmentSubCat2).color}"
+					></div>
+					<div class="nodes-row justify-end">
+						<button
+							class="node-circle"
+							class:active={currentStep === 7}
+							onclick={() => (currentStep = 7)}
+							style="border-color: {getCategoryMeta(buildState.enchantmentSubCat2).color}"
+						>
+							{#if buildState.enchantmentSubCat2}
+								<img
+									src={getCategoryMeta(buildState.enchantmentSubCat2).icon}
+									alt=""
+									class="cat-node-img"
+								/>
+							{:else}
+								<span class="slot-idx">7</span>
+							{/if}
+						</button>
+
+						<button
+							class="node-circle"
+							class:active={currentStep === 8}
+							onclick={() => (currentStep = 8)}
+							style="border-color: {getCategoryMeta(buildState.enchantmentSubCat2).color}"
+						>
+							{#if buildState.selectedEnchantments[4]}
+								<img src="/enchantments/{buildState.selectedEnchantments[4].image}" alt="" />
+							{:else}
+								<span class="slot-idx">8</span>
+							{/if}
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- Part 2: Options Selection Grid (40% width) -->
+	<!-- Part 2: Options Selection (Full-Width List Item Choices) -->
 	<div class="selections-picker-panel">
 		<span class="panel-section-label">Available Selections</span>
 		<div class="picker-scroll-view">
 			{#if pickerOptions.type === 'category'}
-				<!-- Render Categories choices -->
-				<div class="categories-picker-grid">
+				<!-- Render Categories as full-width list entries decorated with colors -->
+				<div class="categories-list-picker">
 					{#each pickerOptions.list as cat (cat.id)}
-						<button class="category-choice-btn" onclick={() => handleCategorySelect(cat.id)}>
+						<button
+							class="category-choice-row"
+							style="border-color: {cat.color}; --hover-bg: {cat.color}15;"
+							onclick={() => handleCategorySelect(cat.id)}
+						>
 							<img src={cat.icon} alt="" />
-							<span class="choice-title">{cat.display}</span>
+							<span class="choice-title" style="color: {cat.color}">{cat.display} Category</span>
 						</button>
 					{/each}
 				</div>
@@ -376,7 +370,7 @@
 		display: block;
 	}
 
-	/* Map Panel Styles */
+	/* Map Panel Styles with centered alignment wrapper */
 	.interactive-map-panel {
 		background-color: #0c0d0d;
 		border: 1px solid #1a1a1a;
@@ -384,8 +378,17 @@
 		padding: 1rem;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
 		height: 100%;
+		box-sizing: border-box;
+	}
+
+	.map-centered-aligner {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: center; /* Center horizontally/vertically */
+		gap: 2rem;
+		width: 100%;
 		box-sizing: border-box;
 	}
 
@@ -393,7 +396,7 @@
 		position: relative;
 		display: flex;
 		align-items: center;
-		padding: 1.25rem 0.5rem;
+		padding: 0.5rem;
 		box-sizing: border-box;
 	}
 
@@ -439,14 +442,10 @@
 		z-index: 2;
 	}
 
-	.justify-end {
-		justify-content: space-between;
-	}
-
 	/* Circles visual node design */
 	.node-circle {
-		width: 52px;
-		height: 52px;
+		width: 48px;
+		height: 48px;
 		background-color: #121212;
 		border: 2px dashed #444;
 		border-radius: 50%;
@@ -473,8 +472,8 @@
 	}
 
 	.core-circle {
-		width: 62px;
-		height: 62px;
+		width: 58px;
+		height: 58px;
 		border-style: solid;
 	}
 
@@ -515,40 +514,40 @@
 		padding-right: 0.25rem;
 	}
 
-	.categories-picker-grid {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
+	/* Categories Choice full-width lists */
+	.categories-list-picker {
+		display: flex;
+		flex-direction: column;
 		gap: 0.5rem;
 	}
 
-	.category-choice-btn {
+	.category-choice-row {
 		background-color: #121212;
 		border: 1px solid #222;
 		border-radius: 8px;
-		padding: 0.75rem 0.5rem;
+		padding: 0.75rem 1rem;
 		display: flex;
-		flex-direction: column;
 		align-items: center;
-		gap: 0.5rem;
+		gap: 1rem;
 		cursor: pointer;
+		width: 100%;
 		transition: all 0.15s;
 	}
 
-	.category-choice-btn:hover {
-		border-color: #444;
-		background-color: #1a1a1a;
+	.category-choice-row:hover {
+		background-color: var(--hover-bg, #1a1a1a);
 	}
 
-	.category-choice-btn img {
-		width: 32px;
-		height: 32px;
+	.category-choice-row img {
+		width: 24px;
+		height: 24px;
 		object-fit: contain;
 	}
 
 	.choice-title {
-		font-size: 0.75rem;
+		font-size: 0.8rem;
 		font-weight: bold;
-		color: #eee;
+		color: #fff;
 	}
 
 	.enchantments-picker-list {
@@ -567,6 +566,7 @@
 		gap: 0.75rem;
 		cursor: pointer;
 		transition: all 0.15s;
+		text-align: left;
 	}
 
 	.enchantment-choice-card:hover {
