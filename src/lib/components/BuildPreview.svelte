@@ -574,10 +574,7 @@
 										{/if}
 									</div>
 								</div>
-								<div
-									class="enchantment-connector"
-									style="background-color: {getGroupColor(2)};"
-								></div>
+								<div class="enchantment-connector" style="background-color: transparent;"></div>
 								<div class="enchantment-slot-wrapper">
 									<div
 										class="card-enchantment-slot category-slot"
@@ -1358,7 +1355,7 @@
 	/* Mobile responsive styles */
 	@media (max-width: 1024px) {
 		.relative-preview-banner {
-			height: 5rem !important;
+			height: 5.5rem !important;
 			padding: 1rem !important;
 		}
 
@@ -1417,5 +1414,75 @@
 		.card-talent-subgroup {
 			width: 40%;
 		}
+	}
+
+	/* ==========================================================================
+	   EXPORT CANVAS HIGH-RES TYPOGRAPHY SCALE OVERRIDES (Isolated to PNG)
+	   ========================================================================== */
+
+	.export-card-canvas .card-hero-name {
+		font-size: 2.25rem !important;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+	}
+
+	.export-card-canvas .card-build-title {
+		font-size: 3.85rem !important;
+		font-weight: 900;
+		line-height: 1.1;
+		text-shadow: 0 4px 16px rgba(0, 0, 0, 0.95);
+	}
+
+	.export-card-canvas .card-author-stamp {
+		font-size: 1.5rem !important;
+		font-weight: 700;
+		color: #94a3b8;
+	}
+
+	.export-card-canvas .card-section-label {
+		font-size: 1.35rem !important;
+		font-weight: 800;
+		color: #64748b;
+		letter-spacing: 0.12em;
+	}
+
+	.export-bottom-summary .column-header-title {
+		font-size: 1.35rem !important;
+		font-weight: 800;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		margin-bottom: 0.5rem;
+	}
+
+	.export-bottom-summary .arcana-card-name {
+		font-size: 1.15rem !important;
+		font-weight: 700;
+		color: #f1f5f9;
+	}
+
+	.export-bottom-summary .arcana-card-count {
+		font-size: 1.35rem !important;
+		font-weight: 800;
+		color: #3b82f6;
+	}
+
+	.export-bottom-summary .stat-name {
+		font-size: 1.15rem !important;
+		color: #94a3b8;
+		font-weight: 500;
+	}
+
+	.export-bottom-summary .stat-number {
+		font-size: 1.35rem !important;
+		color: #10b981;
+		font-weight: 700;
+	}
+
+	.export-card-canvas .export-footer-watermark {
+		font-size: 1.15rem !important;
+		color: #334155;
+		font-weight: 800;
+		letter-spacing: 0.22em;
+		bottom: 1.25rem !important;
 	}
 </style>

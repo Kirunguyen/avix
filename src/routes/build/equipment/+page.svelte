@@ -126,29 +126,31 @@
 			<ItemSelector items={filteredItems} onSelect={(item) => buildState.addItem(item)} />
 		</div>
 
-		<!-- Compact, space-saving horizontal footer -->
+		<!-- Compact, space-saving horizontal footer (No more row-splitting, strictly stacked vertical details) -->
 		<div class="lightweight-preview">
-			<div class="preview-left">
-				<span class="preview-label">Capacity</span>
-				<div class="capacity-selector">
-					<button
-						disabled={buildState.armoryCapacity <= 6}
-						onclick={() => buildState.changeArmoryCapacity(buildState.armoryCapacity - 1)}>−</button
-					>
-					<span class="indicator">{buildState.armoryCapacity} slots</span>
-					<button
-						disabled={buildState.armoryCapacity >= 12}
-						onclick={() => buildState.changeArmoryCapacity(buildState.armoryCapacity + 1)}>+</button
-					>
+			<div class="preview-header-bar">
+				<div class="preview-left">
+					<span class="preview-label">Capacity</span>
+					<div class="capacity-selector">
+						<button
+							disabled={buildState.armoryCapacity <= 6}
+							onclick={() => buildState.changeArmoryCapacity(buildState.armoryCapacity - 1)}
+							>−</button
+						>
+						<span class="indicator">{buildState.armoryCapacity} slots</span>
+						<button
+							disabled={buildState.armoryCapacity >= 12}
+							onclick={() => buildState.changeArmoryCapacity(buildState.armoryCapacity + 1)}
+							>+</button
+						>
+					</div>
 				</div>
 			</div>
 
-			<div class="vertical-panel-divider"></div>
-
-			<!-- Wrapping Armory Grid system (Auto wraps into 2 neat rows if slots count exceeds 6) -->
+			<!-- 1 single horizontal scrolling row containing fixed 42px slots -->
 			<div class="armory-interactive-wrapper">
 				<div class="interactive-grid-row">
-					{#each buildState.armory.slice(0, 6) as slot, index (slot ? `preview-equip-${slot.id}-${index}` : `empty-equip-${index}`)}
+					{#each buildState.armory as slot, index (slot ? `preview-equip-${slot.id}-${index}` : `empty-equip-${index}`)}
 						<button
 							class="interactive-slot"
 							onclick={() => buildState.removeItem(index)}
@@ -163,25 +165,6 @@
 						</button>
 					{/each}
 				</div>
-
-				{#if buildState.armoryCapacity > 6}
-					<div class="interactive-grid-row">
-						{#each buildState.armory.slice(6, buildState.armoryCapacity) as slot, index (slot ? `preview-equip-${slot.id}-${index + 6}` : `empty-equip-${index + 6}`)}
-							<button
-								class="interactive-slot"
-								onclick={() => buildState.removeItem(index + 6)}
-								title={slot ? `Remove ${slot.name}` : 'Empty Slot'}
-							>
-								{#if slot}
-									<img src="/items/{toWebp(slot.image)}" alt="" />
-									<div class="delete-overlay">×</div>
-								{:else}
-									<span class="slot-add">+</span>
-								{/if}
-							</button>
-						{/each}
-					</div>
-				{/if}
 			</div>
 		</div>
 	</div>
@@ -339,23 +322,28 @@
 		border-right: 1px solid #141414;
 	}
 
-	/* Compact horizontal layout for the footer */
+	/* Strictly stacked bottom preview, taking full-width horizontally */
 	.lightweight-preview {
 		background-color: #0b0b0b;
 		border-top: 1px solid #1a1a1a;
-		padding: 0.75rem 1.5rem;
+		padding: 0.75rem 1rem;
+		display: flex;
+		flex-direction: column; /* ALWAYS stacked vertically */
+		gap: 0.5rem;
+		box-sizing: border-box;
+		width: 100vw; /* full screen width */
+	}
+
+	.preview-header-bar {
 		display: flex;
 		align-items: center;
-		gap: 1.25rem;
-		box-sizing: border-box;
-		height: fit-content;
+		width: 100%;
 	}
 
 	.preview-left {
 		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-		flex-shrink: 0;
+		align-items: baseline;
+		gap: 0.75rem;
 	}
 
 	.preview-label {
@@ -380,10 +368,10 @@
 		background: none;
 		border: none;
 		color: #fff;
-		padding: 0.25rem 0.55rem;
+		padding: 0.2rem 0.55rem;
 		font-weight: bold;
 		cursor: pointer;
-		font-size: 0.85rem;
+		font-size: 0.8rem;
 	}
 
 	.capacity-selector button:hover:not(:disabled) {
@@ -395,7 +383,7 @@
 	}
 
 	.indicator {
-		font-size: 0.75rem;
+		font-size: 0.7rem;
 		color: #aaa;
 		font-weight: bold;
 		padding: 0 0.45rem;
@@ -403,25 +391,21 @@
 		border-right: 1px solid #222;
 	}
 
-	.vertical-panel-divider {
-		width: 2px;
-		height: 38px;
-		background-color: #222;
-		flex-shrink: 0;
+	/* Dynamic horizontal scrolling bar */
+	.armory-interactive-wrapper {
+		width: 100%;
+		overflow-x: auto;
+		scrollbar-width: none;
 	}
 
-	/* Dynamic 2-row armory horizontal grid */
-	.armory-interactive-wrapper {
-		display: flex;
-		flex-direction: column;
-		gap: 0.35rem;
-		flex: 1;
-		min-width: 0;
+	.armory-interactive-wrapper::-webkit-scrollbar {
+		display: none;
 	}
 
 	.interactive-grid-row {
 		display: flex;
 		gap: 0.35rem;
+		min-width: max-content;
 	}
 
 	.interactive-slot {
