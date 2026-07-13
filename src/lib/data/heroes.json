@@ -707,6 +707,13 @@
 		"lanes": ["Jungle", "Slayer"]
 	},
 	{
+		"id": "tamyn",
+		"name": "Tamyn",
+		"image": "Tamyn.webp",
+		"roles": ["Warrior"],
+		"lanes": ["Jungle", "Slayer"]
+	},
+	{
 		"id": "teemee",
 		"name": "Teemee",
 		"image": "Teemee.webp",
