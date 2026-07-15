@@ -1,113 +1,132 @@
-Hi this is Kiru, welcone to AVIX
+# Welcome to AVIX
 
-AVIX is a web to help **Arena of Valor** players to share hero builds without login into the game.
+Hi, this is Kiru, creator of AVIX (Arena of Valor IndeX) 👋🏻
 
-🌐 **Live Demo:** <https://avix.kiruaaaa.io.vn/>
+AVIX is a web app to create & share **Arena of Valor** builds outside the game.
+
+> ⚠️ AVIX is still in active development. Expect frequent updates, UI changes, and experimental features.
 
 ---
 
-## Features Plan
+## How to use
 
-### Short-term
+- For laptop and desktop:
+  - Go to <https://avix.kiruaaaa.io.vn/>
+  - Zoom in (Ctrl+Plus) a few times for better experience
+    ![image](misc/web-layout.webp)
+  - Try the app
 
-- Build a full set of armory
-- Share builds
-- Be mobile-friendly (hardest part)
-
-### Long-term
-
-- Update with the latest AoV updates
-- Discord Bot integration
-- Backend services
-- User accounts
-- Recommendation system
-- Android application for smoother mobile experience
-- Public API
-- Similar MOBAs using AVIX as a reusable platform (I play HoK too)
+- Mobile: You will need to install the web as a PWA with the following steps:
+  - Go to <https://avix.kiruaaaa.io.vn/>
+  - Tap the three dots in the top right corner
+  - Tap "Add to Home Screen" or "Install"
+    ![image](misc/mobile-guide-1.png)
+  - If a menu pops up, tap "Install" (this way, the URL box will disappear)
+    ![image](misc/mobile-guide-2.png)
+  - Rotate to landscape mode and try the app
 
 ---
 
 ## Learning Goals
 
-Although AVIX is a community tool, it is equally important as my personal engineering sandbox.
-Through AVIX, I aim to study DevOps, Svelte/SvelteKit (hopefully), and AI-assisted development.
-I don't expect to become a professional engineer, but I hope to learn how to collaborate with AI and engineers to create a better product.
+Beyond being a game tool, AVIX is also my personal engineering sandbox.
 
-## Tech Stack
+Instead of building many small demo projects, I'd rather keep improving one real app while learning modern software engineering practices.
 
-1. Frontend: Svelte/SvelteKit/TypeScript/HTML/CSS
-   I chose SvelteKit largely because of **OADex**, one of the projects that inspired AVIX.
+Through AVIX, I'm practicing and exploring:
 
-2. Backend: For now it's just a static site hosted on GitHub Pages, so only JavaScript is used. Data is stored in JSON files.
+- DevOps: Git/GitHub, Cloudflare
+- FE: Svelte/SvelteKit, TypeScript (hopefully 😅)
+- BE: Currently none (AVIX is a fully static site)
+- AI-assisted software development
+- Programming practices: Conventional Commits, Semantic Versioning (SemVer)
 
-3. DevOps: (my main focus)
-   Topics explored include:
+- Discord: Community management and deployment notifications via GitHub Actions
 
-- Git
-- GitHub
-- GitHub Pages
-- GitHub Actions
-- Cloudflare
-- CI/CD pipelines
-- Semantic Versioning (SemVer)
-- Conventional Commits
-- Branching strategies
-- Release management
-- Issue tracking
-- Pull Request workflows
-  Although I am currently the sole developer, I intentionally follow collaborative development practices to build habits that transfer naturally into professional team environments.
+### About AI-assisted Workflow
 
----
-
-## AI-assisted Workflow
-
-AI is an important part of this project—but not the project itself.
+AI is an important part of this project—but it isn't the project itself.
 I use multiple AI tools, namely:
 
-- ChatGPT: Ideas container, I like its Project feature
-- Deepseek: Repetitive tasks with huge context windows, such as updating JSON files or summarizing Git diffs
-- Google AIStudio: Main implementation, actually build the codes
-- Antigravity CLI: For automating repetitive tasks straight into local files
+- ChatGPT: Brainstorming, project planning (I like its Project feature, keeps things together)
+- Deepseek: Repetitive tasks, such as generating JSON files
+- Google AI Studio: Main implementation while learning Svelte/SvelteKit
+- Antigravity CLI: Automating repetitive local development tasks
 
-Implementation is heavily AI-assisted, allowing me to focus on defining AoV's logic and mechanics in details, and gradually becoming more comfortable with Svelte/SvelteKit.
-The objective is not to replace engineering with AI, but to learn how modern software engineers can effectively collaborate with AI while retaining ownership of technical decisions.
+Implementation is heavily AI-assisted, allowing me to focus on AoV mechanics, product direction, architecture, and continuous learning.
 
----
-
-## Inspiration
-
-AVIX would not exist without inspiration from existing projects and interfaces. Which are:
-
-- Arena of Valor's in-game interface
-- OADex (currently down for now, sad)
+The goal isn't to replace software engineering with AI, but to learn how modern engineers can effectively collaborate with AI while retaining ownership of technical decisions.
 
 ---
 
-## Contributing
+## Contact, Community and Contributing
 
-Contributions are always welcome.
-Either DM me on Discord (@kiruaaaa) or ping me in AoV's Discord server
+### Contact
 
-### Developers
+Discord is the easiest way to reach me.
+You can find me as **@kiruaaaa**, or through [my Discord profile link](https://discord.com/users/703433100520325290)
 
-- GitHub Issues
-- Pull Requests
-- Discussions
+### Community
 
-### Players
+I'd love to discuss AVIX together with the community!
 
-Most users are players rather than developers, so GitHub may not be the most comfortable platform.
+You can find me in:
 
-If you're unfamiliar with Git or GitHub, the easiest way to contribute is simply by:
+- [My personal Discord server](https://discord.com/invite/2B2tUCtg4u) (EN/VN)
+- [Arena of Valor Discord server](https://discord.gg/arenaofvalor) (EN)
 
-- use AVIX and tell me what you think
-- reporting bugs
-- suggesting features
-- discussing UI improvements
+### Contributing
 
-through Discord.
+Contributions are **very, very welcome** :3
 
-Every piece of feedback helps improve AVIX.
+AVIX is still evolving rapidly, so things may change often. Even if I can't implement your idea immediately, every suggestion helps shape the project.
+
+#### For Players
+
+You absolutely **don't need to know programming** to contribute.
+
+Since AoV doesn't provide a public API, community knowledge is incredibly valuable.
+
+You can help by:
+
+- Reporting bugs or unexpected behavior
+- Suggesting new features or QoL improvements
+- Designing icons, banners, or other visual assets
+- Providing screenshots from the game
+- Helping transcribe in-game data into AVIX
+- Explaining hero skills, mechanics, and game interactions
+- Verifying damage formulas or gameplay mechanics
+- Proofreading the data that comes from the game
+- Helping translate the interface
+- Discussing whether AVIX accurately reflects in-game mechanics
+- Simply using AVIX and telling me what feels good—or what doesn't
+
+Every bit of feedback is appreciated.
+
+#### For Developers
+
+I'd be thrilled to receive contributions from other developers!
+
+Frontend developers are especially welcome, since most of the project currently lives on the frontend.
+That said, I'm in the middle of a fairly large architecture refactor, so development may be messy for a while.
+
+If you'd like to contribute code, I'd recommend reaching out first so we can discuss ideas and avoid duplicated work.
+
+Contributions of all kinds are appreciated, including:
+
+- UI/UX improvements
+- Performance optimizations
+- Accessibility
+- Documentation
+- Refactoring
+- Testing
+- Build tooling
+- CI/CD improvements
+- Developer experience
+
+## Community Feedback
+
+Some early feedback from the players:
 
 ![image](misc/image.png)
 ![image](misc/image2.png)
