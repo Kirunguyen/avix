@@ -1,4 +1,30 @@
-# Welcome to AVIX
+# NOTICE
+
+AVIX is an independent fan-made project.
+
+This project is not affiliated with, endorsed by, or sponsored by
+Level Infinite, TiMi Studio Group, Tencent, Garena, or any respective
+rights holders.
+
+All game artwork, icons, logos, hero names, item names, and other
+game-related intellectual property belong to their respective owners.
+
+Reference websites:
+
+- <https://lienquan.garena.vn/>
+
+- <https://moba.garena.tw/>
+
+- <https://www.arenaofvalor.com/>
+
+Copyright © 2026 kiruaaaa
+
+Unless otherwise stated, the source code of this project is licensed
+under the Apache License 2.0.
+
+---
+
+## Welcome to AVIX
 
 Hi, this is Kiru, creator of AVIX (Arena of Valor IndeX) 👋🏻
 
