@@ -20,7 +20,7 @@ Reference websites:
 Copyright © 2026 kiruaaaa
 
 Unless otherwise stated, the source code of this project is licensed
-under the Apache License 2.0.
+under the MIT License.
 
 ---
 
